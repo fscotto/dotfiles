@@ -40,6 +40,7 @@
 (load "~/.emacs.rc/latex-mode-rc.el")
 (load "~/.emacs.rc/agda2-mode-rc.el")
 (load "~/.emacs.rc/move-text-rc.el")
+(load "~/.emacs.rc/metals-rc.el")
 
 (add-to-list 'auto-mode-alist '("\\.ebi\\'" . lisp-mode))
 
