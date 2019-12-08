@@ -15,6 +15,11 @@
 (scroll-bar-mode 0)
 (column-number-mode 1)
 (show-paren-mode 1)
+(setq frame-title-format "Emacs")
+(set-default 'cursor-type 'hbar)
+(global-hl-line-mode)
+(winner-mode t)
+(windmove-default-keybindings)
 
 ;;; Themes
 (rc/require-theme 'darcula)
