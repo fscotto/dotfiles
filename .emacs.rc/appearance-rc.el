@@ -19,6 +19,7 @@
 (set-default 'cursor-type 'hbar)
 (global-hl-line-mode)
 (winner-mode t)
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
 (windmove-default-keybindings)
 
 ;;; Themes
