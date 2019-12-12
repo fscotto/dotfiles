@@ -80,6 +80,7 @@ plugins=(
   docker 
   docker-compose 
   docker-machine 
+  emacs 
   extract 
   git 
   git-auto-fetch 
