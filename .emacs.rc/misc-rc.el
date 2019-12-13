@@ -8,13 +8,13 @@
               tab-width 4
               indent-tabs-mode nil
               compilation-scroll-output t
-              default-input-method "russian-computer"
+;;              default-input-method "russian-computer"
               visible-bell (equal system-type 'windows-nt))
 
 (defun rc/colorize-compilation-buffer ()
-  (toggle-read-only)
+  (read-only-mode)
   (ansi-color-apply-on-region compilation-filter-start (point))
-  (toggle-read-only))
+  (read-only-mode))
 (add-hook 'compilation-filter-hook 'rc/colorize-compilation-buffer)
 
 (defun rc/buffer-file-name ()
@@ -132,5 +132,14 @@ This command does the inverse of `fill-paragraph'."
 (setq x-alt-keysym 'meta)
 
 (setq confirm-kill-emacs 'y-or-n-p)
+
+
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (message "Emacs ready in %s with %d garbage collections."
+                     (format "%.2f seconds"
+                             (float-time  (time-subtract after-init-time before-init-time)))
+                     gcs-done)))
+
 
 (server-start)

@@ -1,5 +1,3 @@
-(package-initialize)
-
 (require 'package)
 
 ;; Install use-package if not already installed
@@ -30,6 +28,7 @@
 ;; Enable nice rendering of diagnostincs like compile errors.
 (use-package flycheck
   :init (global-flycheck-mode))
+(setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
 
 (use-package lsp-mode
   ;; Optional - enable lsp-mode automatically in scala files
