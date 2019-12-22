@@ -23,5 +23,5 @@
 (windmove-default-keybindings)
 
 ;;; Themes
-(rc/require-theme 'darcula)
+(rc/require-theme 'atom-one-dark)
 
