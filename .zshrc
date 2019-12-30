@@ -96,6 +96,7 @@ plugins=(
   heroku 
   httpie 
   jsontools 
+  lein 
   man 
   mix 
   mvn 
