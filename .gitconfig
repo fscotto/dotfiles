@@ -19,3 +19,5 @@
 	branch = magenta
 	untracked = cyan
 	unmerged = yellow
+[help]
+    autocorrect = 30
