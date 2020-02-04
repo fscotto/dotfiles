@@ -70,8 +70,7 @@ ZSH_CUSTOM=$ZSH/custom
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   archlinux 
-  autopep8 
-  cabal 
+  autopep8  
   cargo 
   colored-man-pages 
   colorize 
@@ -112,8 +111,7 @@ plugins=(
   pipenv 
   profiles 
   pylint 
-  python 
-  rebar 
+  python  
   redis-cli 
   rust 
   sdk 
@@ -262,11 +260,7 @@ export NVM_DIR="$HOME/.nvm"
 welcome
 eval $(thefuck --alias)
 
-# opam configuration
-test -r /home/plague/.opam/opam-init/init.zsh && . /home/plague/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
-
-# opam configuration
-test -r /home/plague/.opam/opam-init/init.zsh && . /home/plague/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/plague/.sdkman"
 [[ -s "/home/plague/.sdkman/bin/sdkman-init.sh" ]] && source "/home/plague/.sdkman/bin/sdkman-init.sh"
 
