@@ -69,7 +69,6 @@ ZSH_CUSTOM=$ZSH/custom
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  archlinux 
   autopep8  
   cargo 
   colored-man-pages 
