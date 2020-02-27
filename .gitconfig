@@ -15,6 +15,9 @@
 	gcunreachablenow = gc --prune=now
 	ld = log -p
 	daily = log --all --author=\"$(git config --get user.name)\" --since=yesterday.midnight --date=format:\"%d %h|%H:%m\" --pretty=format:\"%C(yellow)%h%Xreset|%cd|%C(blue)%s\"
+	notrack = update-index --assume-unchanged
+	track = update-index --no-assume-unchanged
+	unstage = "reset HEAD -- "
 [color "status"]
 	branch = magenta
 	untracked = cyan
