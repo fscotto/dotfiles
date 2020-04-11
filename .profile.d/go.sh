@@ -1,6 +1,6 @@
 #!/bin/bash
 
-GOPATH=$HOME/go
+GOPATH=$HOME/Go
 GOBIN=$GOPATH/bin
 export GOPATH
 export GOBIN
