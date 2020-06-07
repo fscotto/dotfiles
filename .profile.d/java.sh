@@ -1,2 +1,2 @@
-JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-13.0.2.jdk/Contents/Home
-export JAVA_HOME
+export JAVA_HOME=$(/usr/libexec/java_home -v 11)
+export JAVA_HOME_13=$(/usr/libexec/java_home -v 13)
