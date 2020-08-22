@@ -12,11 +12,11 @@ alias cd..="cd .."
 alias home="cd ~"
 
 # Alias del comando ls
-alias l='ls -CF --color=auto'
-alias ls="ls -CF --color=auto"
-alias lla="ls -lisah --color=auto"
-alias ll="ls -lh --color=auto"
-alias la="ls -CF --color=auto -a"
+alias l='ls -CF '
+alias ls="ls -CF"
+alias lla="ls -lisah"
+alias ll="ls -lh"
+alias la="ls -CFa"
 alias lsl="ls -lhFA | less"
 
 # Output colorato comandi vari
