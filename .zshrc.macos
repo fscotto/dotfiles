@@ -69,6 +69,7 @@ ZSH_CUSTOM=$ZSH/custom
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  cargo 
   colored-man-pages 
   colorize 
   command-not-found 
@@ -88,8 +89,11 @@ plugins=(
   heroku 
   httpie 
   jsontools 
+  kubectl
   lein 
   man 
+  microk8s
+  minikube
   mix 
   mvn 
   nmap 
@@ -98,6 +102,8 @@ plugins=(
   perms 
   profiles 
   redis-cli 
+  rust
+  rustup
   themes 
   tmux 
   vscode 
@@ -152,10 +158,11 @@ function appendpath() {
 
 appendpath $GOPATH/bin
 appendpath $HOME/.local/bin
+appendpath $HOME/.cargo/bin
 unset appendpath
 
 source /usr/local/opt/git-extras/share/git-extras/git-extras-completion.zsh
-neofetch --color_blocks off
+#neofetch --color_blocks off
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/plague/.sdkman"
