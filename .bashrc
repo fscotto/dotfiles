@@ -144,20 +144,7 @@ function welcome() {
   echo -en "Local IP Address : "; my_ip | awk '{print $2}'
   echo "";
 }
-
-function appendpath() {
-  case ":$PATH:" in
-  *:"$1":*)
-  ;;
-  *)
-  PATH="${PATH:+$PATH:}$1"
-  esac
-}
-
-appendpath $HOME/.local/bin
-appendpath $HOME/go/bin
-unset appendpath
-
+ 
 [ -r $HOME/.bashrc.aliases ] && . $HOME/.bashrc.aliases
 
 # export QT_STYLE_OVERRIDE=gtk

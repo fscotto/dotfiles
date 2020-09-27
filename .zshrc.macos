@@ -8,7 +8,7 @@ export ZSH="/Users/plague/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="norm"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -92,9 +92,7 @@ plugins=(
   kubectl
   lein 
   man 
-  microk8s
   minikube
-  mix 
   mvn 
   nmap 
   node
@@ -146,25 +144,3 @@ source $ZSH/oh-my-zsh.sh
 bindkey -e
 
 autoload -U compinit && compinit
-
-function appendpath() {
-  case ":$PATH:" in
-  *:"$1":*)
-  ;;
-  *)
-  PATH="${PATH:+$PATH:}$1"
-  esac
-}
-
-appendpath $GOPATH/bin
-appendpath $HOME/.local/bin
-appendpath $HOME/.cargo/bin
-unset appendpath
-
-source /usr/local/opt/git-extras/share/git-extras/git-extras-completion.zsh
-#neofetch --color_blocks off
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/plague/.sdkman"
-[[ -s "/Users/plague/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/plague/.sdkman/bin/sdkman-init.sh"
-
