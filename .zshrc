@@ -2,13 +2,13 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/plague/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="norm"
+ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -69,46 +69,49 @@ ZSH_CUSTOM=$ZSH/custom
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  cargo 
-  colored-man-pages 
-  colorize 
-  command-not-found 
-  cp 
-  docker 
-  docker-compose 
-  docker-machine 
-  extract 
-  git 
-  git-auto-fetch 
-  git-extras 
-  git-flow 
-  github 
-  gitignore 
-  git-prompt 
-  golang 
-  heroku 
-  httpie 
-  jsontools 
+  cargo
+  colored-man-pages
+  colorize
+  command-not-found
+  cp
+  docker
+  docker-compose
+  docker-machine
+  extract
+  git
+  git-auto-fetch
+  git-extras
+  git-flow
+  github
+  gitignore
+  git-prompt
+  golang
+  heroku
+  httpie
+  jsontools
   kubectl
-  lein 
-  man 
+  lein
+  man
   minikube
-  mvn 
-  nmap 
+  mvn
+  nmap
   node
-  npm 
-  perms 
-  profiles 
-  redis-cli 
+  npm
+  perms
+  profiles
+  pyenv
+  pylint
+  python
+  redis-cli
   rust
   rustup
-  themes 
-  tmux 
-  vscode 
-  yarn 
-  web-search 
-  zsh-completions 
-  zsh-navigation-tools 
+  themes
+  tmux
+  vscode
+  yarn
+  web-search
+  zsh-completions
+  zsh-navigation-tools
   zsh_reload
 )
 
@@ -116,7 +119,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH  
+  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
   autoload -Uz compinit
   compinit
 fi
@@ -153,3 +156,6 @@ bindkey -e
 
 autoload -U compinit && compinit
 
+# pyenv configuration
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
