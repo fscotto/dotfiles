@@ -11,6 +11,7 @@ appendpath $GOPATH/bin
 appendpath $HOME/.local/bin
 appendpath $HOME/.cargo/bin
 appendpath $HOME/.pyenv/bin
+appendpath $HOME/.minishift/cache/oc/v3.11.0/darwin
 unset appendpath
 
 source /usr/local/opt/git-extras/share/git-extras/git-extras-completion.zsh
