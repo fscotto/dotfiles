@@ -76,15 +76,12 @@ ZSH_CUSTOM=$ZSH/custom
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  cargo
   colored-man-pages
   colorize
   command-not-found
-  cp
   docker
   docker-compose
   docker-machine
-  extract
   git
   git-auto-fetch
   git-extras
@@ -93,7 +90,6 @@ plugins=(
   gitignore
   git-prompt
   golang
-  heroku
   httpie
   jsontools
   kubectl
@@ -101,21 +97,13 @@ plugins=(
   man
   minikube
   mvn
-  nmap
-  node
-  npm
-  perms
+  pep8
+  pip
   profiles
-  pyenv
   pylint
   python
-  redis-cli
-  rust
-  rustup
   themes
   tmux
-  vscode
-  yarn
   web-search
   zsh-completions
   zsh-navigation-tools
