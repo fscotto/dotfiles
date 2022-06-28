@@ -1,3 +1,5 @@
+# Fig pre block. Keep at the top of this file.
+[[ -f "$HOME/.fig/shell/bashrc.pre.bash" ]] && . "$HOME/.fig/shell/bashrc.pre.bash"
 #
 # ~/.bashrc
 #
@@ -196,3 +198,7 @@ export NVM_DIR="$HOME/.nvm"
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/plague/.sdkman"
 [[ -s "/home/plague/.sdkman/bin/sdkman-init.sh" ]] && source "/home/plague/.sdkman/bin/sdkman-init.sh"
+. "$HOME/.cargo/env"
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/bashrc.post.bash" ]] && . "$HOME/.fig/shell/bashrc.post.bash"

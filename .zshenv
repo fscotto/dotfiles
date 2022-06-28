@@ -10,9 +10,11 @@ function appendpath() {
 appendpath $GOPATH/bin
 appendpath $HOME/.local/bin
 appendpath $HOME/.pyenv/bin
-appendpath $HOME/.minishift/cache/oc/v3.11.0/darwin
+appendpath $HOME/.cargo/bin
 appendpath /usr/local/opt/libarchive/bin
-appendpath /Library/Java/JavaVirtualMachines/graalvm-ce-java11-21.1.0/Contents/Home/bin
+appendpath $HOME/.local/opt/kafka/bin
+appendpath $HOME/.crc/bin
+appendpath $HOME/.crc/bin/oc
 unset appendpath
 
 source /usr/local/opt/git-extras/share/git-extras/git-extras-completion.zsh
@@ -25,3 +27,4 @@ export PKG_CONFIG_PATH="/usr/local/opt/libarchive/lib/pkgconfig"
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/plague/.sdkman"
 [[ -s "/Users/plague/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/plague/.sdkman/bin/sdkman-init.sh"
+. "$HOME/.cargo/env"
