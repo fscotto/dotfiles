@@ -1,6 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-GOPATH=$HOME/Go
-GOBIN=$GOPATH/bin
-export GOPATH
-export GOBIN
+if [[ "$HOST" == 'nymph.localhost' ]]; then
+	export GOPATH=$HOME/Go
+elif [[ "$HOST" == 'ikaros.fritz.box' ]]; then
+	export GOPATH=$HOME/Library/Go
+fi
+
+export GOBIN=$GOPATH/bin
