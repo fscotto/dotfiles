@@ -6,3 +6,4 @@ if test -d $HOME/.profile.d/; then
   unset profile
 fi
 
+. "$HOME/.cargo/env"
