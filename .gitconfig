@@ -3,7 +3,6 @@
 	email = fabio.scottodisantolo@gmail.com
 [core]
 	pager = 
-	editor = emacs -nw
 [push]
 	followTags = true
 [remote "origin"]
