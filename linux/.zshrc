@@ -102,6 +102,7 @@ plugins=(
   themes
   tmux
   web-search
+  zsh-cargo-completion
   zsh-navigation-tools
 )
 
