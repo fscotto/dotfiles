@@ -93,10 +93,12 @@ plugins=(
   minikube
   mvn
   pep8
+  poetry
   pip
   profiles
   pylint
   python
+  rustup
   themes
   tmux
   web-search
