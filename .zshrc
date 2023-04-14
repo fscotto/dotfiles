@@ -98,6 +98,7 @@ plugins=(
   mvn
   pep8
   pip
+  poetry
   profiles
   pylint
   python
@@ -142,6 +143,8 @@ source $ZSH/oh-my-zsh.sh
 # Setup emacs keymap
 bindkey -e
 
+unalias run-help
+autoload run-help
 autoload -U compinit && compinit
 
 source "$ZSH_HIGHLIGHT_DIR/zsh-syntax-highlighting.zsh"
