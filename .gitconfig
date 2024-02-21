@@ -23,3 +23,5 @@
 	unmerged = yellow
 [help]
     autocorrect = 30
+[init]
+	defautlBranch = main
