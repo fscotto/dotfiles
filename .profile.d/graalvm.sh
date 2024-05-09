@@ -1,1 +1,1 @@
-export GRAALVM_HOME="${SDKMAN_DIR}/candidates/java/22.3.1.r19-grl"
+export GRAALVM_HOME="${SDKMAN_CANDIDATES_DIR}/java/21.0.1-graal"

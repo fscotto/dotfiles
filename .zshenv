@@ -9,6 +9,7 @@ function appendpath() {
 
 appendpath "$GOPATH/bin"
 appendpath "$HOME/.local/bin"
+appendpath "$GRAALVM_HOME/bin"
 appendpath $HOME/.local/share/gem/ruby/3.0.0/bin
 
 unset appendpath
