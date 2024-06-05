@@ -2,7 +2,7 @@
 # Hide welcome message & ensure we are reporting fish as shell
 set fish_greeting
 set VIRTUAL_ENV_DISABLE_PROMPT "1"
-set -xU MANPAGER "sh -c 'col -bx | batcat -l man -p'"
+set -xU MANPAGER "sh -c 'col -bx | bat -l man -p'"
 set -xU MANROFFOPT "-c"
 set -x SHELL /usr/bin/fish
 
@@ -31,7 +31,7 @@ end
 
 ## Starship prompt
 if status --is-interactive
-   source ("/usr/local/bin/starship" init fish --print-full-init | psub)
+   source ("/usr/bin/starship" init fish --print-full-init | psub)
 end
 
 ## Advanced command-not-found hook
@@ -111,7 +111,7 @@ alias lt 'eza -aT --color=always --group-directories-first --icons' # tree listi
 alias l. 'eza -ald --color=always --group-directories-first --icons .*' # show only dotfiles
 
 # Replace some more things with better alternatives
-alias cat 'batcat --style header --style snip --style changes --style header'
+alias cat 'bat --style header --style snip --style changes --style header'
 
 # Common use
 alias .. 'cd ..'
