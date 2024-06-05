@@ -1,0 +1,13 @@
+org.mozilla.firefox
+org.filezillaproject.Filezilla
+org.gnome.meld
+org.onlyoffice.desktopeditors
+org.telegram.desktop
+org.mozilla.Thunderbird
+uk.org.greenend.chiark.sgtatham.putty
+org.libreoffice.LibreOffice
+com.jgraph.drawio.desktop
+ca.desrt.dconf-editor
+com.spotify.Client
+com.jetbrains.IntelliJ-IDEA-Ultimate
+com.getpostman.Postman

@@ -1,0 +1,9 @@
+appindicatorsupport@rgcjonas.gmail.com
+blur-my-shell@aunetx
+clipboard-history@alexsaveau.dev
+drive-menu@gnome-shell-extensions.gcampax.github.com
+gnome-ui-tune@itstime.tech
+no-overview@fthx
+pop-shell@system76.com
+switchWorkSpace@sun.wxg@gmail.com
+user-theme@gnome-shell-extensions.gcampax.github.com
