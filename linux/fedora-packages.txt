@@ -1,12 +1,14 @@
 alacritty
 bat
 curl
+distrobox
 duf
 eza
 fastfetch
 fastfetch-fish-completion
 fd-find
 fish
+fuse
 fzf
 git-delta
 go
