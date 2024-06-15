@@ -3,7 +3,14 @@ blur-my-shell@aunetx
 clipboard-history@alexsaveau.dev
 drive-menu@gnome-shell-extensions.gcampax.github.com
 gnome-ui-tune@itstime.tech
-no-overview@fthx
+caffeine@patapon.info
+space-bar@luchrioh
+bluetooth-quick-connect@bjarosze.gmail.com
+quick-settings-avatar@d-go
+arcmenu@arcmenu.com
+apps-menu@gnome-shell-extensions.gcampax.github.com
+background-logo@fedorahosted.org
+launch-new-instance@gnome-shell-extensions.gcampax.github.com
+places-menu@gnome-shell-extensions.gcampax.github.com
 pop-shell@system76.com
-switchWorkSpace@sun.wxg@gmail.com
-user-theme@gnome-shell-extensions.gcampax.github.com
+window-list@gnome-shell-extensions.gcampax.github.com
