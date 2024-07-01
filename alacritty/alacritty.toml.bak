@@ -1,16 +1,12 @@
 live_config_reload = true
 working_directory = "None"
 
-import = [
-    "~/.config/alacritty/themes/dracula_plus.toml"
-]
-
 [env]
 TERM = "xterm-256color"
 WINIT_X11_SCALE_FACTOR = "1"
 
-[shell]
-program = "zellij"
+#[shell]
+#program = "zellij"
 
 [window]
 dynamic_padding = true
@@ -20,8 +16,8 @@ opacity = 0.95
 decorations_theme_variant = "Dark"
 
 [window.dimensions]
-columns = 160
-lines = 45
+columns = 100
+lines = 30
 
 [window.class]
 instance = "Alacritty"
@@ -33,6 +29,30 @@ multiplier = 3
 
 [colors]
 draw_bold_text_with_bright_colors = true
+
+[colors.primary]
+background = "0x272822"
+foreground = "0xF8F8F2"
+
+[colors.normal]
+black = "0x272822"
+red = "0xF92672"
+green = "0xA6E22E"
+yellow = "0xF4BF75"
+blue = "0x66D9EF"
+magenta = "0xAE81FF"
+cyan = "0xA1EFE4"
+white = "0xF8F8F2"
+
+[colors.bright]
+black = "0x75715E"
+red = "0xF92672"
+green = "0xA6E22E"
+yellow = "0xF4BF75"
+blue = "0x66D9EF"
+magenta = "0xAE81FF"
+cyan = "0xA1EFE4"
+white = "0xF9F8F5"
 
 [font]
 size = 12
