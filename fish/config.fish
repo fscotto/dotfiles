@@ -4,6 +4,7 @@ set fish_greeting
 set VIRTUAL_ENV_DISABLE_PROMPT "1"
 set -xU MANPAGER "sh -c 'col -bx | bat -l man -p'"
 set -xU MANROFFOPT "-c"
+set -xU EDITOR /usr/bin/nvim
 set -x SHELL /usr/bin/fish
 
 ## Export variable need for qt-theme
@@ -31,7 +32,8 @@ end
 
 ## Starship prompt
 if status --is-interactive
-   source ("/usr/bin/starship" init fish --print-full-init | psub)
+   set -l starship_path (which starship)
+   source ("$starship_path" init fish --print-full-init | psub)
 end
 
 ## Advanced command-not-found hook
@@ -97,8 +99,8 @@ function copy
 end
 
 function fish_greeting
-  echo -e "\n"
-  fastfetch
+    #  echo -e "\n"
+    #  fastfetch
 end
 
 ## Useful aliases
@@ -113,13 +115,15 @@ alias l. 'eza -ald --color=always --group-directories-first --icons .*' # show o
 # Replace some more things with better alternatives
 alias cat 'bat --style header --style snip --style changes --style header'
 
+# Replace df command tool
+alias df='duf'
+
 # Common use
 alias .. 'cd ..'
 alias ... 'cd ../..'
 alias .... 'cd ../../..'
 alias ..... 'cd ../../../..'
 alias ...... 'cd ../../../../..'
-alias big 'expac -H M "%m\t%n" | sort -h | nl'     # Sort installed packages according to size in MB (expac must be installed)
 alias dir 'dir --color=auto'
 alias grep 'ugrep --color=auto'
 alias egrep 'ugrep -E --color=auto'
@@ -133,10 +137,15 @@ alias tarnow 'tar -acf '
 alias untar 'tar -zxvf '
 alias vdir 'vdir --color=auto'
 alias wget 'wget -c '
+alias rost 'rpm-ostree'
 alias vi 'nvim'
 
 # Get the error messages from journalctl
 alias jctl 'journalctl -p 3 -xb'
 
-# Recent installed packages
-alias rip 'expac --timefmt="%Y-%m-%d %T" "%l\t%n %v" | sort | tail -200 | nl'
+# Aliases run commands inner Archlinux Toolbox container
+alias exercism 'toolbox run -c arch-toolbox-latest exercism'
+alias k9s 'toolbox run -c arch-toolbox-latest k9s'
+alias kubectl 'toolbox run -c arch-toolbox-latest kubectl'
+alias lazydocker 'toolbox run -c arch-toolbox-latest lazydocker'
+alias lazygit 'toolbox run -c arch-toolbox-latest lazygit'

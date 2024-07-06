@@ -59,7 +59,7 @@
             "keyColor": "blue"
         },
         {
-            "type": "wmtheme",
+            "type": "theme",
             "key": "│ ├󰉼",
             "keyColor": "blue"
         },
@@ -114,11 +114,11 @@
             "key": "│ ├󰅐",
             "keyColor": "green"
         },
-        {
-            "type": "display",
-            "key": "│ └󰍹",
-            "keyColor": "green"
-        },
+ //       {
+ //           "type": "disk",
+ //           "key": "│ └󰍹",
+ //           "keyColor": "green"
+ //       },
         {
             "type": "sound",
             "key": "  AUDIO",
