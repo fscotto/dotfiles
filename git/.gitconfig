@@ -1,10 +1,6 @@
 [user]
 	name = Fabio Scotto di Santolo
 	email = fabio.scottodisantolo@gmail.com
-[core]
-	pager = 
-[push]
-	followTags = true
 [remote "origin"]
 	prune = true
 [alias]
@@ -22,6 +18,6 @@
 	untracked = cyan
 	unmerged = yellow
 [help]
-    autocorrect = 30
+    	autocorrect = 30
 [init]
 	defautlBranch = main
