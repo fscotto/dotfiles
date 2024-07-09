@@ -1,0 +1,1 @@
+export GRAALVM_HOME="${SDKMAN_CANDIDATES_DIR}/java/21.0.1-graal"
