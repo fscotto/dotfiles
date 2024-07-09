@@ -1,6 +1,8 @@
 [user]
 	name = Fabio Scotto di Santolo
 	email = fabio.scottodisantolo@gmail.com
+[core]
+        excludesfile = ~/.gitignore_global
 [remote "origin"]
 	prune = true
 [alias]
