@@ -136,7 +136,6 @@ alias tarnow 'tar -acf '
 alias untar 'tar -zxvf '
 alias vdir 'vdir --color=auto'
 alias wget 'wget -c '
-alias rost 'rpm-ostree'
 alias vi 'nvim'
 
 # Get the error messages from journalctl
