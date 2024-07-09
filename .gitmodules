@@ -1,3 +1,18 @@
 [submodule "nvim/.config/nvim"]
 	path = nvim/.config/nvim
 	url = https://github.com/S4NKALP/nvim
+[submodule "tmux/.tmux/plugins/tpm"]
+	path = tmux/.tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm
+[submodule "tmux/.tmux/plugins/tmux-autoreload"]
+	path = tmux/.tmux/plugins/tmux-autoreload
+	url = https://git::@github.com/b0o/tmux-autoreload
+[submodule "tmux/.tmux/plugins/tmux-open"]
+	path = tmux/.tmux/plugins/tmux-open
+	url = https://git::@github.com/tmux-plugins/tmux-open
+[submodule "tmux/.tmux/plugins/tmux-powerline"]
+	path = tmux/.tmux/plugins/tmux-powerline
+	url = https://git::@github.com/erikw/tmux-powerline
+[submodule "tmux/.tmux/plugins/tmux-sensible"]
+	path = tmux/.tmux/plugins/tmux-sensible
+	url = https://git::@github.com/tmux-plugins/tmux-sensible
