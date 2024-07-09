@@ -4,7 +4,6 @@ set fish_greeting
 set VIRTUAL_ENV_DISABLE_PROMPT "1"
 set -xU MANPAGER "sh -c 'col -bx | bat -l man -p'"
 set -xU MANROFFOPT "-c"
-set -xU EDITOR /usr/bin/nvim
 set -x SHELL /usr/bin/fish
 
 ## Export variable need for qt-theme
