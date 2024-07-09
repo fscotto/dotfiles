@@ -143,9 +143,3 @@ alias vi 'nvim'
 # Get the error messages from journalctl
 alias jctl 'journalctl -p 3 -xb'
 
-# Aliases run commands inner Archlinux Toolbox container
-alias exercism 'toolbox run -c arch-toolbox-latest exercism'
-alias k9s 'toolbox run -c arch-toolbox-latest k9s'
-alias kubectl 'toolbox run -c arch-toolbox-latest kubectl'
-alias lazydocker 'toolbox run -c arch-toolbox-latest lazydocker'
-alias lazygit 'toolbox run -c arch-toolbox-latest lazygit'
