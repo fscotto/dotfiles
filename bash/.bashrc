@@ -180,20 +180,9 @@ fi
 [ -e "/etc/DIR_COLORS" ] && DIR_COLORS="/etc/DIR_COLORS"
 [ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
 [ -e "$DIR_COLORS" ] || DIR_COLORS=""
-#eval "`dircolors -b $DIR_COLORS`"
 
-# added by travis gem
-[ -f /home/plague/.travis/travis.sh ] && source /home/plague/.travis/travis.sh
-
-# Set up Node Version Manager
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  					# This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-#welcome
-#eval $(thefuck --alias)
+. "$HOME/.cargo/env"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/plague/.sdkman"
 [[ -s "/home/plague/.sdkman/bin/sdkman-init.sh" ]] && source "/home/plague/.sdkman/bin/sdkman-init.sh"
-. "$HOME/.cargo/env"
