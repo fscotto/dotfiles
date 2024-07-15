@@ -16,3 +16,6 @@
 [submodule "tmux/.tmux/plugins/tmux-sensible"]
 	path = tmux/.tmux/plugins/tmux-sensible
 	url = https://git::@github.com/tmux-plugins/tmux-sensible
+[submodule "tmux/.tmux/plugins/tmux-power"]
+	path = tmux/.tmux/plugins/tmux-power
+	url = https://git::@github.com/wfxr/tmux-power
