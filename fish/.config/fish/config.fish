@@ -102,6 +102,20 @@ function fish_greeting
     #  fastfetch
 end
 
+function tmux-session --argument session_name
+    tmux has-session -t=$session_name 2>/dev/null
+
+    if test $status -ne 0
+        TMUX='' tmux new-session -d -s $session_name
+    end
+
+    if test -z $TMUX
+        tmux attach -t $session_name
+    else
+        tmux switch-client -t $session_name
+    end
+end
+
 ## Useful aliases
 
 # Replace ls with eza
