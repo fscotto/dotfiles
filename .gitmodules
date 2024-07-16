@@ -1,6 +1,3 @@
-#[submodule "nvim/.config/nvim"]
-#	path = nvim/.config/nvim
-#	url = https://github.com/S4NKALP/nvim
 [submodule "tmux/.tmux/plugins/tpm"]
 	path = tmux/.tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
@@ -19,3 +16,6 @@
 [submodule "tmux/.tmux/plugins/tmux-power"]
 	path = tmux/.tmux/plugins/tmux-power
 	url = https://git::@github.com/wfxr/tmux-power
+[submodule "nvim/dot-config/nvim"]
+	path = nvim/dot-config/nvim
+	url = https://github.com/fscotto/nvim-config.git
