@@ -151,7 +151,7 @@ alias untar 'tar -zxvf '
 alias vdir 'vdir --color=auto'
 alias wget 'wget -c '
 alias vi 'nvim'
-alias stow 'stow -d ~/.dotfiles '
+alias stow 'stow --dotfiles -d ~/.dotfiles '
 
 # Get the error messages from journalctl
 alias jctl 'journalctl -p 3 -xb'
