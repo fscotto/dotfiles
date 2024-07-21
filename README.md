@@ -9,6 +9,7 @@ Below is a list of the software:
 - Fastfetch
 - Fish
 - Git
+- Kitty
 - Neovim
 - Profile
 - Ranger
