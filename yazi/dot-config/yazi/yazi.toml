@@ -133,11 +133,27 @@ previewers = [
   { mime = "video/*", run = "video" },
   # PDF
   { mime = "application/pdf", run = "pdf" },
+  # CSV
+  { mime = "text/csv", run = "miller" },
   # Archive
   { mime = "application/*zip", run = "archive" },
   { mime = "application/x-{tar,bzip*,7z-compressed,xz,rar}", run = "archive" },
   # Fallback
-  { name = "*", run = "file" },
+  { name = "*", run = "hexyl" },
+]
+
+prepend_previewers = [
+  # Exifaudio
+  { mime = "audio/*", run = "exifaudio" },
+  # Archive previewer
+  { mime = "application/*zip", run = "ouch" },
+  { mime = "application/x-tar", run = "ouch" },
+  { mime = "application/x-bzip2", run = "ouch" },
+  { mime = "application/x-7z-compressed", run = "ouch" },
+  { mime = "application/x-rar", run = "ouch" },
+  { mime = "application/x-xz", run = "ouch" },
+  # Markdown previewer
+  { name = ".md", run = "glow" },
 ]
 
 [input]
