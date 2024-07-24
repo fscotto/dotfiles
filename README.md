@@ -6,6 +6,7 @@ Below is a list of the software:
 - Alacritty
 - Bash
 - Bat
+- Btop++
 - Fastfetch
 - Fish
 - Git
