@@ -15,5 +15,6 @@ Below is a list of the software:
 - Ranger
 - Starship
 - Tmux
+- Yazi
 - Zellij
 - Zsh
