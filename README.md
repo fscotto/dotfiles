@@ -7,10 +7,11 @@ Below is a list of the software:
 - Bash
 - Bat
 - Btop++
+- Dunst
 - Fastfetch
 - Fish
-- Hyprland
 - Git
+- Hyprland
 - Kitty
 - Neovim
 - Profile
@@ -18,6 +19,7 @@ Below is a list of the software:
 - Rofi
 - Starship
 - Tmux
+- Waybar
 - Yazi
 - Zellij
 - Zsh
