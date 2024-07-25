@@ -3,7 +3,6 @@ return {
   name = "adwaita",
   lazy = false,
   priority = 1000,
-
   -- configure and set on startup
   config = function()
     vim.g.adwaita_darker = false
