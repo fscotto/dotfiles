@@ -5,6 +5,9 @@ set VIRTUAL_ENV_DISABLE_PROMPT 1
 set -xU MANPAGER "sh -c 'col -bx | bat -l man -p'"
 set -xU MANROFFOPT -c
 set -x SHELL /usr/bin/fish
+set -x GOPATH $HOME/.local/share/go
+set -x GOBIN $GOPATH/bin
+set PATH $GOBIN $PATH
 
 ## Export variable need for qt-theme
 if type qtile >>/dev/null 2>&1
