@@ -1,1 +1,14 @@
+configuration {
+    modes: [ combi ];
+    combi-modes: [ window, drun, run ];
+}
+
 @theme "/usr/share/rofi/themes/Monokai.rasi"
+
+/* Insert theme modifications after this */
+
+element {
+  orientation: horizontal;
+  children: [ element-text, element-icon ];
+  spacing: 5px;
+}
