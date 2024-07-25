@@ -9,6 +9,7 @@ Below is a list of the software:
 - Btop++
 - Fastfetch
 - Fish
+- Hyprland
 - Git
 - Kitty
 - Neovim
