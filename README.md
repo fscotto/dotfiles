@@ -14,6 +14,7 @@ Below is a list of the software:
 - Neovim
 - Profile
 - Ranger
+- Rofi
 - Starship
 - Tmux
 - Yazi
