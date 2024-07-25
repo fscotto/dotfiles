@@ -154,7 +154,6 @@ alias dir 'dir --color=auto'
 alias grep 'ugrep --color=auto'
 alias egrep 'ugrep -E --color=auto'
 alias fgrep 'ugrep -F --color=auto'
-alias grubup 'sudo update-grub'
 alias hw 'hwinfo --short' # Hardware Info
 alias ip 'ip -color'
 alias psmem 'ps auxf | sort -nr -k 4'
@@ -163,8 +162,4 @@ alias tarnow 'tar -acf '
 alias untar 'tar -zxvf '
 alias vdir 'vdir --color=auto'
 alias wget 'wget -c '
-alias vi nvim
 alias stow 'stow --dotfiles -d ~/.dotfiles '
-
-# Get the error messages from journalctl
-alias jctl 'journalctl -p 3 -xb'
