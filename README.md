@@ -11,6 +11,7 @@ Below is a list of the software:
 - Fish
 - Git
 - Kitty
+- Neomutt
 - Neovim
 - Profile
 - Ranger
