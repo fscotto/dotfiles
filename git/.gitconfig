@@ -33,10 +33,10 @@
 [interactive]
   diffFilter = delta --color-only
 [alias]
-	lg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)%n' --all
-	onelinegraph = log --oneline --graph --decorate
-	expireunreachablenow = reflog expire --expire-unreachable=now --all
-	gcunreachablenow = gc --prune=now
+  lg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)%n' --all
+  onelinegraph = log --oneline --graph --decorate
+  expireunreachablenow = reflog expire --expire-unreachable=now --all
+  gcunreachablenow = gc --prune=now
   ld = log -p
   undo = reset --soft HEAD~1
   stash-all = stash save --include-untracked
