@@ -1,25 +1,52 @@
+[init]
+	defaultBranch = main
+[core]
+  excludesfile = ~/.gitignore_global
+  pager = delta
 [user]
 	name = Fabio Scotto di Santolo
 	email = fabio.scottodisantolo@gmail.com
-[core]
-        excludesfile = ~/.gitignore_global
+[fetch]
+  prune = true
 [remote "origin"]
-	prune = true
+  prune = true
+[merge]
+  conflictstyle = diff3
+[color]
+  ui = always
+[color "status"]
+	branch = magenta
+	untracked = cyan
+	unmerged = yellow bold
+[color "diff"]
+  frag = magenta bold
+  old = red
+  new = green bold
+  whitespace = red reverse
+[color "diff-highlight"]
+  oldNormal = red bold
+  oldHighlight = red bold 52
+  newNormal = green bold
+  newHighlight = green bold 52
+[help]
+  autocorrect = 30
+[interactive]
+  diffFilter = delta --color-only
 [alias]
 	lg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)%n' --all
 	onelinegraph = log --oneline --graph --decorate
 	expireunreachablenow = reflog expire --expire-unreachable=now --all
 	gcunreachablenow = gc --prune=now
-	ld = log -p
-	daily = log --all --author=\"$(git config --get user.name)\" --since=yesterday.midnight --date=format:\"%d %h|%H:%m\" --pretty=format:\"%C(yellow)%h%Xreset|%cd|%C(blue)%s\"
-	notrack = update-index --assume-unchanged
-	track = update-index --no-assume-unchanged
-	unstage = "reset HEAD -- "
-[color "status"]
-	branch = magenta
-	untracked = cyan
-	unmerged = yellow
-[help]
-    	autocorrect = 30
-[init]
-	defautlBranch = main
+  ld = log -p
+  undo = reset --soft HEAD~1
+  stash-all = stash save --include-untracked
+  glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+[delta]
+  syntax-theme = Coldark-Dark
+  colorMoved = default
+  tabs = 4 
+  true-color = always
+  navigate = true
+  side-by-side = true
+  line-numbers = true
+  hyperlinks = true
