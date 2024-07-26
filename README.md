@@ -14,6 +14,7 @@ Below is a list of the software:
 - Hyprland
 - Kitty
 - Neovim
+- Ov
 - Profile
 - Ranger
 - Rofi
