@@ -1,3 +1,101 @@
+format = """
+$directory\
+$vcsh\
+$fossil_branch\
+$fossil_metrics\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$hg_branch\
+$pijul_channel\
+$package\
+$bun\
+$c\
+$cmake\
+$cobol\
+$daml\
+$dart\
+$deno\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$fennel\
+$gleam\
+$golang\
+$gradle\
+$haskell\
+$haxe\
+$helm\
+$java\
+$julia\
+$kotlin\
+$lua\
+$nim\
+$nodejs\
+$ocaml\
+$odin\
+$opa\
+$perl\
+$php\
+$pulumi\
+$purescript\
+$python\
+$quarto\
+$raku\
+$rlang\
+$red\
+$ruby\
+$rust\
+$scala\
+$solidity\
+$swift\
+$terraform\
+$typst\
+$vlang\
+$vagrant\
+$zig\
+$buf\
+$guix_shell\
+$nix_shell\
+$conda\
+$meson\
+$spack\
+$memory_usage\
+$crystal\
+$custom\
+$sudo\
+$cmd_duration\
+$line_break\
+$jobs\
+$battery\
+$time\
+$status\
+$container\
+$os\
+$shell\
+$character
+"""
+
+right_format = """
+$username\
+$hostname\
+$localip\
+$shlvl\
+$singularity\
+$kubernetes\
+$docker_context\
+$aws\
+$gcloud\
+$openstack\
+$azure\
+$direnv\
+$env_var\
+$nats
+"""
+
 [aws]
 symbol = "  "
 
@@ -18,6 +116,15 @@ symbol = " "
 
 [directory]
 read_only = " 󰌾"
+truncation_length = 8
+truncate_to_repo = false
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = "󰝚 "
+"Pictures" = " "
+"Projects" = "󰲋 "
 
 [docker_context]
 symbol = " "
@@ -28,6 +135,10 @@ symbol = " "
 [elm]
 symbol = " "
 
+[env_var.VIMSHELL] # vim subshell
+format = "[$env_value]($style)"
+style = 'green italic'
+
 [fennel]
 symbol = " "
 
@@ -36,6 +147,13 @@ symbol = " "
 
 [git_branch]
 symbol = " "
+
+[git_status]
+ahead = "⇡${count}"
+behind = "⇣${count}"
+deleted = "x"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+style = "bold yellow"
 
 [golang]
 symbol = " "
@@ -84,6 +202,10 @@ symbol = " "
 
 [ocaml]
 symbol = " "
+
+[os]
+disabled = false
+format = "[$symbol ]($style)"
 
 [os.symbols]
 Alpaquita = " "
