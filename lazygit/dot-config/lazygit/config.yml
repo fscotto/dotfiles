@@ -119,6 +119,15 @@ gui:
     defaultFgColor:
       - default
 
+  authorColors:
+    'Fabio Scotto di Santolo': yellow
+
+  branchColors:
+    develop: yellow
+    feature: blue
+    fix: red
+    hotfix: red
+
   # Config relating to the commit length indicator
   commitLength:
     # If true, show an indicator of commit message length
@@ -149,7 +158,7 @@ gui:
   # Nerd fonts version to use.
   # One of: '2' | '3' | empty string (default)
   # If empty, do not show icons.
-  nerdFontsVersion: ""
+  nerdFontsVersion: "3"
 
   # If true (default), file icons are shown in the file views. Only relevant if NerdFontsVersion is not empty.
   showFileIcons: true
@@ -250,7 +259,7 @@ git:
     manualCommit: false
 
     # Extra args passed to `git merge`, e.g. --no-ff
-    args: ""
+    args: "--no-ff"
 
     # The commit message to use for a squash merge commit. Can contain "{{selectedRef}}" and "{{currentBranch}}" placeholders.
     squashMergeMessage: Squash merge {{selectedRef}} into {{currentBranch}}
@@ -298,7 +307,7 @@ git:
 
   # If true, parse emoji strings in commit messages e.g. render :rocket: as 🚀
   # (This should really be under 'gui', not 'git')
-  parseEmoji: false
+  parseEmoji: true
 
   # Config for showing the log in the commits view
   log:
@@ -400,7 +409,7 @@ os:
   readFromClipboardCmd: ""
 
 # If true, don't display introductory popups upon opening Lazygit.
-disableStartupPopups: false
+disableStartupPopups: true
 
 # What to do when opening Lazygit outside of a git repo.
 # - 'prompt': (default) ask whether to initialize a new repo or open in the most recent repo
