@@ -1,37 +1,49 @@
 [init]
-	defaultBranch = main
+  defaultBranch = main
+
 [core]
   excludesfile = ~/.gitignore_global
   pager = delta
+
 [user]
-	name = Fabio Scotto di Santolo
-	email = fabio.scottodisantolo@gmail.com
+  name = Fabio Scotto di Santolo
+  email = fabio.scottodisantolo@gmail.com
+
 [fetch]
   prune = true
+
 [remote "origin"]
   prune = true
+
 [merge]
   conflictstyle = diff3
+
 [color]
   ui = always
+
 [color "status"]
-	branch = magenta
-	untracked = cyan
-	unmerged = yellow bold
+  branch = magenta
+  untracked = cyan
+  unmerged = yellow bold
+
 [color "diff"]
   frag = magenta bold
-  old = red
+  old = red bold
   new = green bold
   whitespace = red reverse
+
 [color "diff-highlight"]
   oldNormal = red bold
   oldHighlight = red bold 52
   newNormal = green bold
   newHighlight = green bold 52
+
 [help]
   autocorrect = 30
+
 [interactive]
   diffFilter = delta --color-only
+
 [alias]
   lg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)%n' --all
   onelinegraph = log --oneline --graph --decorate
@@ -41,12 +53,13 @@
   undo = reset --soft HEAD~1
   stash-all = stash save --include-untracked
   glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+
+[include]
+  path = ~/.themes.gitignore
+
 [delta]
+  features = chameleon navigate hyperlinks
   syntax-theme = Coldark-Dark
-  colorMoved = default
-  tabs = 4 
   true-color = always
-  navigate = true
-  side-by-side = true
-  line-numbers = true
-  hyperlinks = true
+  colorMoved = default
+  tabs = 4
