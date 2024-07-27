@@ -15,6 +15,7 @@ Below is a list of the software:
 - Kitty
 - Lazygit
 - Neovim
+- Moar
 - Ov
 - Profile
 - Ranger
@@ -24,4 +25,5 @@ Below is a list of the software:
 - Waybar
 - Yazi
 - Zellij
+- Zoxide
 - Zsh
