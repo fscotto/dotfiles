@@ -13,6 +13,7 @@ Below is a list of the software:
 - Git
 - Hyprland
 - Kitty
+- Lazygit
 - Neovim
 - Ov
 - Profile
