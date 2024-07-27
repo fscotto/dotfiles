@@ -1,1 +1,0 @@
-/var/home/fscotto/.asdf/completions/asdf.fish
