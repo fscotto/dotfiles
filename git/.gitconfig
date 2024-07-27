@@ -58,8 +58,8 @@
   path = ~/.themes.gitignore
 
 [delta]
-  features = catppuccin-frappe side-by-side navigate hyperlinks
+  features = catppuccin-frappe navigate hyperlinks
   true-color = always
   colorMoved = default
   tabs = 4
-
+  side-by-side = true
