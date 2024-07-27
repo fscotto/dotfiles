@@ -58,8 +58,8 @@
   path = ~/.themes.gitignore
 
 [delta]
-  features = chameleon navigate hyperlinks
-  syntax-theme = Coldark-Dark
+  features = catppuccin-frappe side-by-side navigate hyperlinks
   true-color = always
   colorMoved = default
   tabs = 4
+
