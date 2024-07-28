@@ -7,7 +7,11 @@ set -xU MANROFFOPT -c
 set -x SHELL /usr/bin/fish
 set -x GOPATH $HOME/.local/share/go
 set -x GOBIN $GOPATH/bin
-set PATH $GOBIN $PATH
+
+## Add custom paths on shell PATH
+for p in $GOBIN
+    set PATH $p $PATH
+end
 
 ## Export variable need for qt-theme
 if type qtile >>/dev/null 2>&1
@@ -144,6 +148,9 @@ alias cat 'bat --style header --style snip --style changes --style header'
 # Replace df command tool
 alias df='duf'
 
+# Safety rm command
+alias rm 'trash -v'
+
 # Common use
 alias .. 'cd ..'
 alias ... 'cd ../..'
@@ -163,3 +170,5 @@ alias untar 'tar -zxvf '
 alias vdir 'vdir --color=auto'
 alias wget 'wget -c '
 alias stow 'stow --dotfiles -d ~/.dotfiles '
+alias openport 'netstat -nape --inet'
+alias kssh 'kitty +kitten ssh'
