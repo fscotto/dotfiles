@@ -12,6 +12,7 @@ Below is a list of the software:
 - Fish
 - Git
 - Hyprland
+- k9s
 - Kitty
 - Lazygit
 - Neovim
