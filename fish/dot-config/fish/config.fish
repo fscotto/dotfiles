@@ -172,3 +172,5 @@ alias wget 'wget -c '
 alias stow 'stow --dotfiles -d ~/.dotfiles '
 alias openport 'netstat -nape --inet'
 alias kssh 'kitty +kitten ssh'
+alias lzg lazygit
+alias lzd lazydocker
