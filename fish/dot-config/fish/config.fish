@@ -148,9 +148,6 @@ alias cat 'bat --style header --style snip --style changes --style header'
 # Replace df command tool
 alias df='duf'
 
-# Safety rm command
-alias rm 'trash -v'
-
 # Common use
 alias .. 'cd ..'
 alias ... 'cd ../..'
