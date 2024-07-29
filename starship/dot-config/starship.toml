@@ -193,6 +193,9 @@ vimcmd_symbol = "[❮](green)"
 [aws]
 symbol = "  "
 
+[azure]
+disabled = false
+
 [buf]
 symbol = " "
 
@@ -267,6 +270,10 @@ symbol = " "
 
 [hostname]
 ssh_symbol = " "
+
+[kubernetes]
+format = "on [$symbol$context( \\($namespace\\))]($style) "
+disabled = false
 
 [java]
 symbol = " "
