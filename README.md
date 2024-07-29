@@ -14,6 +14,7 @@ Below is a list of the software:
 - Hyprland
 - k9s
 - Kitty
+- Lazydocker
 - Lazygit
 - Neovim
 - Moar
