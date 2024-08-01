@@ -223,6 +223,7 @@ style = "bold lavender"
 "Music" = "󰝚 "
 "Pictures" = " "
 "Projects" = "󰲋 "
+"Videos" = " "
 
 [docker_context]
 symbol = " "
