@@ -23,6 +23,7 @@ Below is a list of the software:
 - Ranger
 - Rofi
 - Starship
+- Sway
 - Tmux
 - Waybar
 - Yazi

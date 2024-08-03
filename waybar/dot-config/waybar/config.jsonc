@@ -5,7 +5,8 @@
   // Choose the order of the modules
   "modules-left": [
     "hyprland/workspaces",
-    "hyprland/window"
+    "hyprland/window",
+    "sway/workspaces"
   ],
   "modules-center": [
     "clock"
@@ -18,6 +19,56 @@
     "custom/power"
   ],
   "hyprland/workspaces": {
+    "disable-scroll": true,
+    "disable-markup": false,
+    "all-outputs": true,
+    "format": " {icon} ",
+    "on-click": "activate",
+    "sort-by-number": true,
+    "format-icons": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": "",
+      "5": "",
+      "urgent": "",
+      "active": "",
+      "default": ""
+    },
+    "persistent-workspaces": {
+      "1": [
+        "HDMI-A-1"
+      ],
+      "2": [
+        "HDMI-A-1"
+      ],
+      "3": [
+        "HDMI-A-1"
+      ],
+      "4": [
+        "HDMI-A-1"
+      ],
+      "5": [
+        "HDMI-A-1"
+      ],
+      "6": [
+        "HDMI-A-1"
+      ],
+      "7": [
+        "HDMI-A-1"
+      ],
+      "8": [
+        "HDMI-A-1"
+      ],
+      "9": [
+        "HDMI-A-1"
+      ],
+      "10": [
+        "eDP-1"
+      ]
+    }
+  },
+  "sway/workspaces": {
     "disable-scroll": true,
     "disable-markup": false,
     "all-outputs": true,
