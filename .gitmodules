@@ -16,3 +16,6 @@
 [submodule "tmux/.tmux/plugins/tmux-power"]
 	path = tmux/.tmux/plugins/tmux-power
 	url = https://git::@github.com/wfxr/tmux-power
+[submodule "tmux/.tmux/plugins/tmux"]
+	path = tmux/.tmux/plugins/tmux
+	url = https://github.com/catppuccin/tmux.git
