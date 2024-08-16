@@ -8,12 +8,16 @@
 [user]
   name = Fabio Scotto di Santolo
   email = fabio.scottodisantolo@gmail.com
+  signingkey = 9DDD59AD62494FB2
 
 [fetch]
   prune = true
 
 [remote "origin"]
   prune = true
+
+[commit]
+  gpgsign = true
 
 [merge]
   conflictstyle = diff3
