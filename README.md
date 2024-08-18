@@ -17,6 +17,7 @@ Below is a list of the software:
 - Lazydocker
 - Lazygit
 - Neovim
+- Maven
 - Moar
 - Ov
 - Profile
