@@ -16,7 +16,7 @@ Below is a list of the software:
 - Kitty
 - Lazydocker
 - Lazygit
-- Neovim
+- Neovim/LazyVim
 - Maven
 - Moar
 - Ov
