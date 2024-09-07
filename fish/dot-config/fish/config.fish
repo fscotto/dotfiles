@@ -171,3 +171,4 @@ alias openport 'netstat -nape --inet'
 alias kssh 'kitty +kitten ssh'
 alias lzg lazygit
 alias lzd lazydocker
+alias vih 'nvim .'
