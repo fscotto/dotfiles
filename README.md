@@ -18,6 +18,7 @@ Below is a list of the software:
 - Lazygit
 - Neovim/LazyVim
 - Maven
+- MISE
 - Moar
 - Ov
 - Profile
