@@ -16,6 +16,9 @@ go = "latest"
 maven = "latest"
 minikube = "latest"
 task = "latest"
+glab = "latest"
+gh = "latest"
+lazygit = "latest"
 
 [settings]
 experimental = true
