@@ -139,6 +139,10 @@ function paths
     end
 end
 
+function system-upgrade
+    sudo dnf upgrade && brew upgrade && mise upgrade && rustup upgrade
+end
+
 ## Useful aliases
 
 # Replace ls with eza
