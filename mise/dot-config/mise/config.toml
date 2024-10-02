@@ -15,6 +15,7 @@ node = "latest"
 go = "latest"
 maven = "latest"
 minikube = "latest"
+task = "latest"
 
 [settings]
 experimental = true
