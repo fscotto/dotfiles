@@ -133,6 +133,12 @@ function yy
     rm -f -- "$tmp"
 end
 
+function paths
+    for p in $PATH
+        echo -e "$p"
+    end
+end
+
 ## Useful aliases
 
 # Replace ls with eza
