@@ -153,7 +153,7 @@ alias lt 'eza -aT --color=always --group-directories-first --icons' # tree listi
 alias l. 'eza -ald --color=always --group-directories-first --icons .*' # show only dotfiles
 
 # Replace some more things with better alternatives
-alias cat 'bat --style header --style snip --style changes --style header'
+alias cat 'bat --style header --style snip --style changes --style header --pager never'
 
 # Replace df command tool
 alias df='duf'
