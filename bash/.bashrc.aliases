@@ -12,8 +12,8 @@ alias cd..="cd .."
 alias home="cd ~"
 
 # Alias del comando ls
-alias l='ls -CF '
-alias ls="ls -CF"
+alias l="ls -CF --color=always"
+alias ls="ls --color=always"
 alias lla="ls -lisah"
 alias ll="ls -lh"
 alias la="ls -CFa"
@@ -46,4 +46,4 @@ alias folders='find . -maxdepth 1 -type d -print0 | xargs -0 du -sk | sort -rn'
 alias vpn-add='nmcli connection import type openvpn file'
 alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard --output'
-
+alias stow='stow --dotfiles'

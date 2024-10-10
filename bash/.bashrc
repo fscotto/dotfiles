@@ -84,17 +84,6 @@ function extract {
     fi
   fi
 }
-
-function pacsrc() {
-  packages=("$@")
-  for pack in "${packages[@]}" 
-  do
-    echo -e "\n"
-    echo "======================================== $pack ========================================"
-    echo -e "\n"
-    yay -Ss $pack
-  done
-}
  
 # jump directorys upwards until it hits a directory with multiple folders
 function up(){
@@ -136,7 +125,7 @@ function welcome() {
   #figlet "Welcome, " $USER;
   toilet -f starwars -t "Welcome, " $USER;
   #echo -e ""; cal ;
-  screenfetch 2> /dev/null
+  fastfetch 2> /dev/null
   echo ""
   echo -ne "Today is "; date
   echo -e ""
@@ -181,8 +170,8 @@ fi
 [ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
 [ -e "$DIR_COLORS" ] || DIR_COLORS=""
 
-. "$HOME/.cargo/env"
+# Initialize Zoxide
+eval "$(zoxide init bash)"
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/plague/.sdkman"
-[[ -s "/home/plague/.sdkman/bin/sdkman-init.sh" ]] && source "/home/plague/.sdkman/bin/sdkman-init.sh"
+# Activete Mise JDX
+eval "$(/usr/bin/mise activate bash)"
