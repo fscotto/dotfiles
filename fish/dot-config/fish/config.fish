@@ -8,11 +8,6 @@ set -x SHELL /usr/bin/fish
 set -x GOPATH $HOME/.local/share/go
 set -x GOBIN $GOPATH/bin
 
-## Add custom paths on shell PATH
-for p in $GOBIN
-    set PATH $p $PATH
-end
-
 ## Export variable need for qt-theme
 if type qtile >>/dev/null 2>&1
     set -x QT_QPA_PLATFORMTHEME qt5ct
@@ -140,7 +135,7 @@ function paths
 end
 
 function system-upgrade
-    sudo dnf upgrade && brew upgrade && mise upgrade && rustup upgrade
+    sudo dnf upgrade && flatpak upgrade && mise upgrade && rustup upgrade
 end
 
 ## Useful aliases
