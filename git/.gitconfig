@@ -16,6 +16,9 @@
 [remote "origin"]
   prune = true
 
+[pull]
+	rebase = true
+
 [commit]
   gpgsign = true
 
@@ -49,15 +52,19 @@
   diffFilter = delta --color-only
 
 [alias]
-  lg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)%n' --all
-  onelinegraph = log --oneline --graph --decorate
-  expireunreachablenow = reflog expire --expire-unreachable=now --all
-  gcunreachablenow = gc --prune=now
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
   ld = log -p
+  lg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)%n' --all
+  glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+  onelinegraph = log --oneline --graph --decorate 
   undo = reset --soft HEAD~1
   stash-all = stash save --include-untracked
-  glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
-
+  expireunreachablenow = reflog expire --expire-unreachable=now --all
+  gcunreachablenow = gc --prune=now 
+ 
 [include]
   path = ~/.themes.gitignore
 
@@ -67,3 +74,4 @@
   colorMoved = default
   tabs = 4
   side-by-side = true
+
