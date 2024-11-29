@@ -170,8 +170,14 @@ fi
 [ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
 [ -e "$DIR_COLORS" ] || DIR_COLORS=""
 
+# Initialize Homebrew
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+# Initialize Starship
+eval "$(starship init bash)"
+
 # Initialize Zoxide
 eval "$(zoxide init bash)"
 
 # Activete Mise JDX
-eval "$(/usr/bin/mise activate bash)"
+eval "$(mise activate bash)"
