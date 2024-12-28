@@ -69,7 +69,7 @@
   path = ~/.themes.gitignore
 
 [delta]
-  features = catppuccin-frappe navigate
+  features = gruvmax-fang navigate
   true-color = always
   colorMoved = default
   tabs = 4
