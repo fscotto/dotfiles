@@ -4,11 +4,13 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+[[ ! -f ~/.zshenv ]] || source ~/.zshenv
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -71,13 +73,17 @@ ZSH_CUSTOM=$ZSH/custom
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  aws
+  azure
+  battery
+  brew
   colored-man-pages
   colorize
   command-not-found
+  dnf
   docker
   docker-compose
-  docker-machine
-  gem
+  eza
   git
   git-auto-fetch
   git-extras
@@ -88,23 +94,22 @@ plugins=(
   golang
   httpie
   jsontools
+  k9s
+  kitty
   kubectl
-  lein
+  kubectx
+  macos
   man
   minikube
+  mise
   mvn
-  pep8
-  pip
-  poetry
   profiles
-  pylint
-  python
-  rake
-  ruby
+  ssh
+  ssh-agent
   themes
   tmux
-  web-search
-  zsh-completions
+  zoxide
+  zsh-interactive-cd
   zsh-navigation-tools
 )
 
@@ -127,8 +132,6 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-[[ ! -f ~/.zshenv ]] || source ~/.zshenv
-
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -143,24 +146,8 @@ bindkey -e
 
 fpath=(~/.zsh $fpath)
 
-unalias run-help
 autoload run-help
 autoload -Uz compinit && compinit -u
 
 source "$ZSH_HIGHLIGHT_DIR/zsh-syntax-highlighting.zsh"
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-source <(kind completion zsh)
-
-# pyenv configuration
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-# NVM configuration
-export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+source "$ZSH_AUTOSUGGESTIONS_DIR/zsh-autosuggestions.zsh"

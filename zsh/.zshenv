@@ -1,19 +1,11 @@
-function appendpath() {
-  case ":$PATH:" in
-  *:"$1":*)
-  ;;
-  *)
-  PATH="${PATH:+$PATH:}$1"
-  esac
-}
+[ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env"
 
-appendpath "$GOPATH/bin"
-appendpath "$HOME/.local/bin"
-appendpath "$GRAALVM_HOME/bin"
-appendpath $HOME/.local/share/gem/ruby/3.0.0/bin
+if [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
+  # Initialize Homebrew
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
 
-unset appendpath
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+if command -v oh-my-posh > /dev/null 2>&1; then
+  # Initialize Oh My Posh
+  eval "$(oh-my-posh init zsh --config "$(brew --prefix oh-my-posh)/themes/peru.omp.json")"
+fi
