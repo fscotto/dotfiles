@@ -1,1 +1,3 @@
-export GRAALVM_HOME="${SDKMAN_CANDIDATES_DIR}/java/21.0.1-graal"
+#!/usr/bin/env bash
+
+export GRAALVM_HOME="${HOME}/.local/share/mise/installs/java/graalvm-community-23.0.1"

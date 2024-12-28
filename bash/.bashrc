@@ -97,13 +97,13 @@ function up(){
   if [ -z "$d" ]; then
     d=..
   fi
-  cd $d
+  cd "$d" || exit
 }
 
 # create an directory and directly cd into it
 function mcd() {
-  mkdir -p $1
-  cd $1
+  mkdir -p "$1"
+  cd "$1" || exit
 }
 
 function parse_git_branch() {
@@ -111,8 +111,8 @@ function parse_git_branch() {
 }
 
 function my_ip() { 
-  INTERFACE=`ip addr | awk '/state UP/ {print $2}' | sed 's/.$//'`
-  echo `/sbin/ifconfig $INTERFACE | awk "/inet/ {print $2} " | sed -e s/addr://`
+  INTERFACE=$(ip addr | awk '/state UP/ {print $2}' | sed 's/.$//')
+  echo "$(/sbin/ifconfig $INTERFACE | awk "/inet/ {print $2} " | sed -e s/addr://)"
 }
 
 function welcome() {
@@ -134,7 +134,7 @@ function welcome() {
   echo "";
 }
  
-[ -r $HOME/.bashrc.aliases ] && . $HOME/.bashrc.aliases
+[ -r "$HOME/.bashrc.aliases" ] && . "$HOME/.bashrc.aliases"
 
 # export QT_STYLE_OVERRIDE=gtk
 # export QT_SELECT=qt5
@@ -147,12 +147,12 @@ if [ -n "$SSH_CLIENT" ]; then
   ssh_placeholder=' {SSH::SESSION}'
 fi
 
-if [ -f $HOME/.bash-git-prompt/gitprompt.sh ]; then
+if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
   # To only show the git prompt in or under a repository directory
   GIT_PROMPT_ONLY_IN_REPO=0
   # To use upstream's default theme
   GIT_PROMPT_THEME=Custom
-  source $HOME/.bash-git-prompt/gitprompt.sh
+  source "$HOME/.bash-git-prompt/gitprompt.sh"
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -170,14 +170,23 @@ fi
 [ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
 [ -e "$DIR_COLORS" ] || DIR_COLORS=""
 
-# Initialize Homebrew
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+[ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env"
 
-# Initialize Starship
-eval "$(starship init bash)"
+if [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
+  # Initialize Homebrew
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
 
-# Initialize Zoxide
-eval "$(zoxide init bash)"
+if command -v oh-my-posh > /dev/null 2>&1; then
+  eval "$(oh-my-posh init bash --config "$(brew --prefix oh-my-posh)/themes/peru.omp.json")"
+fi
 
-# Activete Mise JDX
-eval "$(mise activate bash)"
+if command -v zoxide > /dev/null 2>&1; then
+  # Initialize Zoxide
+  eval "$(zoxide init bash)"
+fi
+
+if command -v mise > /dev/null 2>&1; then
+  # Activate Mise JDX
+  eval "$(mise activate bash)"
+fi

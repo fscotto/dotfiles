@@ -1,2 +1,3 @@
-#export JAVA_HOME=$(/usr/libexec/java_home -v 18)
-export JAVA_HOME="$SDKMAN_CANDIDATES_DIR/java/current"
+#!/usr/bin/env bash
+
+export JAVA_HOME="${HOME}/.local/share/mise/installs/java/23.0.1"
