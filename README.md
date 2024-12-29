@@ -27,6 +27,7 @@ Below is a list of the software:
 - Sway
 - Tmux
 - Waybar
+- Wezterm
 - Yazi
 - Zellij
 - Zoxide
