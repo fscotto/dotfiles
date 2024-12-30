@@ -17,7 +17,7 @@
   prune = true
 
 [pull]
-	rebase = true
+  rebase = true
 
 [commit]
   gpgsign = true
@@ -52,10 +52,10 @@
   diffFilter = delta --color-only
 
 [alias]
-	co = checkout
-	br = branch
-	ci = commit
-	st = status
+  co = checkout
+  br = branch
+  ci = commit
+  st = status
   ld = log -p
   lg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)%n' --all
   glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
@@ -74,4 +74,3 @@
   colorMoved = default
   tabs = 4
   side-by-side = true
-
