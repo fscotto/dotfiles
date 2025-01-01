@@ -16,7 +16,6 @@ Below is a list of the software:
 - Maven
 - Moar
 - Neovim/LazyVim
-- Profile
 - Starship
 - Tmux
 - Yazi
