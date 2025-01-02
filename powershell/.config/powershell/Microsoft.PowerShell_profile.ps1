@@ -296,7 +296,14 @@ if (Get-Command zoxide -ErrorAction SilentlyContinue) {
 Set-Alias -Name z -Value __zoxide_z -Option AllScope -Scope Global -Force
 Set-Alias -Name zi -Value __zoxide_zi -Option AllScope -Scope Global -Force
 
-#Import-Module -Name Microsoft.WinGet.CommandNotFound
+$isWin = $PSVersionTable.OS -match "Windows"
+if (-not (Get-Module -ListAvailable -Name Microsoft.WinGet.CommandNotFound) -and $isWin) {
+    Install-Module -Name Microsoft.WinGet.CommandNotFound -Scope CurrentUser -Force -SkipPublisherCheck   
+}
+
+if ($isWin) {
+    Import-Module -Name Microsoft.WinGet.CommandNotFound
+}
 
 # Import Modules and External Profiles
 # Ensure Terminal-Icons module is installed before importing
