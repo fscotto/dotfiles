@@ -82,10 +82,6 @@ function Set-String($file, $find, $replace) {
     (Get-Content $file).replace("$find", $replace) | Set-Content $file
 }
 
-function Stop-ProcessByName($name) {
-    Get-Process $name -ErrorAction SilentlyContinue | Stop-Process
-}
-
 function Get-InitialRows {
     param($Path, $n = 10)
     Get-Content $Path -Head $n
@@ -241,3 +237,9 @@ Import-Module -Name z
 Add-Module PSFzf
 Import-Module -Name PSFzf
 Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+f' -PsReadlineChordReverseHistory 'Ctrl+r'
+Set-PsFzfOption -EnableAliasFuzzyKillProcess -EnableAliasFuzzyEdit -EnableAliasFuzzyGitStatus -EnableAliasFuzzySetLocation
+
+# example command - use $Location with a different command:
+$commandOverride = [ScriptBlock]{ param($Location) Write-Host $Location }
+# pass your override to PSFzf:
+Set-PsFzfOption -AltCCommand $commandOverride
