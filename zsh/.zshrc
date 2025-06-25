@@ -94,6 +94,7 @@ plugins=(
   golang
   httpie
   jsontools
+  keychain
   k9s
   kitty
   kubectl

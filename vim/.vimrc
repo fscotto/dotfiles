@@ -1,0 +1,2 @@
+:set relativenumber
+:colorscheme desert

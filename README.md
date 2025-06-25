@@ -19,6 +19,7 @@ Below is a list of the software:
 - PowerShell
 - Starship
 - Tmux
+- Vim
 - Yazi
 - Zoxide
 - Zsh
