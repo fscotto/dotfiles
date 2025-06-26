@@ -1,3 +1,20 @@
+is_debian_based() {
+    # Controllo /etc/os-release
+    if [[ -f /etc/os-release ]]; then
+        . /etc/os-release
+        if [[ "$ID_LIKE" == *"debian"* ]] || [[ "$ID" == "debian" ]]; then
+            return 0  # OK: Debian-based
+        fi
+    fi
+
+    # Controllo alternativo: /etc/debian_version
+    if [[ -f /etc/debian_version ]]; then
+        return 0  # OK: Debian-based
+    fi
+
+    return 1  # NON Debian-based
+}
+
 # Alias del comando ls
 alias ls="eza --color=always --group-directories-first --icons"
 alias ll="eza -l --color=always --group-directories-first --icons"
@@ -5,6 +22,10 @@ alias la="eza -a --color=always --group-directories-first --icons"
 alias lt="eza -aT --color=always --group-directories-first --icons"
 
 # Replace some more things with better alternatives
+if is_debian_based; then
+  alias bat='batcat'
+fi
+
 alias cat='bat --style header --style snip --style changes --style header --pager never'
 
 # Replace df command tool
