@@ -27,7 +27,25 @@ set tabstop=8				" A tab character is 8 columns wide
 " (requires clang-format installed)
 " ----------------------------------------
 
-autocmd BufWritePre *.c,*.h silent! execute ':!clang-format -i %'
+let g:clang_format#style_options = {
+	\ 'BasedOnStyle': 'LLVM',
+	\ 'IndentWidth': 8,
+	\ 'TabWidth': 8,
+	\ 'UseTab': 'Always',
+	\ 'BreakBeforeBraces': 'Linux',
+	\ 'AllowShortIfStatementsOnASingleLine': 'false',
+	\ 'AllowShortLoopsOnASingleLine': 'false',
+	\ 'AllowShortFunctionsOnASingleLine': 'InlineOnly',
+	\ 'ColumnLimit': 80,
+	\ 'AlignConsecutiveDeclarations': 'false',
+	\ 'AlignConsecutiveAssignments': 'false',
+	\ 'AlignEscapedNewlines': 'Left',
+	\ 'AlignOperands': 'false',
+	\ 'IndentCaseLabels': 'false',
+	\ 'SpaceBeforeParens': 'ControlStatements'
+\ }
+
+autocmd BufWritePre *.c,*.h call system('clang-format -i ' . shellescape(@%)) | edit!
 
 " ----------------------------------------
 " General UI settings
