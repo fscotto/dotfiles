@@ -1,3 +1,42 @@
-:set cursorline
-:set relativenumber
-:colorscheme desert
+" ----------------------------------------
+" Appearance and Colorscheme: Catppuccin
+" ----------------------------------------
+
+set termguicolors			" Enable true color support
+colorscheme catppuccin_frappe		" Use the frappe variant (dark theme)
+
+" Optional: Lightline support (if installed)
+let g:lightline = { 'colorscheme': 'catppuccin_frappe' }
+
+" ----------------------------------------
+" Smart indentation for C development
+" ----------------------------------------
+
+filetype plugin indent on
+syntax enable
+set autoindent				" Copy indentation from previous line
+set cindent				" Use C-style indentation
+set cinoptions=:0,l1,t0,g0		" Linux style: brace on new line, minimal alignment
+set noexpandtab				" Use real tab characters (not spaces)
+set shiftwidth=8			" Indent by 8 columns
+set softtabstop=8			" Insert/delete 8 spaces with tab/backspace
+set tabstop=8				" A tab character is 8 columns wide
+
+" ----------------------------------------
+" Formatting on save with clang-format
+" (requires clang-format installed)
+" ----------------------------------------
+
+autocmd BufWritePre *.c,*.h silent! execute ':!clang-format -i %'
+
+" ----------------------------------------
+" General UI settings
+" ----------------------------------------
+
+set number				" Show line numbers
+set cursorline				" Highlight current line
+set ruler				" Show cursor position
+set wildmenu				" Enhanced command-line completion
+set nowrap				" Don't wrap long lines
+set mouse=a				" Enable mouse support
+
