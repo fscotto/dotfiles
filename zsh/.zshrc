@@ -74,41 +74,11 @@ ZSH_CUSTOM=$ZSH/custom
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   aws
-  azure
-  battery
-  brew
   colored-man-pages
-  colorize
   command-not-found
-  dnf
-  docker
-  docker-compose
-  eza
-  git
-  git-auto-fetch
-  git-extras
-  git-flow
-  github
   gitignore
-  git-prompt
-  golang
-  httpie
-  jsontools
   keychain
-  k9s
-  kitty
-  kubectl
-  kubectx
-  macos
-  man
-  minikube
   mise
-  mvn
-  profiles
-  ssh
-  ssh-agent
-  themes
-  tmux
   zoxide
   zsh-interactive-cd
   zsh-navigation-tools

@@ -5,11 +5,6 @@ if [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
-#if command -v oh-my-posh > /dev/null 2>&1; then
-#  # Initialize Oh My Posh
-#  eval "$(oh-my-posh init zsh --config "$(brew --prefix oh-my-posh)/themes/peru.omp.json")"
-#fi
-
 if command -v starship > /dev/null 2>&1; then
   # Initialize Starship
   eval "$(starship init zsh)"
