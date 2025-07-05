@@ -77,7 +77,6 @@ plugins=(
   colored-man-pages
   command-not-found
   gitignore
-  keychain
   mise
   zoxide
   zsh-interactive-cd
