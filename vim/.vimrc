@@ -45,7 +45,8 @@ let g:clang_format#style_options = {
 	\ 'SpaceBeforeParens': 'ControlStatements'
 \ }
 
-autocmd BufWritePre *.c,*.h call system('clang-format -i ' . shellescape(@%)) | edit!
+autocmd BufWritePre *.c,*.h silent! execute '%!clang-format'
+"autocmd BufWritePre *.c,*.h call system('clang-format -i ' . shellescape(@%))
 
 " ----------------------------------------
 " General UI settings
