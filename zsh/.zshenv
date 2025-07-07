@@ -10,6 +10,3 @@ if command -v starship > /dev/null 2>&1; then
   eval "$(starship init zsh)"
 fi
 
-export VIRTUAL_ENV_DISABLE_PROMPT=1
-export EDITOR=nvim
-export HOMEBREW_NO_ENV_HINTS=1
