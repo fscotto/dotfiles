@@ -1,0 +1,37 @@
+# fuzzel config - Catppuccin Frappé inspired
+
+[general]
+# Dimensioni finestra launcher
+width = 400
+height = 300
+
+# Border e padding
+border_size = 2
+padding = 10
+
+# Posizione
+anchor = topright
+margin = 20
+
+# Timeout (millisecondi) prima che la finestra si chiuda
+timeout = 0
+
+# Autocomplete case insensitive
+ignorecase = true
+
+[main]
+font= CaskaydiaCove Nerd Font:size=12
+icon-theme= Papirus
+dpi-aware=true
+
+[colors]
+background=303446cc
+text=c6a0f6ff
+match=8caaeeff
+selection=5a5f7aff
+selection-text=f5e0dcff
+border=6e6f77ff
+
+[cursor]
+background=c6a0f6ff
+text=303446ff

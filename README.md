@@ -8,12 +8,14 @@ Below is a list of the software:
 - Bat
 - Fastfetch
 - Fish
+- Fuzzel
 - Git
 - Hyprland
 - k9s
 - Kitty
 - Lazydocker
 - Lazygit
+- Mako
 - Maven
 - Moar
 - Neovim/LazyVim

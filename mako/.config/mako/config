@@ -1,0 +1,32 @@
+[settings]
+
+font = CaskaydiaCove Nerd Font 10
+
+# Colors (Catppuccin Frappé)
+background-color=#303446
+text-color=#c6d0f5
+border-color=#f2d5cf
+
+# Layout
+border-size=2
+border-radius=8
+padding=12
+margin=20
+width=400
+height=auto
+
+# Behavior
+default-timeout=5000
+ignore-timeout=0
+layer=overlay
+anchor=top-right
+output=*
+
+# Icons (if any)
+icon-location=left
+max-icon-size=48
+
+# Sorting
+sort=true
+group-by=app-name
+
