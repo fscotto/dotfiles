@@ -6,7 +6,6 @@ Below is a list of the software:
 
 - Bash
 - Bat
-- Dunst
 - Fastfetch
 - Fish
 - Git
@@ -19,12 +18,9 @@ Below is a list of the software:
 - Moar
 - Neovim/LazyVim
 - PowerShell
-- Rofi
 - Starship
-- Sway
 - Tmux
 - Vim
 - Waybar
-- Yazi
 - Zoxide
 - Zsh
