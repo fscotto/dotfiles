@@ -8,6 +8,7 @@ Below is a list of the software:
 - Bat
 - Fastfetch
 - Fish
+- Foot
 - Fuzzel
 - Git
 - Hyprland
