@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/usr/bin/env zsh
+
 # This script sets up ssh-agent and gpg-agent differently for WSL and Linux Mint.
 # On WSL, it uses keychain to start agents.
 # On Linux Mint (or other Linux), it assumes gnome-keyring manages agents automatically.
