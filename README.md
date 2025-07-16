@@ -16,7 +16,6 @@ Below is a list of the software:
 - Lazydocker
 - Lazygit
 - Mako
-- Maven
 - Neovim/LazyVim
 - Starship
 - Tmux
