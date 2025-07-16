@@ -2,14 +2,14 @@
 
 * {
   font-family: FiraCode Nerd Font;
-  font-size: 17px;
+  font-size: 12px;
   min-height: 0;
 }
 
 #waybar {
-  background: transparent;
+  /*background: transparent;*/
   color: @text;
-  margin: 5px 5px;
+  /*margin: 5px 5px;*/
 }
 
 #workspaces {
@@ -50,7 +50,6 @@
 }
 
 #clock {
-  color: @blue;
   border-radius: 0px 1rem 1rem 0px;
   margin-right: 1rem;
 }
@@ -100,4 +99,9 @@
 #tray {
   margin-right: 1rem;
   border-radius: 1rem;
+}
+
+window#waybar {
+  background-color: shade(@base, 0.9);
+  border: 2px solid alpha(@crust, 0.3);
 }
