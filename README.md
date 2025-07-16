@@ -18,6 +18,7 @@ Below is a list of the software:
 - Mako
 - Neovim/LazyVim
 - Starship
+- Sway
 - Tmux
 - Vim
 - Waybar
