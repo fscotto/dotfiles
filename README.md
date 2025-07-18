@@ -20,8 +20,6 @@ This repository contains my configuration files for the following tools:
 
 - **Shells & Prompt**
   - `zsh` + `starship`
-  - `bash`
-  - `fish`
 - **Terminal Emulator & Multiplexer**
   - `foot`
   - `kitty`
