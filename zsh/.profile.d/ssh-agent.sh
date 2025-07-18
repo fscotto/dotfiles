@@ -37,6 +37,5 @@ if [ "$IS_WSL" = true ]; then
 else
   # Not WSL - assume gnome-keyring handles ssh-agent and gpg-agent
   # Do nothing here to avoid conflicts with gnome-keyring
-  :
 fi
 
