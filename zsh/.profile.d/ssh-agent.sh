@@ -15,14 +15,14 @@ if [ "$IS_WSL" = true ]; then
   # We are in WSL - start keychain for ssh and gpg agents
   # Adjust these variables to your actual SSH and GPG key names
   SSH_KEY="$HOME/.ssh/id_rsa_deadalus"
-  GPG_KEY=9DDD59AD62494FB2
+  #GPG_KEY=9DDD59AD62494FB2
 
   # Check if keychain is installed
   if command -v keychain >/dev/null 2>&1; then
     SHORT_HOST=${SHORT_HOST:-${(%):-%m}}
     
-    # Start keychain quietly with no GUI prompts for ssh and gpg agents
-    eval "$(keychain --quiet --nogui --agents ssh,gpg $SSH_KEY $GPG_KEY)"
+    # Start keychain quietly with no GUI prompts for ssh agents
+    eval "$(keychain --quiet --nogui --agents ssh $SSH_KEY)"
     
     # Get the filenames to store/lookup the environment from
     _keychain_env_sh="$HOME/.keychain/$SHORT_HOST-sh"
