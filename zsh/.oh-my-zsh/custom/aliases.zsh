@@ -20,6 +20,7 @@ alias ls="eza --color=always --group-directories-first --icons"
 # Replace some more things with better alternatives
 if is_debian_based; then
   alias bat='batcat'
+  alias fd='fdfind'
 fi
 
 alias cat='bat --style header --style snip --style changes --style header --pager never'

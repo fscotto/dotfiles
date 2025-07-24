@@ -1,9 +1,15 @@
 #!/usr/bin/env bash
 
-# Export Catppuccin Frappe theme for fzf
+# Add fzf keybindings and enhancements
+export FZF_CTRL_T_COMMAND="fd --type f"
+export FZF_ALT_C_COMMAND="fd --type d"
+export FZF_CTRL_R_OPTS="--preview 'echo {}'"
+
+# Export Catppuccin Mocha theme for FZF
 export FZF_DEFAULT_OPTS=" \
---color=bg+:#414559,bg:#303446,spinner:#F2D5CF,hl:#E78284 \
---color=fg:#C6D0F5,header:#E78284,info:#CA9EE6,pointer:#F2D5CF \
---color=marker:#BABBF1,fg+:#C6D0F5,prompt:#CA9EE6,hl+:#E78284 \
---color=selected-bg:#51576D \
---color=border:#414559,label:#C6D0F5"
+--height 60% --layout=reverse --border \
+--color=bg+:#313244,bg:#1E1E2E,spinner:#F5E0DC,hl:#F38BA8 \
+--color=fg:#CDD6F4,header:#F38BA8,info:#CBA6F7,pointer:#F5E0DC \
+--color=marker:#B4BEFE,fg+:#CDD6F4,prompt:#CBA6F7,hl+:#F38BA8 \
+--color=selected-bg:#45475A \
+--color=border:#313244,label:#CDD6F4"
