@@ -34,5 +34,5 @@ anchor=top-right
 group-by=app-name
 
 # Includes section
-include=~/.config/mako/themes/catppuccin-frappe/catppuccin-frappe-blue
+include=~/.config/mako/themes/catppuccin-mocha/catppuccin-mocha-blue
 
