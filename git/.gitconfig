@@ -70,7 +70,7 @@
   path = ~/.themes.gitignore
 
 [delta]
-  features = catppuccin-frappe navigate
+  features = catppuccin-mocha navigate
   true-color = always
   colorMoved = default
   tabs = 4

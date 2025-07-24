@@ -6,7 +6,7 @@
 # for a list of all available themes
 
 # Theme
---theme="Catppuccin Frappe"
+--theme="Catppuccin Mocha"
 
 # Style
 --style="header,changes,numbers"
