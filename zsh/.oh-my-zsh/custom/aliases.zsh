@@ -27,6 +27,10 @@ alias cat='bat --style header --style snip --style changes --style header --page
 # Replace df command tool
 alias df='duf'
 
+# Replace Vim implementation
+alias vi='nvim'
+alias vim='nvim'
+
 # Replace grep command tool
 alias grep='ugrep --color=auto'
 alias egrep='ugrep -E --color=auto'
