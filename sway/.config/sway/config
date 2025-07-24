@@ -1,7 +1,7 @@
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
-set $mod Mod1
+set $mod Mod4
 
 # Home row direction keys, like vim
 set $left h
@@ -25,7 +25,7 @@ set $notification 'mako'
 set $bar 'waybar'
 
 # Set theme
-include themes/catppuccin-frappe
+include themes/catppuccin-mocha
 
 # target                 title     bg    text   indicator  border
 client.focused           $lavender $base $text  $rosewater $lavender

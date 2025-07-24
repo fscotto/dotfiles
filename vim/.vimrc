@@ -3,7 +3,7 @@
 " ----------------------------------------
 
 set termguicolors			" Enable true color support
-colorscheme catppuccin_frappe		" Use the frappe variant (dark theme)
+colorscheme catppuccin_mocha		" Use the mocha variant (dark theme)
 
 " Optional: Lightline support (if installed)
 let g:lightline = { 'colorscheme': 'catppuccin_frappe' }
