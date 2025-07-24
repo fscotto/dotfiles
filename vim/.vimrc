@@ -6,7 +6,7 @@ set termguicolors			" Enable true color support
 colorscheme catppuccin_mocha		" Use the mocha variant (dark theme)
 
 " Optional: Lightline support (if installed)
-let g:lightline = { 'colorscheme': 'catppuccin_frappe' }
+let g:lightline = { 'colorscheme': 'catppuccin_mocha' }
 
 " ----------------------------------------
 " Smart indentation for C development
