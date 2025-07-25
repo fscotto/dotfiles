@@ -76,7 +76,6 @@ plugins=(
   aws
   colored-man-pages
   command-not-found
-  fzf
   gitignore
   mise
   zoxide
@@ -122,35 +121,8 @@ fpath=(~/.zsh $fpath)
 autoload run-help
 autoload -Uz compinit && compinit -u
 
-# Key bindings using bindkey and fzf-tmux where possible
-# Ctrl+R: Enhanced reverse history search
-bindkey '^R' fzf-history-widget
+export FZF_HOME=$HOME/.oh-my-zsh/custom/plugins/fzf
+source <(fzf --zsh)
+source "$FZF_HOME/shell/key-bindings.zsh"
+source "$FZF_HOME/shell/completion.zsh"
 
-# Ctrl+T: Fuzzy find file
-bindkey '^T' fzf-file-widget
-
-# Alt+C: Fuzzy change directory
-bindkey '^[c' fzf-cd-widget
-
-# Additional useful bindings
-# Alt+H: Search and insert from history
-fzf-history-widget() {
-  BUFFER=$(fc -l 1 | fzf --tac +s --no-sort --preview 'echo {}' | sed 's/^[ 0-9]*//')
-  CURSOR=$#BUFFER
-  zle reset-prompt
-}
-zle -N fzf-history-widget
-
-fzf-file-widget() {
-  local file
-  file=$(fzf --preview 'bat --style=numbers --color=always --line-range :500 {}' 2> /dev/null) && LBUFFER+="$file"
-  zle reset-prompt
-}
-zle -N fzf-file-widget
-
-fzf-cd-widget() {
-  local dir
-  dir=$(fd --type d | fzf --preview 'tree -a -C {} | head -100') && cd "$dir"
-  zle reset-prompt
-}
-zle -N fzf-cd-widget
