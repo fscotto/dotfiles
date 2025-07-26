@@ -15,7 +15,7 @@ is_debian_based() {
     return 1  # NO Debian-based
 }
 
-alias ls="eza --color=always --group-directories-first --icons"
+alias ls="eza --color=always --group-directories-first --icons=always"
 
 # Replace some more things with better alternatives
 if is_debian_based; then
