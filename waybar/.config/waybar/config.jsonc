@@ -2,19 +2,31 @@
   "layer": "top",           // Waybar at top layer
   "position": "top",        // Waybar position (top|bottom|left|right)
   "modules-left": [
+    // "custom/launcher",
     "sway/workspaces",
-    "sway/window"
+    "temperature",
+    "idle_inhibitor",
+    "mpd",
   ],
   "modules-center": [
     "clock"
   ],
   "modules-right": [
+    "memory",
+    "cpu",
     "pulseaudio",
-    "tray",
+    "backlight",
+    "network",
     "bluetooth",
     "battery",
-    "custom/power"
+    "custom/powermenu",
+    "tray"
   ],
+  "custom/launcher": {
+    "format": " ",
+    "on-click": "~/.config/waybar/launcher.sh",
+    "tooltip": false
+  },
   "sway/workspaces": {
     "disable-scroll": true,
     "disable-markup": false,
@@ -32,65 +44,20 @@
       "active": "",
       "default": ""
     },
-  "persistent-workspaces": {
-      "1": [
-        "HDMI-A-1"
-      ],
-      "2": [
-        "HDMI-A-1"
-      ],
-      "3": [
-        "HDMI-A-1"
-      ],
-      "4": [
-        "HDMI-A-1"
-      ],
-      "5": [
-        "HDMI-A-1"
-      ],
-      "6": [
-        "HDMI-A-1"
-      ],
-      "7": [
-        "HDMI-A-1"
-      ],
-      "8": [
-        "HDMI-A-1"
-      ],
-      "9": [
-        "HDMI-A-1"
-      ],
-      "10": [
-        "eDP-1"
-      ]
-    }
   },
-  "sway/window": {
-    "format": "<span>{}</span>",
-    "max-length": 50
-  },
-  "tray": {
-    "icon-size": 24,
-    "spacing": 5
-  },
-  "custom/spotify": {
-    "format": "  {}",
-    "escape": true,
-    "interval": 5,
-    "tooltip": false,
-    "exec": "playerctl metadata --format='{{ title }}'",
-    "on-click": "playerctl play-pause",
-    "max-length": 50
-  },
-  "clock": {
-    "timezone": "Europe/Rome",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format-alt": "{:%d/%m/%Y}",
-    "format": "{:%a %b %d %I:%M %p}"
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    },
+    "tooltip": false
   },
   "backlight": {
     "device": "intel_backlight",
-    "format": "{icon} {percent}%",
+    "on-scroll-up": "light -A 5",
+    "on-scroll-down": "light -U 5",
+    "format": "{percent}% {icon}",
     "format-icons": [
       "",
       "",
@@ -103,15 +70,33 @@
       ""
     ]
   },
-  "battery": {
-    "states": {
-      "warning": 30,
-      "critical": 15
+  "pulseaudio": {
+    "scroll-step": 1,
+    "format": "{volume}% {icon}", 
+    "format-muted": "  {format_source}",
+    "format-icons": {
+      "headphone": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "",
+        "",
+        " "
+      ]
     },
-    "format": "{icon} {capacity}%",
-    "format-charging": "󰂄",
-    "format-plugged": "󰂄",
-    "format-alt": "{icon}",
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+  },
+  "battery": {
+    "interval": 10,
+    "states": {
+      "warning": 20,
+      "critical": 10
+    },
+    "format": "{capacity}% {icon}",
+    "format-charging": "{capacity}% 󰂄",
+    "format-plugged": "{capacity}% ",
+    "format-alt": "{time} {icon}",
     "format-icons": [
       "󰁺",
       "󰁻",
@@ -124,33 +109,65 @@
       "󰂂"
     ]
   },
-  "pulseaudio": {
-    // "scroll-step": 1, // %, can be a float
-    "format": "{icon} {volume}%",
-    "format-muted": "",
-    "format-icons": {
-      "default": [
-        "",
-        "",
-        " "
-      ]
+  "clock": {
+    "interval": 1,
+    "timezone": "Europe/Rome",
+    "format": "{:%I:%M %p  %A %b %d}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format-alt": "{:%d/%m/%Y}",
+  },
+  "memory": {
+    "interval": 1,
+    "format": "{percentage}% ",
+    "states": {
+      "warning": 85,
     },
-    "on-click": "pavucontrol"
   },
-  "custom/lock": {
-    "tooltip": false,
-    "on-click": "sh -c '(sleep 0.5s; swaylock --grace 0)' & disown",
-    "format": ""
+  "cpu": {
+    "interval": 1,
+    "format": "{usage}% ",
+    "tooltip": false
   },
-  "custom/power": {
+  "mpd": {
+    "max-length": 25,
+    "format": "<span foreground='#bb9af7'></span> {title}",
+    "format-paused": " {title}",
+    "format-stopped":"<span foreground='#bb9af7'></span>",
+    "format-disconnected": "",
+    "on-click": "mpc --quiet toggle",
+    "on-click-right": "mpc ls | mpc add",
+    "on-click-middle": "kitty ncmpcpp",
+    "on-scroll-up": "mpc --quiet prev",
+    "on-scroll-down": "mpc --quiet next",
+    "smooth-scrolling-threshold":5,
+    "tooltip-format": "{title} - {artist} ({elapsedTime:%M:%S}/{totalTime:%H:%M:%S})"
+  },
+  "network": {
+    "interval": 1,
+    "format-wifi": "{essid} ",
+    "format-ethernet": "{ifname} ({ipaddr})",
+    "format-linked": "{essid} (No IP)",
+    "format-disconnected": "Disconnected ⚠",
+    "tooltip": false
+  },
+  "temperature": {
+    "hwmon-path": "/sys/class/hwmon/hwmon6/temp2_input",
     "tooltip": false,
+    "format": "{temperatureC}°C "
+  },
+  "custom/powermenu": {
+    "format": "",
     "on-click": "wlogout &",
-    "format": ""
+    "tooltip": false
+  },
+  "tray": {
+    "icon-size": 15,
+    "spacing": 5
   },
   "bluetooth": {
-    "format": " {status}",
-    "format-connected": " {device_alias}",
-    "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+    "format": "{status} ",
+    "format-connected": "{device_alias} ",
+    "format-connected-battery": "{device_alias} {device_battery_percentage}% ",
     "format-off": "󰂲", // "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device
     "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
     "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
