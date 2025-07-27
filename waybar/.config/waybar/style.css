@@ -10,8 +10,8 @@
 }
 @keyframes blink_red {
   to {
-    background-color: rgb(242, 143, 173);
-    color: rgb(26, 24, 38);
+    background-color: @flamingo;
+    color: @mantle;
   }
 }
 .warning, .critical, .urgent {
@@ -28,70 +28,71 @@ window > box {
   margin-left: 5px;
   margin-right: 5px;
   margin-top: 5px;
-  background-color: rgb(30, 30, 46);
+  background-color: @base;
 }
 #workspaces {
   padding-left: 0px;
   padding-right: 4px;
 }
 #workspaces button {
+  color: @teal;
   padding-top: 5px;
   padding-bottom: 5px;
   padding-left: 6px;
   padding-right: 6px;
 }
 #workspaces button.focused {
-  background-color: rgb(181, 232, 224);
-  color: rgb(26, 24, 38);
+  background-color: @teal;
+  color: @mantle;
 }
 #workspaces button.urgent {
-  color: rgb(26, 24, 38);
+  color: @mantle;
 }
 #workspaces button:hover {
-  background-color: rgb(248, 189, 150);
-  color: rgb(26, 24, 38);
+  background-color: @peach;
+  color: @mantle;
 }
 tooltip {
-  background: rgb(48, 45, 65);
+  background: @surface0;
 }
 tooltip label {
-  color: rgb(217, 224, 238);
+  color: @text;
 }
 #custom-launcher {
   padding-left: 8px;
   padding-right: 6px;
-  color: rgb(201, 203, 255);
+  color: @mauve;
 }
 #mode, #clock, #memory, #temperature, #cpu, #mpd, #idle_inhibitor, #temperature, #backlight, #pulseaudio, #network, #battery, #custom-powermenu, #bluetooth {
   padding-left: 10px;
   padding-right: 10px;
 }
 #memory {
-  color: rgb(181, 232, 224);
+  color: @teal;
 }
 #cpu {
-  color: rgb(245, 194, 231);
+  color: @pink;
 }
 #clock {
-  color: rgb(217, 224, 238);
+  color: @text;
 }
 #idle_inhibitor {
-  color: rgb(221, 182, 242);
+  color: @mauve;
 }
 #temperature {
-  color: rgb(150, 205, 251);
+  color: @sapphire;
 }
 #backlight {
-  color: rgb(248, 189, 150);
+  color: @peach;
 }
 #pulseaudio {
-  color: rgb(245, 224, 220);
+  color: @rosewater;
 }
 #network {
-  color: #ABE9B3;
+  color: @green;
 }
 #network.disconnected {
-  color: rgb(255, 255, 255);
+  color: @text;
 }
 #battery {
     color: @sky;
@@ -100,7 +101,7 @@ tooltip label {
     color: @green;
 }
 #battery.full, #battery.discharging {
-  color: rgb(250, 227, 176);
+  color: @yellow;
 }
 #battery.critical:not(.charging) {
   color: @red;
@@ -111,22 +112,25 @@ tooltip label {
   animation-direction: alternate;
 }
 #custom-powermenu {
-  color: rgb(242, 143, 173);
+  color: @red;
 }
 #tray {
   padding-right: 8px;
   padding-left: 10px;
 }
 #mpd.paused {
-  color: #414868;
+  color: @blue;
   font-style: italic;
 }
 #mpd.stopped {
   background: transparent;
 }
 #mpd {
-  color: #c0caf5;
+  color: @sky;
 }
 #bluetooth {
   color: @blue;
+}
+#custom-launcher {
+  color: @text;
 }
