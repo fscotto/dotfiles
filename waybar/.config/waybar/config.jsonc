@@ -2,7 +2,7 @@
   "layer": "top",           // Waybar at top layer
   "position": "top",        // Waybar position (top|bottom|left|right)
   "modules-left": [
-    // "custom/launcher",
+    "custom/launcher",
     "sway/workspaces",
     "temperature",
     "idle_inhibitor",
@@ -23,8 +23,8 @@
     "tray"
   ],
   "custom/launcher": {
-    "format": " ",
-    "on-click": "~/.config/waybar/launcher.sh",
+    "format": " " ,
+    "on-click": "fuzzel &",
     "tooltip": false
   },
   "sway/workspaces": {
