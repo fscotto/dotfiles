@@ -40,6 +40,9 @@ This repository contains my configuration files for the following tools:
 - **Utilities**
   - `fastfetch`
   - `zoxide`
+  - `mpv`
+  - `yt-dlp`
+  - `zathura`
 
 ---
 
