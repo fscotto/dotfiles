@@ -78,7 +78,6 @@ plugins=(
   command-not-found
   fzf
   gitignore
-  keychain
   mise
   zoxide
   zsh-autosuggestions
@@ -127,3 +126,4 @@ export FZF_HOME=$HOME/.oh-my-zsh/custom/plugins/fzf
 source <(fzf --zsh)
 source "$FZF_HOME/shell/key-bindings.zsh"
 source "$FZF_HOME/shell/completion.zsh"
+
