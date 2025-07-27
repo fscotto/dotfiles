@@ -21,9 +21,6 @@ set $browser 'firefox'
 # Your preferred notification daemon
 set $notification 'mako'
 
-# Your preferred status bar
-set $bar 'waybar'
-
 # Set theme
 include themes/catppuccin-mocha
 
@@ -35,10 +32,14 @@ client.urgent            $peach    $base $peach $overlay0  $peach
 client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
 client.background        $base
 
+# Setting cursor
+seat seat0 xcursor_theme catppuccin-mocha-lavender-cursors 25
+
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+
 output * bg ~/.config/background.jpg fill
 
 #
@@ -49,10 +50,11 @@ output * bg ~/.config/background.jpg fill
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
 ### Idle configuration
+set $lockman exec bash ~/.config/sway/lockman.sh
 exec swayidle -w \
-         timeout 300 'swaylock -f -c 000000' \
+         timeout 300 'swaylock -f' \
          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-         before-sleep 'swaylock -f -c 000000'
+         before-sleep 'swaylock -f'
 
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -61,11 +63,14 @@ exec swayidle -w \
 ### Run notification daemon 
 exec $notification
 
-### Run status bar
-exec $bar
-
 ### Start Pipewire session
 exec pipewire
+
+# Run clipboard manager
+exec wl-paste -t text --watch clipman store --no-persist
+
+# OSD server
+exec swayosd-server
 
 ### Input configuration
 #
@@ -85,6 +90,17 @@ exec pipewire
 # You can also configure each device individually.
 # Read `man 5 sway-input` for more information about this section.
 
+    input type:touchpad {
+	dwt enabled
+	tap enabled
+	natural_scroll enabled
+	middle_emulation enabled
+    }
+
+    input type:keyboard {
+        xkb_layout "us(intl)"
+        xkb_options "grp:win_space_toggle"
+    }
 ### Key bindings
 #
 # Basics:
@@ -112,7 +128,11 @@ exec pipewire
     bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    #bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Shift+e exec wlogout
+
+    # Waybar toggle
+    bindsym $mod+o exec killall -SIGUSR1 waybar
 
 #
 # Moving around:
@@ -165,6 +185,9 @@ exec pipewire
     bindsym $mod+Shift+8 move container to workspace number 8
     bindsym $mod+Shift+9 move container to workspace number 9
     bindsym $mod+Shift+0 move container to workspace number 10
+
+    bindsym $mod+period workspace next
+    bindsym $mod+comma workspace prev
 
 #
 # Layout stuff:
@@ -235,43 +258,43 @@ bindsym $mod+r mode "resize"
 # Utilities:
 #
     # Special keys to adjust volume via PulseAudio
-    bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
-    bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
-    bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
-    bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
+    # bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
+    # bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
+    # bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
+    # bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
     # Special keys to adjust brightness via brightnessctl
-    bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
-    bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+    # bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
+    # bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+
+    # Client commands for SwayOSD
+    # For enable this service start systemd service swayosd-libinput-backend.service
+
+    # Sink volume toggle mute
+    bindsym XF86AudioMute exec swayosd-client --output-volume mute-toggle
+    # Source volume toggle mute
+    bindsym XF86AudioMicMute exec swayosd-client --input-volume mute-toggle
+    # Volume raise with custom value
+    bindsym XF86AudioRaiseVolume exec swayosd-client --output-volume 5
+    # Volume lower with custom value
+    bindsym XF86AudioLowerVolume exec swayosd-client --output-volume -5
+    # Capslock (If you don't want to use the backend)
+    bindsym --release Caps_Lock exec swayosd-client --caps-lock
+    # Brightness raise with custom value('+' sign needed)
+    bindsym XF86MonBrightnessUp  exec swayosd-client --brightness +5
+    # Brightness lower with custom value('-' sign needed)
+    bindsym XF86MonBrightnessDown exec swayosd-client --brightness -5
     # Special key to take a screenshot with grim
     bindsym Print exec grim
+    # Lock the screen
+    bindsym $mod+Alt+l exec $lockman
 
 #
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
-#bar {
-#    position top
-#
-#    # When the status_command prints a new line to stdout, swaybar updates.
-#    # The default just shows the current date and time.
-#    status_command while date +'%Y-%m-%d %X'; do sleep 1; done
-#
-#    colors {
-#        statusline #ffffff
-#        background #323232
-#        inactive_workspace #32323200 #32323200 #5c5c5c
-#    }
-#}
+bar {
+  swaybar_command waybar
+}
 
-### Window configurations
-
-gaps inner 10
-gaps outer 10
-
-# No gaps when there is a single window
-#smart_gaps on
-
-# Remove title bar
-default_border pixel 2
-
+include $HOME/.config/sway/conf.d/*.conf
 include /etc/sway/config.d/*
