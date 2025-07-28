@@ -72,6 +72,17 @@ exec wl-paste -t text --watch clipman store --no-persist
 # OSD server
 exec swayosd-server
 
+#----------------#
+# set gtk+ theme #
+#----------------#
+set $gnome-schema org.gnome.desktop.interface
+exec_always {
+  gsettings set $gnome-schema gtk-theme 'Catppuccin'
+  gsettings set $gnome-schema icon-theme 'Papirus-Dark'
+  gsettings set $gnome-schema cursor-theme 'Catppuccin-cursor'
+  gsettings set $gnome-schema font-name 'jetbrains mono nerd font 12'
+}
+
 ### Input configuration
 #
 # Example configuration:
@@ -133,6 +144,8 @@ exec swayosd-server
 
     # Waybar toggle
     bindsym $mod+o exec killall -SIGUSR1 waybar
+
+    bindsym $mod+t exec --no-startup-id              telegram-desktop
 
 #
 # Moving around:
@@ -284,9 +297,11 @@ bindsym $mod+r mode "resize"
     # Brightness lower with custom value('-' sign needed)
     bindsym XF86MonBrightnessDown exec swayosd-client --brightness -5
     # Special key to take a screenshot with grim
-    bindsym Print exec grim
+    bindsym Print exec grim ~/Pictures/Screenshots/$(date "+%Y-%m-%d"T"%H:%M:%S").png
     # Lock the screen
     bindsym $mod+Alt+l exec $lockman
+    # Kill focused window
+    bindsym $mod+Shift+p kill
 
 #
 # Status Bar:
