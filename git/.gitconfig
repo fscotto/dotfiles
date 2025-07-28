@@ -21,7 +21,7 @@
   rebase = true
 
 [commit]
-  gpgsign = true
+  gpgsign = false
 
 [merge]
   conflictstyle = diff3
