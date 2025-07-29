@@ -49,7 +49,6 @@ $custom\
 $sudo\
 $cmd_duration\
 $line_break\
-$jobs\
 $time\
 $status\
 $container\
@@ -322,7 +321,7 @@ CentOS = " "
 Debian = " "
 DragonFly = " "
 Emscripten = " "
-EndeavourOS = " "
+EndeavourOS = " "
 Fedora = " "
 FreeBSD = " "
 Garuda = "󰛓 "
