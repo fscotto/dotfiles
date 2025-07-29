@@ -4,14 +4,6 @@
 
 local map = vim.keymap.set
 
--- Resume last Telescope search
--- map(
---   "n",
---   "<leader>sx",
---   require("telescope.builtin").resume,
---   { noremap = true, silent = true, desc = "Resume Telescope" }
--- )
-
 -- Buffer management
 map("n", "<leader>bn", ":bnext<CR>", { noremap = true, silent = true, desc = "Next buffer" })
 map("n", "<leader>bp", ":bprevious<CR>", { noremap = true, silent = true, desc = "Previous buffer" })

@@ -1,6 +1,7 @@
 -- Options are automatically loaded before lazy.nvim startup
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
+
 local opt = vim.opt
 
 -- Line numbers
@@ -16,6 +17,7 @@ opt.smartcase = true
 
 -- Highlight current line
 opt.cursorline = true
+opt.cursorlineopt = "number"
 
 -- Enable true color support
 opt.termguicolors = true
@@ -24,9 +26,10 @@ opt.termguicolors = true
 opt.clipboard = "unnamedplus"
 
 -- Indentation
-opt.expandtab = false
+opt.softtabstop = 8
 opt.shiftwidth = 8
 opt.tabstop = 8
+opt.expandtab = true
 opt.smartindent = true
 
 -- Split behavior
@@ -49,3 +52,7 @@ opt.foldlevel = 99 -- open all folds by default
 
 -- Show file name and modified flag in the window bar
 opt.winbar = "%=%m %f"
+
+-- Backup files
+opt.swapfile = false
+opt.backup = false
