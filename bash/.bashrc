@@ -48,12 +48,13 @@ NC="\e[m"               # Color Reset
 ALERT=${BWhite}${On_Red} # Bold White on red background
 
 # Creates an archive (*.tar.gz) from given directory.
-function maketar() { tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; }
+maketar() { tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; }
 
 # Create a ZIP archive of a file or folder.
-function makezip() { zip -r "${1%%/}.zip" "$1" ; }
+makezip() { zip -r "${1%%/}.zip" "$1" ; }
 
-function extract {
+# Extract various archive's types
+extract() {
   if [ -z "$1" ]; then
     # display usage if no parameters given
     echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
@@ -86,7 +87,7 @@ function extract {
 }
  
 # jump directorys upwards until it hits a directory with multiple folders
-function up(){
+up(){
   local d=""
   limit=$1
   for ((i=1 ; i <= limit ; i++))
@@ -101,58 +102,21 @@ function up(){
 }
 
 # create an directory and directly cd into it
-function mcd() {
+mcd() {
   mkdir -p "$1"
   cd "$1" || exit
 }
 
-function parse_git_branch() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+mvnt() {
+   local profile="$1-unitTest"
+   local location="classpath:/application.yml,classpath:/config/$1/application.yml"
+   mvn clean test -Dspring.profiles.active="$profile" -Dspring.config.location="$location"
 }
 
-function my_ip() { 
-  INTERFACE=$(ip addr | awk '/state UP/ {print $2}' | sed 's/.$//')
-  echo "$(/sbin/ifconfig $INTERFACE | awk "/inet/ {print $2} " | sed -e s/addr://)"
-}
-
-function welcome() {
-  #------------------------------------------
-  #------WELCOME MESSAGE---------------------
-  # customize this first message with a message of your choice.
-  # this will display the username, date, time, a calendar, the amount of users, and the up time.
-  clear
-  # Gotta love ASCII art with figlet
-  #figlet "Welcome, " $USER;
-  toilet -f starwars -t "Welcome, " $USER;
-  #echo -e ""; cal ;
-  fastfetch 2> /dev/null
-  echo ""
-  echo -ne "Today is "; date
-  echo -e ""
-  echo -ne "Up time:";uptime | awk /'up/'
-  echo -en "Local IP Address : "; my_ip | awk '{print $2}'
-  echo "";
-}
- 
 [ -r "$HOME/.bashrc.aliases" ] && . "$HOME/.bashrc.aliases"
-
-# export QT_STYLE_OVERRIDE=gtk
-# export QT_SELECT=qt5
-
-if [[ $LANG = '' ]]; then
-  export LANG=it_IT.UTF-8
-fi
 
 if [ -n "$SSH_CLIENT" ]; then
   ssh_placeholder=' {SSH::SESSION}'
-fi
-
-if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
-  # To only show the git prompt in or under a repository directory
-  GIT_PROMPT_ONLY_IN_REPO=0
-  # To use upstream's default theme
-  GIT_PROMPT_THEME=Custom
-  source "$HOME/.bash-git-prompt/gitprompt.sh"
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -169,8 +133,6 @@ fi
 [ -e "/etc/DIR_COLORS" ] && DIR_COLORS="/etc/DIR_COLORS"
 [ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
 [ -e "$DIR_COLORS" ] || DIR_COLORS=""
-
-[ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env"
 
 if [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
   # Initialize Homebrew
