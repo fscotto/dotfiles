@@ -5,6 +5,13 @@ return {
     "neovim/nvim-lspconfig",
   },
   opts = {
-    ensure_installed = { "pylsp", "lua_ls", "bash-language-server", "gopls", "clangd", "zls" },
+    ensure_installed = {
+      "bash-language-server",
+      "clangd",
+      "gopls",
+      "lua_ls",
+      "pylsp",
+      "zls",
+    },
   },
 }
