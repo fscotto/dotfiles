@@ -2,14 +2,13 @@
   defaultBranch = main
 
 [core]
-  excludesfile = ~/.gitignore_global
+  excludesfile = C:\\Users\\fabio\\.gitignore_global
   pager = delta
+  autocrlf = true
 
 [user]
   name = Fabio Scotto di Santolo
-  email = fabio.scottodisantolo@gmail.com
-  signingkey = 9DDD59AD62494FB2
-  editor = nvim
+  email = f.scottodisantolo@tecnolife.com
 
 [fetch]
   prune = true
@@ -21,7 +20,7 @@
   rebase = true
 
 [commit]
-  gpgsign = true
+  #gpgsign = true
 
 [merge]
   conflictstyle = diff3
@@ -70,8 +69,14 @@
   path = ~/.themes.gitignore
 
 [delta]
-  features = catppuccin-mocha navigate
+  features = gruvmax-fang navigate
   true-color = always
   colorMoved = default
   tabs = 4
   side-by-side = true
+
+[credential]
+  helper = wincred
+
+[credential "https://fwgitlab.dedagroup.it"]
+  provider = generic

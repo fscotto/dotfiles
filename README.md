@@ -37,7 +37,6 @@ The script will:
 * Copy or symlink PowerShell profile(s)
 * Configure Windows Terminal settings
 * Place `starship.toml` in the correct location
-* Configure Neovim under `$env:LOCALAPPDATA\nvim` or WSL
 * Set up additional tools if available
 
 ---
@@ -54,19 +53,8 @@ Install these tools to get the best experience:
 | `fzf`      | `winget install fzf`           | Fuzzy file finder          |
 | `fd`       | `winget install fd`            | Fast file search           |
 | `ripgrep`  | `winget install ripgrep`       | Recursive grep alternative |
-| `neovim`   | `winget install Neovim.Neovim` | Editor (native or WSL)     |
 
 > You can also install these inside WSL with `apt` or `xbps-install`, depending on the distro.
-
----
-
-## 🧪 Neovim in WSL or Windows
-
-This setup supports both native Neovim (in `AppData\Local\nvim`) and WSL Neovim (`~/.config/nvim`):
-
-* Use the same config by syncing with `stow`, `rclone`, or a symbolic link
-* Make sure `nvim` is in your `$PATH` (native or via WSL)
-* Optional plugin managers: lazy.nvim, vim-plug, etc.
 
 ---
 
