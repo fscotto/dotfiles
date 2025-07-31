@@ -1,6 +1,4 @@
-#!/usr/bin/env zsh
-
-# This script sets up ssh-agent and gpg-agent differently for WSL and non-WSL.
+#!/usr/bin/env bash
 
 start_keychain() {
   local ssh_key="$1"
@@ -24,16 +22,4 @@ start_keychain() {
   fi
 }
 
-# Detect if running inside WSL by checking /proc/version for "Microsoft"
-if grep -qi microsoft /proc/version; then
-  IS_WSL=true
-else
-  IS_WSL=false
-fi
-
-if [ "$IS_WSL" = true ]; then
-  start_keychain "$HOME/.ssh/id_rsa_deadalus" "9DDD59AD62494FB2"
-else
-  start_keychain "$HOME/.ssh/id_ed25519_nymph" "9DDD59AD62494FB2"
-fi
-
+# start_keychain "$HOME/.ssh/id_ed25519_nymph" "9DDD59AD62494FB2"

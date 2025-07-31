@@ -121,7 +121,20 @@ fpath=(~/.zsh $fpath)
 autoload run-help
 autoload -Uz compinit && compinit -u
 
-export FZF_HOME=$HOME/.oh-my-zsh/custom/plugins/fzf
+if command -v starship > /dev/null 2>&1; then
+  # Initialize Starship
+  eval "$(starship init zsh)"
+fi
+
+case ":$PATH:" in
+  *":$HOME/.local/bin:"*) ;;
+  *) export PATH="$HOME/.local/bin:$PATH" ;;
+esac
+
+if [ -e "$HOME/.cargo" ]; then
+    source "$HOME/.cargo/env"
+fi
+
 source <(fzf --zsh)
 source "$FZF_HOME/shell/key-bindings.zsh"
 source "$FZF_HOME/shell/completion.zsh"
