@@ -1,0 +1,136 @@
+@import "themes/mocha.css";
+
+* {
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 12pt;
+  font-weight: bold;
+  border-radius: 0px;
+  transition-property: background-color;
+  transition-duration: 0.5s;
+}
+@keyframes blink_red {
+  to {
+    background-color: @flamingo;
+    color: @mantle;
+  }
+}
+.warning, .critical, .urgent {
+  animation-name: blink_red;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+window#waybar {
+  background-color: transparent;
+}
+window > box {
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 5px;
+  background-color: @base;
+}
+#workspaces {
+  padding-left: 0px;
+  padding-right: 4px;
+}
+#workspaces button {
+  color: @teal;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+#workspaces button.focused {
+  background-color: @teal;
+  color: @mantle;
+}
+#workspaces button.urgent {
+  color: @mantle;
+}
+#workspaces button:hover {
+  background-color: @peach;
+  color: @mantle;
+}
+tooltip {
+  background: @surface0;
+}
+tooltip label {
+  color: @text;
+}
+#custom-launcher {
+  padding-left: 8px;
+  padding-right: 6px;
+  color: @mauve;
+}
+#mode, #clock, #memory, #temperature, #cpu, #mpd, #idle_inhibitor, #temperature, #backlight, #pulseaudio, #network, #battery, #custom-powermenu, #bluetooth {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+#memory {
+  color: @teal;
+}
+#cpu {
+  color: @pink;
+}
+#clock {
+  color: @text;
+}
+#idle_inhibitor {
+  color: @mauve;
+}
+#temperature {
+  color: @sapphire;
+}
+#backlight {
+  color: @peach;
+}
+#pulseaudio {
+  color: @rosewater;
+}
+#network {
+  color: @green;
+}
+#network.disconnected {
+  color: @text;
+}
+#battery {
+    color: @sky;
+}
+#battery.charging {
+    color: @green;
+}
+#battery.full, #battery.discharging {
+  color: @yellow;
+}
+#battery.critical:not(.charging) {
+  color: @red;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+#custom-powermenu {
+  color: @red;
+}
+#tray {
+  padding-right: 8px;
+  padding-left: 10px;
+}
+#mpd.paused {
+  color: @blue;
+  font-style: italic;
+}
+#mpd.stopped {
+  background: transparent;
+}
+#mpd {
+  color: @sky;
+}
+#bluetooth {
+  color: @blue;
+}
+#custom-launcher {
+  color: @text;
+}

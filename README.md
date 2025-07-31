@@ -21,6 +21,7 @@ This repository contains my configuration files for the following tools:
 - **Shells & Prompt**
   - `zsh` + `starship`
 - **Terminal Emulator & Multiplexer**
+  - `foot`
   - `kitty`
   - `tmux`
 - **Editors & CLI Tools**
@@ -31,11 +32,17 @@ This repository contains my configuration files for the following tools:
   - `lazygit`
   - `lazydocker`
   - `k9s`
+- **Wayland Environment**
+  - `fuzzel` (launcher)
+  - `waybar` (status bar)
+  - `mako` (notification daemon)
+  - `sway` (window manager)
 - **Utilities**
   - `fastfetch`
   - `zoxide`
   - `mpv`
   - `yt-dlp`
+  - `zathura`
 
 ---
 

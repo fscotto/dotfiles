@@ -268,4 +268,6 @@ build-iPhoneSimulator/
 # Used by RuboCop. Remote config files pulled in from inherit_from directive.
 # .rubocop-https?--*
 
+mpv/shaders/
+
 # End of https://www.toptal.com/developers/gitignore/api/perl,python,ruby
