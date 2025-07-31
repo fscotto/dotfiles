@@ -74,7 +74,6 @@ ZSH_CUSTOM=$ZSH/custom
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   aws
-  colored-man-pages
   command-not-found
   gitignore
   mise
@@ -113,19 +112,11 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Setup emacs keymap
-bindkey -e
+# Setup vim keymap
+bindkey -v
 
 fpath=(~/.zsh $fpath)
 
 autoload run-help
 autoload -Uz compinit && compinit -u
 
-export FZF_HOME=$HOME/.oh-my-zsh/custom/plugins/fzf
-source <(fzf --zsh)
-source "$FZF_HOME/shell/key-bindings.zsh"
-source "$FZF_HOME/shell/completion.zsh"
-
-if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-  tmux attach-session -t default || tmux new-session -s default
-fi
