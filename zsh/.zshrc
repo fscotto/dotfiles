@@ -136,8 +136,6 @@ if [ -e "$HOME/.cargo" ]; then
 fi
 
 source <(fzf --zsh)
-source "$FZF_HOME/shell/key-bindings.zsh"
-source "$FZF_HOME/shell/completion.zsh"
 
 if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
   tmux attach-session -t default || tmux new-session -s default
