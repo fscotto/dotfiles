@@ -2,11 +2,12 @@
 " Appearance and Colorscheme: Catppuccin
 " ----------------------------------------
 
-set termguicolors			" Enable true color support
-colorscheme catppuccin_mocha		" Use the mocha variant (dark theme)
+set termguicolors					" Enable true color support
+set background=dark
+colorscheme rosepine				" Use the rose pine variant (dark theme)
 
 " Optional: Lightline support (if installed)
-let g:lightline = { 'colorscheme': 'catppuccin_mocha' }
+let g:lightline = { 'colorscheme': 'rosepine' }
 
 " ----------------------------------------
 " Smart indentation for C development
@@ -14,13 +15,13 @@ let g:lightline = { 'colorscheme': 'catppuccin_mocha' }
 
 filetype plugin indent on
 syntax enable
-set autoindent				" Copy indentation from previous line
-set cindent				" Use C-style indentation
-set cinoptions=:0,l1,t0,g0		" Linux style: brace on new line, minimal alignment
-set noexpandtab				" Use real tab characters (not spaces)
-set shiftwidth=8			" Indent by 8 columns
-set softtabstop=8			" Insert/delete 8 spaces with tab/backspace
-set tabstop=8				" A tab character is 8 columns wide
+set autoindent						" Copy indentation from previous line
+set cindent							" Use C-style indentation
+set cinoptions=:0,l1,t0,g0			" Linux style: brace on new line, minimal alignment
+set noexpandtab						" Use real tab characters (not spaces)
+set shiftwidth=8					" Indent by 8 columns
+set softtabstop=8					" Insert/delete 8 spaces with tab/backspace
+set tabstop=8						" A tab character is 8 columns wide
 
 " ----------------------------------------
 " Formatting on save with clang-format
@@ -52,10 +53,9 @@ autocmd BufWritePre *.c,*.h silent! execute '%!clang-format'
 " General UI settings
 " ----------------------------------------
 
-set number				" Show line numbers
-set cursorline				" Highlight current line
-set ruler				" Show cursor position
-set wildmenu				" Enhanced command-line completion
-set nowrap				" Don't wrap long lines
-set mouse=a				" Enable mouse support
-
+set number							" Show line numbers
+set cursorline						" Highlight current line
+set ruler							" Show cursor position
+set wildmenu						" Enhanced command-line completion
+set nowrap							" Don't wrap long lines
+set mouse=a							" Enable mouse support
