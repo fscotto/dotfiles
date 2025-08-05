@@ -47,6 +47,6 @@ export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 source <(fzf --zsh)
 
 # Launch tmux in the default session
-if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-  tmux attach-session -t default || tmux new-session -s default
-fi
+# if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+#   tmux attach-session -t default || tmux new-session -s default
+# fi
