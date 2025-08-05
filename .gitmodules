@@ -28,3 +28,6 @@
 [submodule "zsh/.oh-my-zsh/custom/plugins/fzf"]
 	path = zsh/.oh-my-zsh/custom/plugins/fzf
 	url = https://github.com/junegunn/fzf.git
+[submodule "vim/.vim/pack/plugins/start/rosepine"]
+	path = vim/.vim/pack/plugins/start/rosepine
+	url = https://github.com/rose-pine/vim.git
