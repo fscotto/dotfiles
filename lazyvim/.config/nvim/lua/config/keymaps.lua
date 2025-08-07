@@ -23,3 +23,29 @@ map({ "n", "v" }, "<leader>y", [["+y]], { noremap = true, silent = true, desc = 
 
 -- Paste from system clipboard
 map("n", "<leader>p", [["+p]], { noremap = true, silent = true, desc = "Paste from system clipboard" })
+
+vim.keymap.set("n", "<leader>cc", function()
+  local file1 = vim.fn.expand("%")
+
+  local project_root = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
+  if project_root == "" then
+    project_root = vim.fn.getcwd()
+  end
+
+  require("telescope.builtin").find_files({
+    prompt_title = "Compare with...",
+    cwd = project_root,
+    hidden = true,
+    follow = true,
+    attach_mappings = function(_, map)
+      map("i", "<CR>", function(prompt_bufnr)
+        local actions = require("telescope.actions")
+        local action_state = require("telescope.actions.state")
+        local file2 = action_state.get_selected_entry().path
+        actions.close(prompt_bufnr)
+        require("user.utils").meld_diff(file1, file2)
+      end)
+      return true
+    end,
+  })
+end, { desc = "Compare with" })
