@@ -50,7 +50,7 @@ output * bg ~/.config/sway/wallpaper.jpg fill
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
 ### Idle configuration
-set $lockman exec bash ~/.config/sway/lockman.sh
+set $ exec bash ~/.config/sway/scripts/lockman.sh
 exec swayidle -w \
          timeout 300 'swaylock -f' \
          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
