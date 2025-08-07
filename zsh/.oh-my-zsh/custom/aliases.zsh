@@ -1,29 +1,8 @@
-is_debian_based() {
-    # Checking /etc/os-release
-    if [[ -f /etc/os-release ]]; then
-        . /etc/os-release
-        if [[ "$ID_LIKE" == *"debian"* ]] || [[ "$ID" == "debian" ]]; then
-            return 0  # OK: Debian-based
-        fi
-    fi
-
-    # Alternative check: /etc/debian_version
-    if [[ -f /etc/debian_version ]]; then
-        return 0  # OK: Debian-based
-    fi
-
-    return 1  # NO Debian-based
-}
-
 alias ls="eza --color=always --group-directories-first --icons=always"
 
-# Replace some more things with better alternatives
-if is_debian_based; then
-  alias bat='batcat'
-  alias fd='fdfind'
-fi
+alias fd='fdfind'
 
-alias cat='bat --style header --style snip --style changes --style header --pager never'
+alias cat='batcat --style header --style snip --style changes --style header --pager never'
 
 # Replace df command tool
 alias df='duf'
@@ -44,3 +23,5 @@ alias ip='ip -color'
 alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard --output'
 alias stow='stow -d $DOTFILES '
+alias ssh-add='ssh-add.exe'
+alias ssh='ssh-add.exe -l > /dev/null || ssh-add.exe && echo -e "\e[92mssh-key(s) are now available in your ssh-agent until you lock your windows machine! \n \e[0m" && ssh.exe'

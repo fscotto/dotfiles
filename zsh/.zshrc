@@ -112,8 +112,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Setup vim keymap
-bindkey -v
+# Setup Emacs keymap
+bindkey -e
 
 fpath=(~/.zsh $fpath)
 

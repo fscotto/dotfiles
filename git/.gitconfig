@@ -4,6 +4,7 @@
 [core]
   excludesfile = ~/.gitignore_global
   pager = delta
+	sshcommand = ssh.exe
 
 [user]
   name = Fabio Scotto di Santolo
@@ -75,3 +76,5 @@
   colorMoved = default
   tabs = 4
   side-by-side = true
+[credential]
+	helper = manager-core
