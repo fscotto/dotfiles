@@ -297,7 +297,7 @@ bindsym $mod+r mode "resize"
     # Brightness lower with custom value('-' sign needed)
     bindsym XF86MonBrightnessDown exec swayosd-client --brightness -5
     # Special key to take a screenshot with grim
-    bindsym Print exec grim ~/Pictures/Screenshots/$(date "+%Y-%m-%d"T"%H:%M:%S").png
+    bindsym Print exec ./scripts/screenshot.sh
     # Lock the screen
     bindsym $mod+Alt+l exec $lockman
     # Kill focused window
