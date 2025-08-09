@@ -21,15 +21,12 @@ return {
     lspconfig.gopls.setup({})
     lspconfig.bashls.setup({})
     lspconfig.zls.setup({})
-    -- src: https://docs.astral.sh/ruff/editors/setup/#neovim
-    lspconfig.ruff.setup({})
     lspconfig.pylsp.setup({
       settings = {
         -- configure plugins in pylsp
         pylsp = {
           plugins = {
             pyflakes = { enabled = false },
-            pylint = { enabled = false },
             pycodestyle = { enabled = false },
           },
         },
