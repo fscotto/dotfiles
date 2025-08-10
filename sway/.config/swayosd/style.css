@@ -1,3 +1,8 @@
+* {
+  font-family: "Noto Sans Regular";
+  font-size: 12pt;
+}
+
 window#osd {
   border-radius: 999px;
   border: none;
