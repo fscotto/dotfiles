@@ -42,6 +42,9 @@ seat seat0 xcursor_theme catppuccin-mocha-lavender-cursors 25
 
 output * bg ~/.config/sway/wallpaper.jpg fill
 
+# Setting default font
+font pango:Noto Sans Regular 10
+
 #
 # Example configuration:
 #
@@ -66,11 +69,14 @@ exec $notification
 ### Start Pipewire session
 exec pipewire
 
-# Run clipboard manager
+### Run clipboard manager
 exec wl-paste -t text --watch clipman store --no-persist
 
-# OSD server
+### OSD server
 exec swayosd-server
+
+### Start terminal emulator
+exec $term
 
 #----------------#
 # set gtk+ theme #
@@ -80,7 +86,7 @@ exec_always {
   gsettings set $gnome-schema gtk-theme 'Catppuccin'
   gsettings set $gnome-schema icon-theme 'Papirus-Dark'
   gsettings set $gnome-schema cursor-theme 'Catppuccin-cursor'
-  gsettings set $gnome-schema font-name 'jetbrains mono nerd font 12'
+  gsettings set $gnome-schema font-name 'Noto Sans Regular 10'
 }
 
 ### Input configuration
@@ -145,7 +151,7 @@ exec_always {
     # Waybar toggle
     bindsym $mod+o exec killall -SIGUSR1 waybar
 
-    bindsym $mod+t exec --no-startup-id              telegram-desktop
+    bindsym $mod+t exec --no-startup-id telegram-desktop
 
 #
 # Moving around:
@@ -297,7 +303,8 @@ bindsym $mod+r mode "resize"
     # Brightness lower with custom value('-' sign needed)
     bindsym XF86MonBrightnessDown exec swayosd-client --brightness -5
     # Special key to take a screenshot with grim
-    bindsym Print exec ./scripts/screenshot.sh
+    bindsym Print exec ~/.config/sway/scripts/screenshot.sh
+    # bindsym Print exec grim
     # Lock the screen
     bindsym $mod+Alt+l exec $lockman
     # Kill focused window
