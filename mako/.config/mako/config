@@ -10,7 +10,7 @@ on-touch=dismiss
 on-notify=none
 
 # Style options
-font=FiraCode Nerd Font 10
+font=Noto Sans Regular 12
 width=400
 height=100
 outer-margin=0
