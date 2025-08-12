@@ -85,6 +85,9 @@ exec $term
 ### Screenshot tool
 exec flameshot
 
+# Simulate master layout
+exec autotiling --limit 2
+
 #----------------#
 # set gtk+ theme #
 #----------------#
