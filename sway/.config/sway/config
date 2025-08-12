@@ -21,6 +21,9 @@ set $browser 'firefox'
 # Your preferred notification daemon
 set $notification 'mako'
 
+# Your preferred clipboard manager
+set $clipboard 'nwg-clipman --numbers --window'
+
 # Set theme
 include themes/catppuccin-mocha
 
@@ -70,13 +73,17 @@ exec $notification
 exec pipewire
 
 ### Run clipboard manager
-exec wl-paste -t text --watch clipman store --no-persist
+exec wl-paste -t text --watch cliphist store
+exec wl-paste -t image --watch cliphist store
 
 ### OSD server
 exec swayosd-server
 
 ### Start terminal emulator
 exec $term
+
+### Screenshot tool
+exec flameshot
 
 #----------------#
 # set gtk+ theme #
@@ -131,8 +138,11 @@ exec_always {
     # Start your launcher
     bindsym $mod+d exec $menu
 
-    # Star my browser
+    # Start my browser
     bindsym $mod+Shift+b exec $browser
+
+    # Start my clipboard manager
+    bindsym $mod+Shift+v exec $clipboard
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -303,7 +313,8 @@ bindsym $mod+r mode "resize"
     # Brightness lower with custom value('-' sign needed)
     bindsym XF86MonBrightnessDown exec swayosd-client --brightness -5
     # Special key to take a screenshot with grim
-    bindsym Print exec ~/.config/sway/scripts/screenshot.sh
+    # bindsym Print exec ~/.config/sway/scripts/screenshot.sh
+    bindsym Print exec flameshot gui -p ~/Pictures/Screenshots
     # bindsym Print exec grim
     # Lock the screen
     bindsym $mod+Alt+l exec $lockman
