@@ -3,6 +3,6 @@ return {
   dependencies = { "nvim-lua/plenary.nvim" },
   opts = {},
   keys = {
-    { "<leader>F", "<cmd>Yazi<cr>", desc = "Open Yazi" },
+    { "<leader>e", "<cmd>Yazi<cr>", desc = "Open Yazi" },
   },
 }
