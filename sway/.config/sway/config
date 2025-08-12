@@ -22,8 +22,10 @@ set $browser 'firefox'
 set $notification 'mako'
 
 # Your preferred clipboard manager
-# set $clipboard 'nwg-clipman --numbers --window'
 set $clipboard 'cliphist list | fuzzel --dmenu | cliphist decode | wl-copy'
+
+# Your preferred file manager
+set $filemanager 'foot yazi'
 
 # Set theme
 include themes/catppuccin-mocha
@@ -149,6 +151,9 @@ exec_always {
     # Start my clipboard manager
     bindsym $mod+Shift+v exec $clipboard
 
+    # Start my file manager
+    bindsym $mod+Shift+f exec $filemanager
+
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.
@@ -165,8 +170,6 @@ exec_always {
 
     # Waybar toggle
     bindsym $mod+o exec killall -SIGUSR1 waybar
-
-    bindsym $mod+t exec --no-startup-id telegram-desktop
 
 #
 # Moving around:
@@ -319,8 +322,7 @@ bindsym $mod+r mode "resize"
     bindsym XF86MonBrightnessDown exec swayosd-client --brightness -5
     # Special key to take a screenshot with grim
     # bindsym Print exec ~/.config/sway/scripts/screenshot.sh
-    bindsym Print exec flameshot gui -p ~/Pictures/Screenshots
-    # bindsym Print exec grim
+    bindsym Print exec flameshot gui
     # Lock the screen
     bindsym $mod+Alt+l exec $lockman
     # Kill focused window
