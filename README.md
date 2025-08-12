@@ -45,6 +45,7 @@ This repository contains my configuration files for the following tools:
   - `yt-dlp`
   - `zathura`
   - `flameshot`
+  - `newsboat`
 
 ---
 
