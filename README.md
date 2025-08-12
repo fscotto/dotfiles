@@ -9,6 +9,7 @@ The main goal of this repository is to maintain a consistent, portable, and vers
 Each directory in this repository corresponds to a specific application or tool, with configuration files laid out to mirror the structure of the home directory. Using `stow`, symbolic links are created seamlessly, preserving organization and keeping configurations isolated per tool.
 
 > Example usage (from the repository root):
+>
 > ```bash
 > stow nvim
 > stow zsh
@@ -43,6 +44,7 @@ This repository contains my configuration files for the following tools:
   - `mpv`
   - `yt-dlp`
   - `zathura`
+  - `flameshot`
 
 ---
 
