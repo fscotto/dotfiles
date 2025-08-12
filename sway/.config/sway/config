@@ -22,7 +22,8 @@ set $browser 'firefox'
 set $notification 'mako'
 
 # Your preferred clipboard manager
-set $clipboard 'nwg-clipman --numbers --window'
+# set $clipboard 'nwg-clipman --numbers --window'
+set $clipboard 'cliphist list | fuzzel --dmenu | cliphist decode | wl-copy'
 
 # Set theme
 include themes/catppuccin-mocha
@@ -128,6 +129,7 @@ exec_always {
         xkb_layout "us(intl)"
         xkb_options "grp:win_space_toggle"
     }
+
 ### Key bindings
 #
 # Basics:
