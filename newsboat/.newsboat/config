@@ -1,1 +1,7 @@
 include ~/.newsboat/dark
+
+auto-reload yes   # fetch new content when starting program
+reload-time 10    # fetch new content every 10 minutes
+notify-always yes # update tmux counters after every fetch
+notify-format "%d %n %f"
+notify-program "~/.tmux/plugins/tmux-newsboat/bin/tmux-newsboat"
