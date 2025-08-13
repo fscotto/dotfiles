@@ -49,11 +49,6 @@ opt.statusline = "%f %m %r %=%-14.(%l,%c%V%) %P"
 -- Persistent signcolumn to avoid text shifting
 opt.signcolumn = "yes"
 
--- Fold method
-opt.foldmethod = "expr"
-opt.foldexpr = "nvim_treesitter#foldexpr()"
-opt.foldlevel = 99 -- open all folds by default
-
 -- Show file name and modified flag in the window bar
 opt.winbar = "%=%m %f"
 
