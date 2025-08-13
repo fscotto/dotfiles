@@ -327,8 +327,6 @@ bindsym $mod+r mode "resize"
     bindsym Print exec flameshot gui
     # Lock the screen
     bindsym $mod+Alt+l exec $lockman
-    # Kill focused window
-    bindsym $mod+Shift+p kill
 
 #
 # Status Bar:
@@ -339,4 +337,3 @@ bar {
 }
 
 include $HOME/.config/sway/conf.d/*.conf
-include /etc/sway/config.d/*
