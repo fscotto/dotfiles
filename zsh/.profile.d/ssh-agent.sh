@@ -22,4 +22,4 @@ start_keychain() {
   fi
 }
 
-start_keychain "$HOME/.ssh/id_ed25519_nymph" 
+# start_keychain "$HOME/.ssh/id_ed25519_nymph" 

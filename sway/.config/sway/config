@@ -91,6 +91,8 @@ exec flameshot
 # Simulate master layout
 exec autotiling --limit 2
 
+exec dbus-update-activation-environment DISPLAY XAUTHORITY WAYLAND_DISPLAY
+
 #----------------#
 # set gtk+ theme #
 #----------------#

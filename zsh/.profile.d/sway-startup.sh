@@ -47,6 +47,9 @@ if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
     # Session Type for later screensharing
     export XDG_SESSION_TYPE=wayland
 
+    # SSH socket
+    export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"
+
     exec dbus-launch --exit-with-session sway
   else
     echo "Cannot found dbus session: Sway don't work"
