@@ -2,16 +2,16 @@
   "layer": "top",           // Waybar at top layer
   "position": "top",        // Waybar position (top|bottom|left|right)
   "modules-left": [
-    "custom/launcher",
-    "sway/workspaces",
-    "temperature",
-    "idle_inhibitor",
-    "mpd",
+    // "custom/launcher",
+    "sway/workspaces"
+    // "idle_inhibitor"
+    // "mpd",
   ],
   "modules-center": [
-    "clock"
+    "mpd"
   ],
   "modules-right": [
+    "temperature",
     "memory",
     "cpu",
     "pulseaudio",
@@ -19,6 +19,7 @@
     "network",
     "bluetooth",
     "battery",
+    "clock",
     "custom/powermenu",
     "tray"
   ],
@@ -89,9 +90,9 @@
   "clock": {
     "interval": 1,
     "timezone": "Europe/Rome",
-    "format": "{:%I:%M %p  %A %b %d}",
+    "format": "{:%I:%M %p}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format-alt": "{:%d/%m/%Y}",
+    "format-alt": "{:%A %d/%m/%Y}",
   },
   "memory": {
     "interval": 1,
