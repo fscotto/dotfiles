@@ -2,13 +2,10 @@
   "layer": "top",           // Waybar at top layer
   "position": "top",        // Waybar position (top|bottom|left|right)
   "modules-left": [
-    // "custom/launcher",
     "sway/workspaces"
-    // "idle_inhibitor"
-    // "mpd",
   ],
   "modules-center": [
-    "mpd"
+    "custom/music"
   ],
   "modules-right": [
     "temperature",
@@ -158,5 +155,10 @@
     "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
     "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
     "on-click": "blueman-manager &"
+  },
+  "custom/music": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "waybar-module-music",
   }
 }

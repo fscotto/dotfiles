@@ -63,7 +63,7 @@ tooltip label {
   padding-right: 6px;
   color: @mauve;
 }
-#mode, #clock, #memory, #temperature, #cpu, #mpd, #idle_inhibitor, #temperature, #backlight, #pulseaudio, #network, #battery, #custom-powermenu, #bluetooth {
+#mode, #clock, #memory, #temperature, #cpu, #mpd, #idle_inhibitor, #temperature, #backlight, #pulseaudio, #network, #battery, #custom-powermenu, #bluetooth, #custom-music {
   padding-left: 10px;
   padding-right: 10px;
 }
@@ -133,4 +133,13 @@ tooltip label {
 }
 #custom-launcher {
   color: @text;
+}
+#custom-music.playing {
+  color: @green;
+}
+#custom-music.paused {
+  color: @maroon;
+}
+#custom-music.stopped {
+  color: @peach;
 }
