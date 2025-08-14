@@ -24,9 +24,9 @@ return {
             "--indent-type",
             "Spaces",
             "--indent-width",
-            "4",
+            "2",
             "--column-width",
-            "100",
+            "120",
           },
         }),
 
