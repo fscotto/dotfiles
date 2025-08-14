@@ -10,7 +10,6 @@ return {
       "jay-babu/mason-nvim-dap.nvim", -- Dependency for managing DAP adapters with Mason
       "mfussenegger/nvim-dap-python", -- Dependency for Python debugging
     },
-
     config = function()
       local dap = require("dap")
       local dapui = require("dapui")
@@ -23,7 +22,6 @@ return {
           "codelldb", -- C/C++ Debugger Adapter
           "debugpy", -- Python Debugger Adapter
         },
-
         handlers = {},
       })
 
@@ -72,7 +70,6 @@ return {
           program = function()
             return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
           end,
-
           cwd = "${workspaceFolder}",
           stopOnEntry = false,
         },
@@ -86,7 +83,6 @@ return {
       vim.keymap.set("n", "<space>?", function()
         dapui.eval(nil, { enter = true })
       end)
-
       vim.keymap.set("n", "<F9>", dap.continue)
       vim.keymap.set("n", "<F7>", dap.step_into)
       vim.keymap.set("n", "<F8>", dap.step_over)
@@ -98,15 +94,12 @@ return {
       dap.listeners.before.attach.dapui_config = function()
         dapui.open()
       end
-
       dap.listeners.before.launch.dapui_config = function()
         dapui.open()
       end
-
       dap.listeners.before.event_terminated.dapui_config = function()
         dapui.close()
       end
-
       dap.listeners.before.event_exited.dapui_config = function()
         dapui.close()
       end
