@@ -16,7 +16,7 @@ return {
         null_ls.builtins.formatting.goimports,
 
         -- Zig
-        null_ls.builtins.formatting.zigfmt,
+        -- null_ls.builtins.formatting.zigfmt,
 
         -- Lua
         null_ls.builtins.formatting.stylua.with({
@@ -24,9 +24,9 @@ return {
             "--indent-type",
             "Spaces",
             "--indent-width",
-            "4",
+            "2",
             "--column-width",
-            "100",
+            "120",
           },
         }),
 

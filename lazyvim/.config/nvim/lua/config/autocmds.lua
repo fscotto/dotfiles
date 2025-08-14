@@ -15,6 +15,7 @@ autocmd({ "BufWinLeave", "BufWritePost", "WinLeave" }, {
     end
   end,
 })
+
 autocmd("BufWinEnter", {
   desc = "Try to load file view if available and enable view saving for real files",
   group = view_group,

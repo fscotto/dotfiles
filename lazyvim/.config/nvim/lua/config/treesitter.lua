@@ -1,5 +1,6 @@
 require("nvim-treesitter.configs").setup({
   ensure_installed = {
+    "bash",
     "c",
     "go",
     "gomod",
@@ -9,6 +10,7 @@ require("nvim-treesitter.configs").setup({
     "lua",
     "markdown",
     "python",
+    "org",
     "zig",
   },
   highlight = {

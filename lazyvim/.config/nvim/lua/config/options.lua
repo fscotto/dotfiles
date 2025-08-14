@@ -4,6 +4,10 @@
 
 local opt = vim.opt
 
+-- Encoding
+opt.encoding = "utf-8"
+opt.fileencoding = "utf-8"
+
 -- Line numbers
 opt.number = true
 opt.relativenumber = true
