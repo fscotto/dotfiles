@@ -15,6 +15,7 @@
   "glow.nvim": { "branch": "main", "commit": "5d5954b2f22e109d4a6eba8b2618c5b96e4ee7a2" },
   "grug-far.nvim": { "branch": "main", "commit": "385d1949dc21d0c39e7a74b4f4a25da18817bc86" },
   "hardtime.nvim": { "branch": "main", "commit": "6d7664d5bdfaea44c5f50b29f5239fab7b00c273" },
+  "harpoon": { "branch": "harpoon2", "commit": "ed1f853847ffd04b2b61c314865665e1dadf22c7" },
   "hydra.nvim": { "branch": "main", "commit": "8c4a9f621ec7cdc30411a1f3b6d5eebb12b469dc" },
   "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },
   "lazydev.nvim": { "branch": "main", "commit": "2367a6c0a01eb9edb0464731cc0fb61ed9ab9d2c" },
