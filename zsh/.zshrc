@@ -1,130 +1,103 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# main zsh settings. env in ~/.zprofile
+# read second
 
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+export ZSH_HOME="$HOME/.zsh"
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="robbyrussell"
-
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment one of the following lines to change the auto-update behavior
-# zstyle ':omz:update' mode disabled  # disable automatic updates
-# zstyle ':omz:update' mode auto      # update automatically without asking
-# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
-
-# Uncomment the following line to change how often to auto-update (in days).
-# zstyle ':omz:update' frequency 13
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# You can also set it to another string to have that shown instead of the default red dots.
-# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
-# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-ZSH_CUSTOM=$ZSH/custom
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  aws
-  colored-man-pages
-  command-not-found
-  gitignore
-  mise
-  zoxide
-  zsh-autosuggestions
-  zsh-interactive-cd
-  zsh-navigation-tools
-  zsh-syntax-highlighting
-)
-
-source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
+# source global shell alias & variables files
 [[ ! -f ~/.zshenv ]] || source ~/.zshenv
 
-# export MANPATH="/usr/local/man:$MANPATH"
+# load modules
+zmodload zsh/complist
+autoload -U compinit && compinit
+autoload -U colors && colors
+# autoload -U tetris # main attraction of zsh, obviously
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+# cmp opts
+zstyle ':completion:*' menu select # tab opens cmp menu
+zstyle ':completion:*' special-dirs true # force . and .. to show in cmp menu
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS} ma=0\;33 # colorize cmp menu
+# zstyle ':completion:*' file-list true # more detailed list
+zstyle ':completion:*' squeeze-slashes false # explicit disable to allow /*/ expansion
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+# main opts
+setopt append_history inc_append_history share_history # better history
+# on exit, history appends rather than overwrites; history is appended as soon as cmds executed; history shared across sessions
+setopt auto_menu menu_complete # autocmp first menu match
+setopt autocd # type a dir to cd
+setopt auto_param_slash # when a dir is completed, add a / instead of a trailing space
+setopt no_case_glob no_case_match # make cmp case insensitive
+setopt globdots # include dotfiles
+setopt extended_glob # match ~ # ^
+setopt interactive_comments # allow comments in shell
+unsetopt prompt_sp # don't autoclean blanklines
+stty stop undef # disable accidental ctrl s
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# Setup emacs keymap
-bindkey -e
+# history opts
+HISTSIZE=1000000
+SAVEHIST=1000000
+# HISTFILE="$XDG_CACHE_HOME/zsh_history" # move histfile to cache
+HISTCONTROL=ignoreboth # consecutive duplicates & commands starting with space are not saved
 
 fpath=(~/.zsh $fpath)
 
 autoload run-help
-autoload -Uz compinit && compinit -u
 
-if command -v starship > /dev/null 2>&1; then
-  # Initialize Starship
-  eval "$(starship init zsh)"
-fi
+# fzf setup
+source <(fzf --zsh) # allow for fzf history widget
+
+# binds
+bindkey "^a" beginning-of-line
+bindkey "^e" end-of-line
+bindkey "^k" kill-line
+bindkey "^j" backward-word
+bindkey "^k" forward-word
+bindkey "^H" backward-kill-word
+# ctrl J & K for going up and down in prev commands
+bindkey "^J" history-search-forward
+bindkey "^K" history-search-backward
+bindkey '^R' fzf-history-widget
+
+# set up prompt
+NEWLINE=$'\n'
+PROMPT='%F{blue}%B%~%b%f %F{green}❯%f '
+
+# load plugins
+ZSH_PLUGINS_DIR="$ZSH_HOME/plugins"
+[ -e "$ZSH_PLUGINS_DIR/colored-man-pages.plugin.zsh" ] && source "$ZSH_PLUGINS_DIR/colored-man-pages.plugin.zsh"
+[ -e "$ZSH_PLUGINS_DIR/command-not-found-plugin.zsh" ] && source "$ZSH_PLUGINS_DIR/command-not-found-plugin.zsh"
+[ -e "$ZSH_PLUGINS_DIR/mise.plugin.zsh" ] && source "$ZSH_PLUGINS_DIR/mise.plugin.zsh"
+[ -e "$ZSH_PLUGINS_DIR/zoxide.plugin.zsh" ] && source "$ZSH_PLUGINS_DIR/zoxide.plugin.zsh"
+[ -e "$ZSH_PLUGINS_DIR/fzf-git.sh" ] && source "$ZSH_PLUGINS_DIR/fzf-git.sh"
+[ -e "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] && source "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+[ -e "$ZSH_PLUGINS_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && source "$ZSH_PLUGINS_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
+
+# define user aliases
+pbcopy() {
+  if [ -f "$1" ]; then
+    mime_type=$(file --mime-type -b "$1")
+    wl-copy --type "$mime_type" < "$1"
+  else 
+    printf "%s" "$*" | wl-copy
+  fi
+}
+
+alias pbpaste='wl-paste --no-newline'
+alias ls='ls --color=auto --group-directories-first'
+
+# Replace Vim implementation
+alias vi='nvim'
+alias vim='nvim'
+
+# Replace grep command tool
+alias grep='grep --color=auto'
+alias egrep='grep -E'
+alias fgrep='grep -F'
+
+# Other aliases
+alias paths='echo -e ${PATH//:/\\n}'         # path:         Echo all executable Paths
+alias userlist="cut -d: -f1 /etc/passwd | sort"
+alias ip='ip -color'
+alias stow='stow -d $DOTFILES '
 
 case ":$PATH:" in
   *":$HOME/.local/bin:"*) ;;
@@ -134,8 +107,6 @@ esac
 if [ -e "$HOME/.cargo" ]; then
     source "$HOME/.cargo/env"
 fi
-
-source <(fzf --zsh)
 
 if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
   tmux attach-session -t default || tmux new-session -s default
