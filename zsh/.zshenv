@@ -22,6 +22,11 @@ export FZF_DEFAULT_OPTS=" \
 --color=border:#313244,label:#CDD6F4"
 export FZF_TMUX_OPTS=" -p90%,70%"
 
+case ":$PATH:" in
+  *":$HOME/.local/bin:"*) ;;
+  *) export PATH="$HOME/.local/bin:$PATH" ;;
+esac
+
 # Mise
 if command -v mise >/dev/null 2>&1; then
   eval "$(mise activate zsh)"
@@ -31,6 +36,11 @@ fi
 if command -v go >/dev/null 2>&1; then
   export GOPATH="$HOME/.local/share/Go"
   export GOBIN="$GOPATH/bin"
+fi
+
+# Load cargo envs
+if [ -e "$HOME/.cargo" ]; then
+  source "$HOME/.cargo/env"
 fi
 
 # Java

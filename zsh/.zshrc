@@ -35,7 +35,7 @@ stty stop undef # disable accidental ctrl s
 # history opts
 HISTSIZE=1000000
 SAVEHIST=1000000
-# HISTFILE="$XDG_CACHE_HOME/zsh_history" # move histfile to cache
+HISTFILE="$XDG_CACHE_HOME/zsh_history" # move histfile to cache
 HISTCONTROL=ignoreboth # consecutive duplicates & commands starting with space are not saved
 
 fpath=(~/.zsh $fpath)
@@ -97,15 +97,6 @@ alias paths='echo -e ${PATH//:/\\n}'         # path:         Echo all executable
 alias userlist="cut -d: -f1 /etc/passwd | sort"
 alias ip='ip -color'
 alias stow='stow -d $DOTFILES '
-
-case ":$PATH:" in
-  *":$HOME/.local/bin:"*) ;;
-  *) export PATH="$HOME/.local/bin:$PATH" ;;
-esac
-
-if [ -e "$HOME/.cargo" ]; then
-    source "$HOME/.cargo/env"
-fi
 
 if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
   tmux attach-session -t default || tmux new-session -s default
