@@ -22,3 +22,6 @@
 [submodule "zsh/.zsh/plugins/zsh-syntax-highlighting"]
 	path = zsh/.zsh/plugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule "tmux/.tmux/plugins/tmux-project"]
+	path = tmux/.tmux/plugins/tmux-project
+	url = https://git::@github.com/sei40kr/tmux-project
