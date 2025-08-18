@@ -20,15 +20,13 @@ Each directory in this repository corresponds to a specific application or tool,
 This repository contains my configuration files for the following tools:
 
 - **Shells & Prompt**
-  - `zsh` + `starship`
+  - `zsh`
 - **Terminal Emulator & Multiplexer**
   - `foot`
-  - `kitty`
   - `tmux`
 - **Editors & CLI Tools**
   - `neovim` (with LazyVim)
   - `vim`
-  - `bat`
   - `git`
   - `lazygit`
 - **Wayland Environment**
