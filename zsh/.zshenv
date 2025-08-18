@@ -27,6 +27,11 @@ case ":$PATH:" in
   *) export PATH="$HOME/.local/bin:$PATH" ;;
 esac
 
+# Zoxide
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init zsh)"
+fi
+
 # Mise
 if command -v mise >/dev/null 2>&1; then
   eval "$(mise activate zsh)"
