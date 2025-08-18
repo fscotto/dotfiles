@@ -31,8 +31,6 @@ This repository contains my configuration files for the following tools:
   - `bat`
   - `git`
   - `lazygit`
-  - `lazydocker`
-  - `k9s`
 - **Wayland Environment**
   - `fuzzel` (launcher)
   - `waybar` (status bar)
