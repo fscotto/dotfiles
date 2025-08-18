@@ -1,38 +1,18 @@
-# Add ~/.local/bin if not exists
-case ":$PATH:" in
-  *":$HOME/.local/bin:"*) ;;
-  *) export PATH="$HOME/.local/bin:$PATH" ;;
-esac
-
-if [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
-  # Initialize Homebrew
-  export HOMEBREW_NO_ENV_HINTS=1 
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-fi
-
-if command -v starship > /dev/null 2>&1; then
-  # Initialize Starship
-  eval "$(starship init zsh)"
-fi
-
-if [ -e "$HOME/.cargo" ]; then
-    source "$HOME/.cargo/env"
-fi
-
-export EDITOR="nvim"
-export MANPAGER="nvim +Man!"
+# XDG Settings Basic
+export XDG_CONFIG_HOME=${HOME}/.config
+export XDG_DATA_HOME=${HOME}/.local/share
+export XDG_CACHE_HOME=${HOME}/.local/cache
+export XDG_STATE_HOME=${HOME}/.local/state
 export DOTFILES="$HOME/.dotfiles"
-export GOPATH="$HOME/.local/share/Go"
-export GOBIN=$GOPATH/bin
-export GRAALVM_HOME="${HOME}/.local/share/mise/installs/java/graalvm-community-23.0.1"
+export EDITOR=nvim
 export HELPDIR=/usr/share/zsh/"${ZSH_VERSION}"/help
-export JAVA_HOME="${HOME}/.local/share/mise/installs/java/23.0.1"
-export VIRTUAL_ENV_DISABLE_PROMPT=1
-export JMETER_HOME="$(which jmeter)"
-export FZF_DEFAULT_COMMAND="fdfind --type f --hidden --strip-cwd-prefix --exclude .git"
+export MISE_HOME=$HOME/.local/share/mise/installs
+
+# fzf
+export FZF_DEFAULT_COMMAND="fdfind --hidden --type file --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="fdfind --type d --hidden --strip-cwd-prefix --exclude .git"
-# Catppuccin Mocha theme for FZF
+export FZF_ALT_C_COMMAND="fdfind --hidden --type directory --strip-cwd-prefix --exclude .git"
+# Export Catppuccin Mocha theme for FZF
 export FZF_DEFAULT_OPTS=" \
 --height 60% --layout=reverse --border \
 --color=bg+:#313244,bg:#1E1E2E,spinner:#F5E0DC,hl:#F38BA8 \
@@ -40,13 +20,31 @@ export FZF_DEFAULT_OPTS=" \
 --color=marker:#B4BEFE,fg+:#CDD6F4,prompt:#CBA6F7,hl+:#F38BA8 \
 --color=selected-bg:#45475A \
 --color=border:#313244,label:#CDD6F4"
-export FZF_TMUX_OPTS=" -p90%,70% "
-export FZF_CTRL_T_OPTS="--preview 'batcat --color=always -n --line-range :500 {}'"
-export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
+export FZF_TMUX_OPTS=" -p90%,70%"
 
-source <(fzf --zsh)
+# Homebrew
+if [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
+  # Initialize Homebrew
+  export HOMEBREW_NO_ENV_HINTS=1
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
 
-# Launch tmux in the default session
-# if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-#   tmux attach-session -t default || tmux new-session -s default
-# fi
+# Mise
+if command -v mise >/dev/null 2>&1; then
+  eval "$(mise activate zsh)"
+fi
+
+# Golang
+if command -v go >/dev/null 2>&1; then
+  export GOPATH="$HOME/.local/share/Go"
+  export GOBIN="$GOPATH/bin"
+fi
+
+# Java
+if command -v java >/dev/null 2>&1; then
+  export JAVA_HOME="$(dirname $(mise bin-paths | grep -i java))"
+fi
+
+# Python
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+
