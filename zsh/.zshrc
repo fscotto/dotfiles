@@ -1,6 +1,3 @@
-
-# read second
-
 export ZSH_HOME="$HOME/.zsh"
 
 # source global shell alias & variables files
@@ -46,16 +43,7 @@ autoload run-help
 source <(fzf --zsh) # allow for fzf history widget
 
 # binds
-bindkey "^a" beginning-of-line
-bindkey "^e" end-of-line
-bindkey "^k" kill-line
-bindkey "^j" backward-word
-bindkey "^k" forward-word
-bindkey "^H" backward-kill-word
-# ctrl J & K for going up and down in prev commands
-bindkey "^J" history-search-forward
-bindkey "^K" history-search-backward
-bindkey '^R' fzf-history-widget
+bindkey -e
 
 # set up prompt
 NEWLINE=$'\n'
