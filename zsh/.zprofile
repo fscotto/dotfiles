@@ -53,7 +53,8 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 # SSH socket
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"
 
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_DEFAULT_COMMAND="fd --hidden --type file --strip-cwd-prefix --exclude .git"
+export FZF_CTRL_T_COMMAND="fd --hidden --type file --strip-cwd-prefix --exclude .git"
 export FZF_ALT_C_COMMAND="fd --hidden --type directory --strip-cwd-prefix --exclude .git"
 # Export Catppuccin Mocha theme for FZF
 export FZF_DEFAULT_OPTS=" \
