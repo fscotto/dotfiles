@@ -1,8 +1,3 @@
-export ZSH_HOME="$HOME/.zsh"
-
-# source global shell alias & variables files
-[[ ! -f ~/.zshenv ]] || source ~/.zshenv
-
 # load modules
 zmodload zsh/complist
 autoload -U compinit && compinit
