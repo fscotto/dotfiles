@@ -12,8 +12,10 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
     os.exit(1)
   end
 end
+
 vim.opt.rtp:prepend(lazypath)
 
+-- Start LazyVim plugins
 require("lazy").setup({
   spec = {
     -- add LazyVim and import its plugins
@@ -49,6 +51,10 @@ require("lazy").setup({
   cache = true,
 })
 
+-- Configure status bar
+require("config.statusline")
+
+-- Configure Markdown rendering rules
 require("render-markdown").setup({
   heading = { position = "inline" },
   quote = { repeat_linebreak = true },
@@ -104,6 +110,7 @@ require("render-markdown").setup({
   },
 })
 
+-- Configure TreeSitter syntax parsers
 require("nvim-treesitter.configs").setup({
   -- A list of parser names, or "all" (the listed parsers MUST always be installed)
   ensure_installed = {
@@ -159,4 +166,5 @@ require("nvim-treesitter.configs").setup({
   },
 })
 
+-- Configure Mini.AI for textobjects command
 require("mini.ai").setup()
