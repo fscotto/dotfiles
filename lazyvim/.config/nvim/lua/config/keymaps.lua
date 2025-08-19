@@ -15,9 +15,6 @@ map({ "n", "v" }, "<leader>y", [["+y]], { noremap = true, silent = true, desc = 
 -- Paste from system clipboard
 map("n", "<leader>p", [["+p]], { noremap = true, silent = true, desc = "Paste from system clipboard" })
 
--- Markdown menu
-map("n", "<leader>M", [["+M]], { noremap = true, silent = true, desc = "Markdown" })
-
 vim.keymap.set("n", "<leader>cc", function()
   local file1 = vim.fn.expand("%")
 

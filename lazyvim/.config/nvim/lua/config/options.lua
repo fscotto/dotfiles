@@ -30,9 +30,9 @@ opt.termguicolors = true
 opt.clipboard = "unnamedplus"
 
 -- Indentation
-opt.softtabstop = 8
-opt.shiftwidth = 8
-opt.tabstop = 8
+-- opt.softtabstop = 8
+-- opt.shiftwidth = 8
+-- opt.tabstop = 8
 opt.expandtab = true
 opt.smartindent = true
 
