@@ -25,3 +25,6 @@
 [submodule "tmux/.tmux/plugins/tmux-project"]
 	path = tmux/.tmux/plugins/tmux-project
 	url = https://git::@github.com/sei40kr/tmux-project
+[submodule "tmux-bitwarden"]
+	path = tmux/.tmux/plugins/tmux-bitwarden
+	url = https://github.com/Alkindi42/tmux-bitwarden.git
