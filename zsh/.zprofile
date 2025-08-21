@@ -1,7 +1,14 @@
-case ":$PATH:" in
-  *":$HOME/.local/bin:"*) ;;
-  *) export PATH="$HOME/.local/bin:$PATH" ;;
-esac
+function appendpath() {
+  local location="${1}"
+  case ":$PATH:" in
+    *":$location:"*) ;;
+    *) export PATH="$PATH:$location" ;;
+  esac
+}
+
+appendpath "$HOME/.local/bin"
+appendpath "$HOME/.config/emacs/bin"
+unset appendpath
 
 # XDG variables
 export XDG_CONFIG_HOME=${HOME}/.config
