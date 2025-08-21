@@ -26,7 +26,7 @@ This repository contains my configuration files for the following tools:
   - `tmux`
 - **Editors & CLI Tools**
   - `neovim` (with LazyVim)
-  - `vim`
+  - `doom emacs`
   - `git`
   - `lazygit`
 - **Wayland Environment**
