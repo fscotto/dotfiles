@@ -108,6 +108,6 @@ if [ -e "$HOME/.cargo" ]; then
     source "$HOME/.cargo/env"
 fi
 
-if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-  tmux attach-session -t default || tmux new-session -s default
-fi
+# if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+#   tmux attach-session -t default || tmux new-session -s default
+# fi
