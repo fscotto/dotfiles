@@ -72,16 +72,8 @@ ZSH_PLUGINS_DIR="$ZSH_HOME/plugins"
 [ -e "$ZSH_PLUGINS_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && source "$ZSH_PLUGINS_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 # define user aliases
-pbcopy() {
-  if [ -f "$1" ]; then
-    mime_type=$(file --mime-type -b "$1")
-    wl-copy --type "$mime_type" < "$1"
-  else 
-    printf "%s" "$*" | wl-copy
-  fi
-}
-
-alias pbpaste='wl-paste --no-newline'
+alias pbcopy='xsel --clipboard'
+#alias pbpaste='wl-paste --no-newline'
 alias ls='ls --color=auto --group-directories-first'
 
 # Replace Vim implementation
@@ -107,7 +99,3 @@ esac
 if [ -e "$HOME/.cargo" ]; then
     source "$HOME/.cargo/env"
 fi
-
-# if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-#   tmux attach-session -t default || tmux new-session -s default
-# fi
