@@ -32,7 +32,7 @@ This repository contains my configuration files for the following tools:
 - **Wayland Environment**
   - `fuzzel` (launcher)
   - `waybar` (status bar)
-  - `mako` (notification daemon)
+  - `dunst` (notification daemon)
   - `sway` (window manager)
 - **Utilities**
   - `fastfetch`

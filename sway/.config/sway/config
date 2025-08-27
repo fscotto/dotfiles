@@ -19,7 +19,7 @@ set $menu 'fuzzel'
 set $browser 'firefox'
 
 # Your preferred notification daemon
-set $notification 'mako'
+set $notification 'dunst'
 
 # Your preferred clipboard manager
 set $clipboard 'cliphist list | fuzzel --dmenu | cliphist decode | wl-copy'
