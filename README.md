@@ -21,7 +21,8 @@ This repository contains my configuration files for the following tools:
 
 - **Shells & Prompt**
   - `zsh`
-- **Terminal Emulator & Multiplexer**
+- **Terminal Emulators & Multiplexer**
+  - `alacritty`
   - `foot`
   - `tmux`
 - **Editors & CLI Tools**
