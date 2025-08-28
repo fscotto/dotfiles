@@ -20,8 +20,9 @@ Each directory in this repository corresponds to a specific application or tool,
 This repository contains my configuration files for the following tools:
 
 - **Shells & Prompt**
-  - `zsh`
+  - `zsh` + `starship`
 - **Terminal Emulators & Multiplexer**
+  - `kitty`
   - `alacritty`
   - `foot`
   - `tmux`
