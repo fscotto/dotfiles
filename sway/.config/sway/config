@@ -27,7 +27,10 @@ set $clipboard 'cliphist list | fuzzel --dmenu | cliphist decode | wl-copy'
 # Your preferred file manager
 set $filemanager 'foot yazi'
 
-# Set theme
+# Your prefered editor
+set $editor 'emacs'
+
+# Import Catppuccin theme defined colors
 include themes/catppuccin-mocha
 
 # target                 title     bg    text   indicator  border
@@ -45,7 +48,6 @@ seat seat0 xcursor_theme catppuccin-mocha-lavender-cursors 25
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-
 output * bg ~/.config/sway/wallpaper.jpg fill
 
 # Setting default font
@@ -69,10 +71,10 @@ exec swayidle -w \
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
 
-### Run notification daemon 
+### Run in background notification daemon
 exec $notification
 
-### Start Pipewire session
+### Run in background Pipewire session
 exec pipewire
 
 ### Run clipboard manager
@@ -82,8 +84,8 @@ exec wl-paste -t image --watch cliphist store
 ### OSD server
 exec swayosd-server
 
-### Start terminal emulator
-exec $term
+###
+exec $editor
 
 ### Screenshot tool
 exec flameshot
@@ -123,10 +125,10 @@ exec_always {
 # Read `man 5 sway-input` for more information about this section.
 
     input type:touchpad {
-	dwt enabled
-	tap enabled
-	natural_scroll enabled
-	middle_emulation enabled
+        dwt enabled
+        tap enabled
+        natural_scroll enabled
+        middle_emulation enabled
     }
 
     input type:keyboard {
