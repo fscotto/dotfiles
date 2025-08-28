@@ -41,8 +41,11 @@ source <(fzf --zsh) # allow for fzf history widget
 bindkey -e
 
 # set up prompt
-NEWLINE=$'\n'
-PROMPT='%F{blue}%B%~%b%f %F{green}❯%f '
+# NEWLINE=$'\n'
+# PROMPT='%F{blue}%B%~%b%f %F{green}❯%f '
+if command -v starship > /dev/null 2>&1; then
+  eval "$(starship init zsh)"
+fi
 
 # load plugins
 ZSH_PLUGINS_DIR="$ZSH_HOME/plugins"
@@ -81,6 +84,6 @@ alias userlist="cut -d: -f1 /etc/passwd | sort"
 alias ip='ip -color'
 alias stow='stow -d $DOTFILES '
 
-# if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-#   tmux attach-session -t default || tmux new-session -s default
-# fi
+if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+  tmux attach-session -t default || tmux new-session -s default
+fi
