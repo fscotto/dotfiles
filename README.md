@@ -23,7 +23,6 @@ This repository contains my configuration files for the following tools:
   - `zsh` + `starship`
 - **Terminal Emulators & Multiplexer**
   - `kitty`
-  - `alacritty`
   - `foot`
   - `tmux`
 - **Editors & CLI Tools**
