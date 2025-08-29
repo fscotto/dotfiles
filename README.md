@@ -40,7 +40,6 @@ This repository contains my configuration files for the following tools:
   - `zoxide`
   - `mpv`
   - `yt-dlp`
-  - `zathura`
   - `flameshot`
   - `newsboat`
 
