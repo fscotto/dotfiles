@@ -4,12 +4,16 @@
 [core]
   excludesfile = ~/.gitignore_global
   pager = delta
+  sshcommand=ssh.exe
 
 [user]
   name = Fabio Scotto di Santolo
   email = fabio.scottodisantolo@gmail.com
   signingkey = 9DDD59AD62494FB2
   editor = nvim
+
+[credential]
+  helper = manager-core
 
 [fetch]
   prune = true

@@ -84,3 +84,4 @@ alias userlist="cut -d: -f1 /etc/passwd | sort"
 alias ip='ip -color'
 alias stow='stow -d $DOTFILES '
 
+source ~/.profile.d/tmux.sh 
