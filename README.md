@@ -30,6 +30,12 @@ This repository contains my configuration files for the following tools:
   - `doom emacs`
   - `git`
   - `lazygit`
+- **X11 Environment**
+  - `rofi` (launcher)
+  - `polybar` (status bar)
+  - `dunst` (notification daemon)
+  - `i3` (window manager)
+  - `picom` (X11 compositor)
 - **Wayland Environment**
   - `fuzzel` (launcher)
   - `waybar` (status bar)
