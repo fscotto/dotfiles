@@ -22,7 +22,7 @@ This repository contains my configuration files for the following tools:
 - **Shells & Prompt**
   - `zsh` + `starship`
 - **Terminal Emulators & Multiplexer**
-  - `kitty`
+  - `alacritty`
   - `foot`
   - `tmux`
 - **Editors & CLI Tools**
