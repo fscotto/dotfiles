@@ -1,15 +1,17 @@
+live_config_reload = true
+working_directory = "None"
+import = ["~/.config/alacritty/themes/catppuccin-mocha.toml"]
+
 [env]
 TERM = "xterm-256color"
 WINIT_X11_SCALE_FACTOR = "1"
-
-[terminal.shell]
-program = "tmux"
 
 [window]
 dynamic_padding = true
 decorations = "full"
 title = "Terminal"
 opacity = 0.95
+blur = true
 decorations_theme_variant = "Dark"
 
 [window.dimensions]
@@ -31,7 +33,7 @@ draw_bold_text_with_bright_colors = true
 size = 14
 
 [font.normal]
-family = "0xProto Nerd Font "
+family = "0xProto Nerd Font"
 style = "Regular"
 
 [font.bold]
@@ -137,9 +139,4 @@ action = "ClearSelection"
 key = "Key0"
 mods = "Control"
 action = "ResetFontSize"
-
-[general]
-live_config_reload = true
-working_directory = "None"
-import = ["~/.config/alacritty/themes/catppuccin-mocha.toml"]
 
