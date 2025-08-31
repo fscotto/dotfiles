@@ -1,0 +1,20 @@
+@theme "catppuccin"
+
+configuration {
+  modi: "drun,window,filebrowser,ssh";
+  icon-theme: "Papirus";
+  show-icons: true;
+  terminal: "alacritty";
+  drun-display-format: "{icon} {name}";
+  location: 0;
+  disable-history: false;
+  hide-scrollbar: false;
+  sidebar-mode: true;
+  display-ssh:    "󰣀 ssh:";
+  display-run:    "󱓞 run:";
+  display-drun:   "󰣖 drun:";
+  display-window: "󱂬 window:";
+  display-combi:  "󰕘 combi:";
+  display-filebrowser: "󰉋 filebrowser:";
+}
+
