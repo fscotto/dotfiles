@@ -78,7 +78,7 @@ OSH_THEME="robbyrussell"
 OMB_USE_SUDO=true
 
 # To enable/disable display of Python virtualenv and condaenv
-# OMB_PROMPT_SHOW_PYTHON_VENV=true  # enable
+OMB_PROMPT_SHOW_PYTHON_VENV=true  # enable
 # OMB_PROMPT_SHOW_PYTHON_VENV=false # disable
 
 # To enable/disable Spack environment information
@@ -164,8 +164,17 @@ source "$OSH"/oh-my-bash.sh
 # Set personal aliases, overriding those provided by oh-my-bash libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-bash
 # users are encouraged to define aliases within the OSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias bashconfig="mate ~/.bashrc"
-# alias ohmybash="mate ~/.oh-my-bash"
+# For a full list of active aliases, run `
+
+alias ls='ls --color=auto --group-directories-first'
+
+# Replace grep command tool
+alias grep='grep --color=auto'
+alias egrep='grep -E'
+alias fgrep='grep -F'
+
+# Other aliases
+alias paths='echo -e ${PATH//:/\\n}'         # path:         Echo all executable Paths
+alias userlist="cut -d: -f1 /etc/passwd | sort"
+alias ip='ip -color'
+alias stow='stow -d $DOTFILES '
