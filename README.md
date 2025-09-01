@@ -11,8 +11,9 @@ Each directory in this repository corresponds to a specific application or tool,
 > Example usage (from the repository root):
 >
 > ```bash
-> stow nvim
-> stow zsh
+> stow bash
+> stow i3
+> stow polybar
 > ```
 
 ### 🧩 Included Tools & Configurations
@@ -20,35 +21,25 @@ Each directory in this repository corresponds to a specific application or tool,
 This repository contains my configuration files for the following tools:
 
 - **Shells & Prompt**
-  - `zsh` + `starship`
+  - `bash` (Oh My Bash)
 - **Terminal Emulators & Multiplexer**
   - `alacritty`
-  - `foot`
   - `tmux`
 - **Editors & CLI Tools**
-  - `neovim` (with LazyVim)
-  - `doom emacs`
+  - `emacs`
   - `git`
-  - `lazygit`
 - **X11 Environment**
-  - `rofi` (launcher)
-  - `polybar` (status bar)
-  - `dunst` (notification daemon)
   - `i3` (window manager)
   - `picom` (X11 compositor)
-- **Wayland Environment**
-  - `fuzzel` (launcher)
-  - `waybar` (status bar)
+  - `polybar` (status bar)
+  - `rofi` (launcher)
   - `dunst` (notification daemon)
-  - `sway` (window manager)
 - **Utilities**
   - `fastfetch`
   - `zoxide`
-  - `mpv`
   - `yt-dlp`
   - `flameshot`
-  - `newsboat`
-
+  
 ---
 
 Feel free to explore, reuse, or adapt any part of this setup.  
