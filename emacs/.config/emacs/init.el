@@ -116,6 +116,9 @@
 (use-package vterm
   :ensure t)
 
+(use-package i3wm-config-mode
+  :ensure t)
+
 ;; TODO adding lsp-mode, dap-mode, autocomplete and project handling for C, Go, Bash and Python
 (use-package lsp-mode
   :ensure t
