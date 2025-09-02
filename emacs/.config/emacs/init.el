@@ -32,8 +32,10 @@
 (use-package catppuccin-theme
   :ensure t)
 
+;; FIXME autoload hl-todo
 (use-package hl-todo
-  :ensure t)
+  :ensure t
+  :init (hl-todo-mode 1))
 
 (setq hl-todo-keyword-faces
       '(("TODO"   . "#94e2d5")
@@ -47,8 +49,23 @@
             #'hl-todo-search-and-highlight t)
   (add-hook 'magit-revision-wash-message-hook
             #'hl-todo-search-and-highlighthl t))
-    
+
+;; Status line like Doom Emacs
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1))
+
+(use-package vterm
+  :ensure t)
+
 ;; TODO adding lsp-mode, dap-mode, autocomplete and project handling for C, Go, Bash and Python
+(use-package lsp-mode
+  :ensure t
+  :init
+  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+  (setq lsp-keymap-prefix "C-c l")
+  :hook ((c-mode . lsp))
+  :commands lsp)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                  LOOK AND FEEL                                   ;;
@@ -58,7 +75,7 @@
 (load-theme 'catppuccin :no-confirm)
 
 ;; Setting default font
-(set-frame-font "0xProto Nerd Font 16" nil t)
+(set-frame-font "0xProto Nerd Font 13" nil t)
 
 ;; Remove toolbar
 (tool-bar-mode -1)
@@ -72,7 +89,40 @@
 ;; Disable splash screen
 (setq inhibit-splash-screen t)
 
+;; Remove scrollbar
+(scroll-bar-mode -1)
+
+;; Simple 'y' for 'yes' and 'n' for 'no'
+(defalias 'yes-or-no-p 'y-or-n-p)
+
+;; Set global value for paragraph witdh
+(setq-default fill-column 120)
+
+;; Stop Emacs from losing informations
+(setq undo-limit 2000000)
+(setq undo-strong-limit 4000000000)
+
+;; Smooth scroll
+(setq scroll-step 3)
+(setq ring-bell-function 'ignore)
+
+;; Add column number in the status line
+(column-number-mode)
+
+;; View clock in the status line
+(display-time)
+
 ;; Enable line numbers in the programming mode only
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+
+;; Enable line numbers in the configuration mode only
+(add-hook 'conf-mode-hook 'display-line-numbers-mode)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                                  EDITOR OPTIONS                                  ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(setq standard-indent 4)
+(setq tab-stop-list nil)
+(setq indent-tabs-mode nil)
 
 (message "...user configuration loaded")
