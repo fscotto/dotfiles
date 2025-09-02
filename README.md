@@ -20,34 +20,23 @@ Each directory in this repository corresponds to a specific application or tool,
 This repository contains my configuration files for the following tools:
 
 - **Shells & Prompt**
-  - `zsh` + `starship`
+  - `bash` (Oh My Bash)
 - **Terminal Emulators & Multiplexer**
-  - `alacritty`
   - `foot`
   - `tmux`
 - **Editors & CLI Tools**
+  - `emacs`
   - `neovim` (with LazyVim)
-  - `doom emacs`
   - `git`
   - `lazygit`
-- **X11 Environment**
-  - `rofi` (launcher)
-  - `polybar` (status bar)
-  - `dunst` (notification daemon)
-  - `i3` (window manager)
-  - `picom` (X11 compositor)
 - **Wayland Environment**
-  - `fuzzel` (launcher)
+  - `rofi` (launcher)
   - `waybar` (status bar)
   - `dunst` (notification daemon)
   - `sway` (window manager)
 - **Utilities**
-  - `fastfetch`
   - `zoxide`
-  - `mpv`
-  - `yt-dlp`
   - `flameshot`
-  - `newsboat`
 
 ---
 
