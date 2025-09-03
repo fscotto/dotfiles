@@ -2,71 +2,6 @@
 (message "Welcome to Emacs")
 (message "Loading user configuration...")
 
-;; Setting variables
-(setq vc-follow-symlinks 't)
-(prefer-coding-system 'utf-8-unix)
-(setq custom-file (null-device))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;                                     PACKAGES                                     ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; Initialize package system via use-package
-(package-initialize)
-(require 'use-package)
-
-(use-package package
-  :config
-  ;; Setting repo priorities
-  (setq package-archive-priorities
-	'(("melpa-stable" . 2)
-	  ("MELPA" . 1)
-	  ("gnu" . 0)))
-  ;; Setting repo URL
-  (setq package-archives
-	'(("melpa-stable" . "https://stable.melpa.org/packages/")
-	  ("MELPA" . "https://melpa.org/packages/")
-	  ("gnu" . "https://elpa.gnu.org/packages/")))
-  )
-
-(use-package catppuccin-theme
-  :ensure t)
-
-;; FIXME autoload hl-todo
-(use-package hl-todo
-  :ensure t
-  :init (hl-todo-mode 1))
-
-(setq hl-todo-keyword-faces
-      '(("TODO"   . "#94e2d5")
-        ("FIXME"  . "#f38ba8")
-        ("DEBUG"  . "#cba6f7")
-        ("GOTCHA" . "#eba0ac")
-        ("STUB"   . "#89b4fa")))
-
-(with-eval-after-load 'magit
-  (add-hook 'magit-log-wash-summary-hook
-            #'hl-todo-search-and-highlight t)
-  (add-hook 'magit-revision-wash-message-hook
-            #'hl-todo-search-and-highlighthl t))
-
-;; Status line like Doom Emacs
-(use-package doom-modeline
-  :ensure t
-  :init (doom-modeline-mode 1))
-
-(use-package vterm
-  :ensure t)
-
-;; TODO adding lsp-mode, dap-mode, autocomplete and project handling for C, Go, Bash and Python
-(use-package lsp-mode
-  :ensure t
-  :init
-  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
-  (setq lsp-keymap-prefix "C-c l")
-  :hook ((c-mode . lsp))
-  :commands lsp)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                  LOOK AND FEEL                                   ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -124,5 +59,73 @@
 (setq standard-indent 4)
 (setq tab-stop-list nil)
 (setq indent-tabs-mode nil)
+
+;; Setting variables
+(setq vc-follow-symlinks 't)
+(prefer-coding-system 'utf-8-unix)
+(setq custom-file (null-device))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                                     PACKAGES                                     ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Initialize package system via use-package
+(package-initialize)
+(require 'use-package)
+
+(use-package package
+  :config
+  ;; Setting repo priorities
+  (setq package-archive-priorities
+	'(("melpa-stable" . 2)
+	  ("MELPA" . 1)
+	  ("gnu" . 0)))
+  ;; Setting repo URL
+  (setq package-archives
+	'(("melpa-stable" . "https://stable.melpa.org/packages/")
+	  ("MELPA" . "https://melpa.org/packages/")
+	  ("gnu" . "https://elpa.gnu.org/packages/")))
+  )
+
+(use-package catppuccin-theme
+  :ensure t)
+
+;; FIXME autoload hl-todo
+(use-package hl-todo
+  :ensure t
+  :init (hl-todo-mode 1))
+
+(setq hl-todo-keyword-faces
+      '(("TODO"   . "#94e2d5")
+        ("FIXME"  . "#f38ba8")
+        ("DEBUG"  . "#cba6f7")
+        ("GOTCHA" . "#eba0ac")
+        ("STUB"   . "#89b4fa")))
+
+(with-eval-after-load 'magit
+  (add-hook 'magit-log-wash-summary-hook
+            #'hl-todo-search-and-highlight t)
+  (add-hook 'magit-revision-wash-message-hook
+            #'hl-todo-search-and-highlighthl t))
+
+;; Status line like Doom Emacs
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1))
+
+(use-package vterm
+  :ensure t)
+
+(use-package i3wm-config-mode
+  :ensure t)
+
+;; TODO adding lsp-mode, dap-mode, autocomplete and project handling for C, Go, Bash and Python
+(use-package lsp-mode
+  :ensure t
+  :init
+  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+  (setq lsp-keymap-prefix "C-c l")
+  :hook ((c-mode . lsp))
+  :commands lsp)
 
 (message "...user configuration loaded")
