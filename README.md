@@ -39,7 +39,8 @@ This repository contains my configuration files for the following tools:
   - `zoxide`
   - `yt-dlp`
   - `flameshot`
-  
+  - `ranger`
+
 ---
 
 Feel free to explore, reuse, or adapt any part of this setup.  
