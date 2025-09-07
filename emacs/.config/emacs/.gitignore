@@ -13,6 +13,7 @@ tramp
 .\#*
 eln-cache
 projects
+transient/
 
 # Org-mode
 .org-id-locations

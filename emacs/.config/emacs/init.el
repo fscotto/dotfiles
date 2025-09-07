@@ -119,6 +119,12 @@
 (use-package i3wm-config-mode
   :ensure t)
 
+(use-package magit
+  :ensure t)
+
+(use-package magit-delta
+  :ensure t)
+
 ;; TODO adding lsp-mode, dap-mode, autocomplete and project handling for C, Go, Bash and Python
 (use-package lsp-mode
   :ensure t
