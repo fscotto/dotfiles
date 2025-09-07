@@ -19,6 +19,10 @@ set $right l
 
 set $term 'alacritty'
 set $editor 'emacs'
+set $filemanager 'nemo'
+set $notification 'dunst'
+set $browser 'org.mozilla.firefox'
+set $clipboard 'diodon'
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -113,12 +117,13 @@ for_window [class="Webconsole"] floating enable
 for_window [class="Authy"] floating enable
 for_window [class="Termfloat"] floating enable, resize set 960 540
 for_window [class="Mpv"] floating enable, resize set 960 540
-for_window [class="Spotify"] floating enable, move scratchpad
+for_window [class="Spotify"] floating enable, resize set 1280 1024, move scratchpad
 
 # Workspaces
 assign [class="Emacs"] 1
 assign [class="firefox"] 2
 assign [class="Telegram"] 3
+assign [class="discord"] 3
 
 focus_follows_mouse no
 
@@ -151,10 +156,11 @@ mode "launcher" {
 }
 bindsym $mod+d mode "launcher"
 
+bindsym $mod+Shift+f exec "nemo"
 bindsym $mod+Shift+b exec "flatpak run org.mozilla.firefox"
 bindsym $mod+Shift+t exec "flatpak run org.telegram.desktop"
 bindsym Print exec flameshot gui
-# bindsym $mod+Shift+v exec xfce4-clipman-history
+bindsym $mod+Shift+v exec --no-startup-id $clipboard
 
 # Use pactl to adjust volume in PulseAudio.
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
@@ -312,19 +318,21 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 
 # Polkit Authentication agent
-exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+exec_always --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
 
 ### Apply wallpaper
-exec_always feh --bg-scale ~/.config/i3/wallpaper.jpg
+exec_always --no-startup-id feh --bg-scale ~/.config/i3/wallpaper.jpg
 
 ### Run status bar
-exec_always ~/.config/polybar/launch.sh
+exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 ### Run in background X11 compositor
-exec_always picom --config ~/.config/picom/picom.conf
+exec_always --no-startup-id picom --config ~/.config/picom/picom.conf
 
 ### Run in background notification daemon
-exec_always $notification
+exec_always --no-startup-id $notification
+
+exec --no-startup-id $clipboard
 
 ### Enable autolock
 exec_always xautolock -time 5 -locker ~/.config/i3/scripts/lockscreen.sh -detectsleep
@@ -334,3 +342,6 @@ exec flameshot
 
 ### Run my preferred editor
 exec $editor
+
+### Run my preferred browser
+exec flatpak run $browser
