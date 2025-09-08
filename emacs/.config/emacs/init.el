@@ -6,9 +6,6 @@
 ;;                                  LOOK AND FEEL                                   ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Setting default theme
-(load-theme 'catppuccin :no-confirm)
-
 ;; Setting default font
 (set-frame-font "0xProto Nerd Font 13" nil t)
 
@@ -88,12 +85,39 @@
   )
 
 (use-package catppuccin-theme
+  :ensure t
+  :config
+  (load-theme 'catppuccin :no-confirm)
+  (setq catppuccin-flavor 'mocha))
+
+;; Status line like Doom Emacs
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1))
+
+;; Help to remember or discover keybindings
+(use-package which-key
+  :ensure t
+  :commands (which-key-mode)
+  :init (which-key-mode))
+
+;; Terminal
+(use-package vterm
   :ensure t)
 
-;; FIXME autoload hl-todo
+;; Git package
+(use-package magit
+  :ensure t
+  :bind (:map global-map ("M-G" . magit-status)))
+
+(use-package magit-delta
+  :ensure t)
+
+;; Highlight keywords to remember the activity when coding.
 (use-package hl-todo
   :ensure t
-  :init (hl-todo-mode 1))
+  :commands (global-hl-todo-mode)
+  :init (global-hl-todo-mode))
 
 (setq hl-todo-keyword-faces
       '(("TODO"   . "#94e2d5")
@@ -102,28 +126,28 @@
         ("GOTCHA" . "#eba0ac")
         ("STUB"   . "#89b4fa")))
 
+(keymap-set hl-todo-mode-map "C-c p" #'hl-todo-previous)
+(keymap-set hl-todo-mode-map "C-c n" #'hl-todo-next)
+(keymap-set hl-todo-mode-map "C-c o" #'hl-todo-occur)
+(keymap-set hl-todo-mode-map "C-c i" #'hl-todo-insert)
+
 (with-eval-after-load 'magit
   (add-hook 'magit-log-wash-summary-hook
             #'hl-todo-search-and-highlight t)
   (add-hook 'magit-revision-wash-message-hook
             #'hl-todo-search-and-highlighthl t))
 
-;; Status line like Doom Emacs
-(use-package doom-modeline
-  :ensure t
-  :init (doom-modeline-mode 1))
-
-(use-package vterm
-  :ensure t)
-
 (use-package i3wm-config-mode
   :ensure t)
 
-(use-package magit
-  :ensure t)
-
-(use-package magit-delta
-  :ensure t)
+(use-package company
+    :ensure t
+    :commands (global-company-mode)
+    :init (global-company-mode)
+    :custom
+    (company-tooltip-align-annotations 't)
+    (company-minimum-prefix-length 1)
+    (company-idle-delay 0.1))
 
 ;; TODO adding lsp-mode, dap-mode, autocomplete and project handling for C, Go, Bash and Python
 (use-package lsp-mode
