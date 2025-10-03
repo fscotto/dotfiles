@@ -101,11 +101,50 @@
   :commands (which-key-mode)
   :init (which-key-mode))
 
+;; Configuration for mu4e, an interface for mu email index, running inside Emacs
+(use-package mu4e
+  :ensure nil
+  ;; :load-path "/usr/share/emacs/site-lisp/mu4e/"
+  :defer 20 ; Wait until 20 seconds after startup
+  :bind (:map global-map ("C-c e" . mu4e))
+  :config
+
+  ;; This is set to 't' to avoid mail syncing issues when using mbsync
+  (setq mu4e-change-filenames-when-moving t)
+
+  ;; Refresh mail using isync every 10 minutes
+  (setq mu4e-update-interval (* 10 60))
+  (setq mu4e-get-mail-command "~/.config/emacs/scripts/email_sync.sh")
+  (setq mu4e-maildir "~/Maildir")
+
+  (setq mu4e-drafts-folder "/[Gmail]/Bozze")
+  (setq mu4e-sent-folder   "/[Gmail]/Posta inviata")
+  (setq mu4e-refile-folder "/[Gmail]/Tutti i messaggi")
+  (setq mu4e-trash-folder  "/[Gmail]/Cestino")
+  (setq user-email-address "fabio.scottodisantolo@gmail.com")
+  (setq user-full-name "Fabio Scotto di Santolo")
+
+  (setq mu4e-maildir-shortcuts
+      '(("/Inbox"                    . ?i)
+        ("/[Gmail]/Posta inviata"    . ?s)
+        ("/[Gmail]/Cestino"          . ?t)
+        ("/[Gmail]/Bozze"            . ?d)
+        ("/[Gmail]/Tutti i messaggi" . ?a))))
+
+(setq sendmail-program "/usr/bin/msmtp"
+      send-mail-function 'sendmail-send-it
+      message-sendmail-f-is-evil t
+      message-sendmail-extra-arguments '("--read-envelope-from")
+      message-send-mail-function 'message-send-mail-with-sendmail)
+
 ;; Terminal
 (use-package vterm
-  :ensure t)
+  :ensure t
+  :bind (:map global-map
+	      ("C-c t" . vterm)
+	      ("C-c c" . vterm-copy-mode)))
 
-;; Git package
+;; Git plugin
 (use-package magit
   :ensure t
   :bind (:map global-map ("M-G" . magit-status)))
@@ -131,15 +170,11 @@
 (keymap-set hl-todo-mode-map "C-c o" #'hl-todo-occur)
 (keymap-set hl-todo-mode-map "C-c i" #'hl-todo-insert)
 
-(with-eval-after-load 'magit
-  (add-hook 'magit-log-wash-summary-hook
-            #'hl-todo-search-and-highlight t)
-  (add-hook 'magit-revision-wash-message-hook
-            #'hl-todo-search-and-highlighthl t))
-
+;; Highlight for i3 config file
 (use-package i3wm-config-mode
   :ensure t)
 
+;; Add autocomplete feature to Emacs
 (use-package company
     :ensure t
     :commands (global-company-mode)

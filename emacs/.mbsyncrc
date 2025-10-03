@@ -1,0 +1,21 @@
+IMAPStore Gmail-remote
+Host imap.gmail.com
+Port 993
+User fabio.scottodisantolo@gmail.com
+PassCmd "gpg -q -d /home/fscotto/.cache/gmail1.gpg"
+SSLType IMAPS
+SSLVersions TLSv1.2 TLSv1.3
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+MaildirStore Gmail-local
+Path ~/Maildir/GmailAccount/
+Inbox ~/Maildir/GmailAccount/Inbox
+SubFolders Verbatim
+
+Channel Gmail
+Far :Gmail-remote:
+Near :Gmail-local:
+Patterns * 
+Create Both
+Expunge Both
+SyncState *
