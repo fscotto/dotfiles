@@ -167,6 +167,20 @@
 	      ("C-c t" . vterm)
 	      ("C-c c" . vterm-copy-mode)))
 
+;; PDF viewer with annotations
+(use-package pdf-tools
+  :ensure t
+  :config
+  (pdf-tools-install))
+
+;; EPub viewer
+(use-package nov
+  :ensure t
+  :mode ("\\.epub\\'" . nov-mode))
+
+(use-package visual-fill-column
+  :ensure t)
+
 ;; Git plugin
 (use-package magit
   :ensure t
