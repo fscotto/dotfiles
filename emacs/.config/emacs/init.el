@@ -21,6 +21,9 @@
 ;; Disable splash screen
 (setq inhibit-splash-screen t)
 
+;; Start all frames maximized
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+
 ;; Remove scrollbar
 (scroll-bar-mode -1)
 
@@ -117,25 +120,45 @@
   (setq mu4e-get-mail-command "~/.config/emacs/scripts/email_sync.sh")
   (setq mu4e-maildir "~/Maildir")
 
-  (setq mu4e-drafts-folder "/[Gmail]/Bozze")
-  (setq mu4e-sent-folder   "/[Gmail]/Posta inviata")
-  (setq mu4e-refile-folder "/[Gmail]/Tutti i messaggi")
-  (setq mu4e-trash-folder  "/[Gmail]/Cestino")
+  (setq mu4e-drafts-folder "/GmailAccount/[Gmail]/Bozze")
+  (setq mu4e-sent-folder   "/GmailAccount/[Gmail]/Posta inviata")
+  (setq mu4e-refile-folder "/GmailAccount/[Gmail]/Tutti i messaggi")
+  (setq mu4e-trash-folder  "/GmailAccount/[Gmail]/Cestino")
   (setq user-email-address "fabio.scottodisantolo@gmail.com")
   (setq user-full-name "Fabio Scotto di Santolo")
 
   (setq mu4e-maildir-shortcuts
-      '(("/Inbox"                    . ?i)
-        ("/[Gmail]/Posta inviata"    . ?s)
-        ("/[Gmail]/Cestino"          . ?t)
-        ("/[Gmail]/Bozze"            . ?d)
-        ("/[Gmail]/Tutti i messaggi" . ?a))))
+      '(("/GmailAccount/Inbox"                    . ?i)
+        ("/GmailAccount/[Gmail]/Posta inviata"    . ?s)
+        ("/GmailAccount/[Gmail]/Cestino"          . ?t)
+        ("/GmailAccount/[Gmail]/Bozze"            . ?d)
+        ("/GmailAccount/[Gmail]/Tutti i messaggi" . ?a))))
+
+(setq user-mail-address "fabio.scottodisantolo@gmail.com")
 
 (setq sendmail-program "/usr/bin/msmtp"
       send-mail-function 'sendmail-send-it
       message-sendmail-f-is-evil t
       message-sendmail-extra-arguments '("--read-envelope-from")
       message-send-mail-function 'message-send-mail-with-sendmail)
+
+;; Configure elfeed for RSS feed
+(use-package elfeed
+  :ensure t
+  :custom
+  (elfeed-db-directory "~/.cache/elfeed")
+  (elfeed-enclosure-default-dir "~/Downloads/")
+  (elfeed-search-remain-on-entry t)
+  (elfeed-search-title-max-width 100)
+  (elfeed-search-title-min-width 30)
+  (elfeed-search-trailing-width 25)
+  (elfeed-show-truncate-long-urls t)
+  (elfeed-sort-order 'descending)
+  (elfeed-search-filter "1-week-ago +unread")
+  (elfeed-feeds
+   '(("https://blog.linuxmint.com/?feed=rss2" linux linuxmint)
+     ("https://feeds.feedburner.com/TheHackersNews" hackernews news security programming)))
+  :bind (("C-c f" . elfeed)))
 
 ;; Terminal
 (use-package vterm
