@@ -9,7 +9,7 @@ export OSH='/home/fscotto/.oh-my-bash'
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-bash is loaded.
-OSH_THEME="robbyrussell"
+# OSH_THEME="robbyrussell"
 
 # If you set OSH_THEME to "random", you can ignore themes you don't like.
 # OMB_THEME_RANDOM_IGNORED=("powerbash10k" "wanelo")
@@ -78,7 +78,7 @@ OSH_THEME="robbyrussell"
 OMB_USE_SUDO=true
 
 # To enable/disable display of Python virtualenv and condaenv
-OMB_PROMPT_SHOW_PYTHON_VENV=true  # enable
+# OMB_PROMPT_SHOW_PYTHON_VENV=true  # enable
 # OMB_PROMPT_SHOW_PYTHON_VENV=false # disable
 
 # To enable/disable Spack environment information
@@ -178,3 +178,9 @@ alias paths='echo -e ${PATH//:/\\n}'         # path:         Echo all executable
 alias userlist="cut -d: -f1 /etc/passwd | sort"
 alias ip='ip -color'
 alias stow='stow -d $DOTFILES '
+
+# Starship prompt
+if command -v starship > /dev/null 2>&1; then
+    eval "$(starship init bash)"
+fi
+

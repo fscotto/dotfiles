@@ -8,6 +8,7 @@ function appendpath() {
 
 appendpath "$HOME/.local/bin"
 appendpath "$HOME/.cargo/bin"
+appendpath "/home/linuxbrew/.linuxbrew/bin"
 unset appendpath
 
 # XDG variables
@@ -34,20 +35,21 @@ export HELPDIR=/usr/share/zsh/"${ZSH_VERSION}"/help
 # SSH socket
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"
 
-export FZF_DEFAULT_COMMAND="fdfind --hidden --type file --strip-cwd-prefix --exclude .git"
-export FZF_CTRL_T_COMMAND="fdfind --hidden --type file --strip-cwd-prefix --exclude .git"
-export FZF_ALT_C_COMMAND="fdfind --hidden --type directory --strip-cwd-prefix --exclude .git"
-# Export Catppuccin Mocha theme for FZF
-export FZF_DEFAULT_OPTS=" \
---height 60% --layout=reverse --border \
---color=bg+:#313244,bg:#1E1E2E,spinner:#F5E0DC,hl:#F38BA8 \
---color=fg:#CDD6F4,header:#F38BA8,info:#CBA6F7,pointer:#F5E0DC \
---color=marker:#B4BEFE,fg+:#CDD6F4,prompt:#CBA6F7,hl+:#F38BA8 \
---color=selected-bg:#45475A \
---color=border:#313244,label:#CDD6F4"
-export FZF_TMUX_OPTS=" -p90%,70%"
+# export FZF_DEFAULT_COMMAND="fdfind --hidden --type file --strip-cwd-prefix --exclude .git"
+# export FZF_CTRL_T_COMMAND="fdfind --hidden --type file --strip-cwd-prefix --exclude .git"
+# export FZF_ALT_C_COMMAND="fdfind --hidden --type directory --strip-cwd-prefix --exclude .git"
+# # Export Catppuccin Mocha theme for FZF
+# export FZF_DEFAULT_OPTS=" \
+# --height 60% --layout=reverse --border \
+# --color=bg+:#313244,bg:#1E1E2E,spinner:#F5E0DC,hl:#F38BA8 \
+# --color=fg:#CDD6F4,header:#F38BA8,info:#CBA6F7,pointer:#F5E0DC \
+# --color=marker:#B4BEFE,fg+:#CDD6F4,prompt:#CBA6F7,hl+:#F38BA8 \
+# --color=selected-bg:#45475A \
+# --color=border:#313244,label:#CDD6F4"
+# export FZF_TMUX_OPTS=" -p90%,70%"
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
+source "$HOME/.profile.d/homebrew.sh"
 source "$HOME/.profile.d/mise.sh"
 source "$HOME/.profile.d/golang.sh"
 source "$HOME/.profile.d/java.sh"

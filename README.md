@@ -13,7 +13,6 @@ Each directory in this repository corresponds to a specific application or tool,
 > ```bash
 > stow bash
 > stow i3
-> stow polybar
 > ```
 
 ### 🧩 Included Tools & Configurations
@@ -22,6 +21,7 @@ This repository contains my configuration files for the following tools:
 
 - **Shells & Prompt**
   - `bash` (Oh My Bash)
+  - `starship`
 - **Terminal Emulators & Multiplexer**
   - `alacritty`
   - `tmux`
