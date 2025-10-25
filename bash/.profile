@@ -1,4 +1,4 @@
-function appendpath() {
+appendpath() {
   local location="${1}"
   case ":$PATH:" in
     *":$location:"*) ;;
@@ -9,6 +9,7 @@ function appendpath() {
 appendpath "$HOME/.local/bin"
 appendpath "$HOME/.cargo/bin"
 appendpath "/home/linuxbrew/.linuxbrew/bin"
+appendpath "$HOME/.config/emacs/bin"
 unset appendpath
 
 # XDG variables
