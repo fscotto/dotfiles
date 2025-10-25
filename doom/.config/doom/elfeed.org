@@ -1,0 +1,9 @@
+#+TITLE: RSS Urls
+#+AUTHOR: Fabio Scotto di Santolo
+#+DATE: <2025-10-25 Sat>
+
+* root :elfeed:
+** Programming :programming:
+*** [[https://feeds.feedburner.com/TheHackersNews][Hacker News]] :news: :security:
+** FOSS News :news:
+*** [[https://blog.linuxmint.com/?feed=rss2][Linux Mint Blog]] :blog: :linux: :linuxmint:

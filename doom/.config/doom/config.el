@@ -111,11 +111,16 @@
 
 ;; Configure Elfeed
 (after! elfeed
+  (setq rmh-elfeed-org-files '("~/.config/doom/elfeed.org"))
+  (setq elfeed-db-directory "~/.elfeed")
   (setq elfeed-enclosure-default-dir "~/Downloads/")
-  (setq elfeed-search-remain-on-entry t)
-  (setq elfeed-search-title-max-width 100)
-  (setq elfeed-search-title-min-width 30)
-  (setq elfeed-search-trailing-width 25)
-  (setq elfeed-show-truncate-long-urls t)
   (setq elfeed-sort-order 'descending)
-  (setq elfeed-search-filter "1-week-ago +unread"))
+  (setq elfeed-search-filter "1-week-ago +unread")
+
+  ;; ;; Key bindings
+  ;; (map! :map elfeed-search-mode-map
+  ;;       :n "d" #'elfeed-download-current-entry
+  ;;       :n "O" #'elfeed-search-browse-url)
+
+  ;; Update hourly
+  (run-at-time nil (* 60 60) #'elfeed-update))

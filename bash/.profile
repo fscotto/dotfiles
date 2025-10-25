@@ -1,17 +1,3 @@
-appendpath() {
-  local location="${1}"
-  case ":$PATH:" in
-    *":$location:"*) ;;
-    *) export PATH="$PATH:$location" ;;
-  esac
-}
-
-appendpath "$HOME/.local/bin"
-appendpath "$HOME/.cargo/bin"
-appendpath "/home/linuxbrew/.linuxbrew/bin"
-appendpath "$HOME/.config/emacs/bin"
-unset appendpath
-
 # XDG variables
 export XDG_CONFIG_HOME=${HOME}/.config
 export XDG_DATA_HOME=${HOME}/.local/share
@@ -28,10 +14,8 @@ export QT_STYLE_OVERRIDE=kvantum
 # Make Qt apps honour DPI settings.
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
 
-export ZSH_HOME="$HOME/.zsh"
 export DOTFILES="$HOME/.dotfiles"
-export EDITOR=nvim
-export HELPDIR=/usr/share/zsh/"${ZSH_VERSION}"/help
+export EDITOR=nano
 
 # SSH socket
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"
@@ -50,8 +34,24 @@ export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"
 # export FZF_TMUX_OPTS=" -p90%,70%"
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
+# Export Golang enviroments
+export GOPATH="$HOME/.local/share/Go"
+export GOBIN="$GOPATH/bin"
+
 source "$HOME/.profile.d/homebrew.sh"
-source "$HOME/.profile.d/mise.sh"
-source "$HOME/.profile.d/golang.sh"
 source "$HOME/.profile.d/java.sh"
 
+appendpath() {
+  local location="${1}"
+  case ":$PATH:" in
+    *":$location:"*) ;;
+    *) export PATH="$PATH:$location" ;;
+  esac
+}
+
+appendpath "$HOME/.local/bin"
+appendpath "$GOBIN"
+appendpath "$HOME/.cargo/bin"
+appendpath "/home/linuxbrew/.linuxbrew/bin"
+appendpath "$HOME/.config/emacs/bin"
+unset appendpath
