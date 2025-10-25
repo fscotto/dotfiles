@@ -13,6 +13,7 @@ Each directory in this repository corresponds to a specific application or tool,
 > ```bash
 > stow bash
 > stow i3
+> stow doom
 > ```
 
 ### 🧩 Included Tools & Configurations
@@ -26,10 +27,11 @@ This repository contains my configuration files for the following tools:
   - `alacritty`
   - `tmux`
 - **Editors & CLI Tools**
-  - `emacs`
+  - `emacs` (Doom Emacs config)
+  - `emacs` (Custom config)
   - `git`
 - **X11 Environment**
-  - `i3` (window manager)
+  - `i3` (Window Manager)
   - `picom` (X11 compositor)
   - `polybar` (status bar)
   - `rofi` (launcher)
@@ -39,7 +41,6 @@ This repository contains my configuration files for the following tools:
   - `zoxide`
   - `yt-dlp`
   - `flameshot`
-  - `ranger`
 
 ---
 
