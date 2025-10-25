@@ -341,7 +341,7 @@ exec_always xautolock -time 5 -locker ~/.config/i3/scripts/lockscreen.sh -detect
 exec flameshot
 
 ### Run my preferred editor
-exec $editor
+# exec $editor
 
 ### Run my preferred browser
 exec flatpak run $browser
