@@ -9,32 +9,6 @@ $git_metrics\
 $git_status\
 $hg_branch\
 $package\
-$bun\
-$c\
-$cmake\
-$elixir\
-$erlang\
-$gleam\
-$golang\
-$gradle\
-$haskell\
-$haxe\
-$helm\
-$java\
-$kotlin\
-$lua\
-$nodejs\
-$ocaml\
-$perl\
-$php\
-$python\
-$ruby\
-$rust\
-$scala\
-$swift\
-$terraform\
-$vagrant\
-$zig\
 $docker_context\
 $buf\
 $guix_shell\
@@ -49,7 +23,6 @@ $custom\
 $sudo\
 $cmd_duration\
 $line_break\
-$jobs\
 $time\
 $status\
 $container\
@@ -186,7 +159,7 @@ crust = "#11111b"
 
 [character]
 # Note the use of Catppuccin color 'maroon'
-success_symbol = "[[♥](peach) ❯](maroon)"
+success_symbol = "[❯](maroon)"
 error_symbol = "[❯](red)"
 vimcmd_symbol = "[❮](green)"
 
@@ -311,49 +284,49 @@ disabled = false
 format = "[$symbol ]($style)"
 
 [os.symbols]
-Alpaquita = " "
-Alpine = " "
+Alpaquita = ""
+Alpine = ""
 AlmaLinux = " "
-Amazon = " "
+Amazon = ""
 Android = " "
-Arch = " "
-Artix = " "
-CentOS = " "
-Debian = " "
-DragonFly = " "
+Arch = ""
+Artix = ""
+CentOS = ""
+Debian = ""
+DragonFly = ""
 Emscripten = " "
 EndeavourOS = " "
-Fedora = " "
-FreeBSD = " "
-Garuda = "󰛓 "
-Gentoo = " "
-HardenedBSD = "󰞌 "
-Illumos = "󰈸 "
+Fedora = ""
+FreeBSD = ""
+Garuda = "󰛓"
+Gentoo = ""
+HardenedBSD = "󰞌"
+Illumos = "󰈸"
 Kali = " "
-Linux = " "
-Mabox = " "
-Macos = " "
-Manjaro = " "
-Mariner = " "
-MidnightBSD = " "
-Mint = " "
-NetBSD = " "
-NixOS = " "
-OpenBSD = "󰈺 "
-openSUSE = " "
-OracleLinux = "󰌷 "
-Pop = " "
-Raspbian = " "
-Redhat = " "
-RedHatEnterprise = " "
-RockyLinux = " "
-Redox = "󰀘 "
-Solus = "󰠳 "
-SUSE = " "
-Ubuntu = " "
-Unknown = " "
-Void = " "
-Windows = "󰍲 "
+Linux = ""
+Mabox = ""
+Macos = ""
+Manjaro = ""
+Mariner = ""
+MidnightBSD = ""
+Mint = ""
+NetBSD = ""
+NixOS = ""
+OpenBSD = "󰈺"
+openSUSE = ""
+OracleLinux = "󰌷"
+Pop = ""
+Raspbian = ""
+Redhat = ""
+RedHatEnterprise = ""
+RockyLinux = ""
+Redox = "󰀘"
+Solus = "󰠳"
+SUSE = ""
+Ubuntu = ""
+Unknown = ""
+Void = ""
+Windows = "󰍲"
 
 [package]
 symbol = "󰏗 "
