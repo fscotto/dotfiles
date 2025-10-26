@@ -159,6 +159,7 @@ bindsym $mod+d mode "launcher"
 bindsym $mod+Shift+f exec "nemo"
 bindsym $mod+Shift+b exec "flatpak run org.mozilla.firefox"
 bindsym $mod+Shift+t exec "flatpak run org.telegram.desktop"
+bindsym $mod+Shift+e exec $editor
 bindsym Print exec flameshot gui
 bindsym $mod+Shift+v exec --no-startup-id $clipboard
 
@@ -267,7 +268,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec ~/.config/i3/scripts/poweroff.sh
+#bindsym $mod+Shift+e exec ~/.config/i3/scripts/poweroff.sh
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
