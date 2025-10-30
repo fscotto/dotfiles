@@ -90,6 +90,7 @@ alias paths='echo -e ${PATH//:/\\n}'         # path:         Echo all executable
 alias userlist="cut -d: -f1 /etc/passwd | sort"
 alias ip='ip -color'
 alias stow='stow -d $DOTFILES '
+alias em='emacsclient -tq'
 
 case ":$PATH:" in
   *":$HOME/.local/bin:"*) ;;
