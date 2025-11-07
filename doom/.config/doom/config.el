@@ -81,6 +81,7 @@
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 (after! mu4e
+
   ;; This is set to 't' to avoid mail syncing issues when using mbsync
   (setq mu4e-change-filenames-when-moving t)
 
@@ -89,20 +90,45 @@
   (setq mu4e-get-mail-command "~/.config/doom/scripts/email_sync.sh")
   (setq mu4e-maildir "~/Maildir")
 
-  (setq mu4e-drafts-folder "/GmailAccount/[Gmail]/Bozze")
-  (setq mu4e-sent-folder   "/GmailAccount/[Gmail]/Posta inviata")
-  (setq mu4e-refile-folder "/GmailAccount/[Gmail]/Tutti i messaggi")
-  (setq mu4e-trash-folder  "/GmailAccount/[Gmail]/Cestino")
-  (setq user-email-address "fabio.scottodisantolo@gmail.com")
-  (setq user-full-name "Fabio Scotto di Santolo")
+  ;; Configure email accounts
+  (setq mu4e-contexts
+        (list
+         ;; Protonmail Account
+         (make-mu4e-context
+          :name "Protonmail"
+          :match-func
+          (lambda (msg)
+            (when msg
+              (string-prefix-p "/ProtonMailAccount" (mu4e-message-field msg :maildir))))
+          :vars '((user-mail-address . "fscottodisantolo@protonmail.com")
+                  (user-full-name . "Fabio Scotto di Santolo")
+                  (mu4e-drafts-folder . "/ProtonMailAccount/Drafts")
+                  (mu4e-sent-folder . "/ProtonMailAccount/Sent")
+                  (mu4e-refile-folder . "/ProtonMailAccount/All Mail")
+                  (mu4e-trash-folder . "/ProtonMailAccount/Trash")))
 
-  (setq mu4e-maildir-shortcuts
-        '(("/GmailAccount/Inbox"                    . ?i)
-          ("/GmailAccount/[Gmail]/Posta inviata"    . ?s)
-          ("/GmailAccount/[Gmail]/Cestino"          . ?t)
-          ("/GmailAccount/[Gmail]/Bozze"            . ?d)
-          ("/GmailAccount/[Gmail]/Tutti i messaggi" . ?a)))
+         ;; iCloud Account
+         (make-mu4e-context
+          :name "iCloud Mail"
+          :match-func
+          (lambda (msg)
+            (when msg
+              (string-prefix-p "/iCloudAccount" (mu4e-message-field msg :maildir))))
+          :vars '((user-mail-address . "fscottodisantolo@icloud.com")
+                  (user-full-name . "Fabio Scotto di Santolo")
+                  (mu4e-drafts-folder . "/iCloudAccount/Drafts")
+                  (mu4e-sent-folder . "/iCloudAccount/Sent Messages")
+                  (mu4e-refile-folder . "/iCloudAccount/INBOX")
+                  (mu4e-trash-folder . "/iCloudAccount/Junk")))))
 
+  ;; (setq mu4e-maildir-shortcuts
+  ;;       '(("/Inbox" . ?i)
+  ;;         ("/ProtonMailAccount/Sent" . ?s)
+  ;;         ("/ProtonMailAccount/Trash" . ?t)
+  ;;         ("/ProtonMailAccount/Drafts" . ?d)
+  ;;         ("/ProtonMailAccount/All Mail" . ?a)))
+
+  ;; Configure SMTP client for send emails
   (setq sendmail-program "/usr/bin/msmtp"
         send-mail-function 'sendmail-send-it
         message-sendmail-f-is-evil t
@@ -117,10 +143,18 @@
   (setq elfeed-sort-order 'descending)
   (setq elfeed-search-filter "1-week-ago +unread")
 
-  ;; ;; Key bindings
-  ;; (map! :map elfeed-search-mode-map
-  ;;       :n "d" #'elfeed-download-current-entry
-  ;;       :n "O" #'elfeed-search-browse-url)
+  ;; Key bindings
+  (map! :map elfeed-search-mode-map
+        :n "d" #'elfeed-download-current-entry
+        :n "O" #'elfeed-search-browse-url)
 
   ;; Update hourly
   (run-at-time nil (* 60 60) #'elfeed-update))
+
+;; PDF config
+(after! pdf-tools
+  :defer t
+  :commands (pdf-loader-install)
+  :mode "\\.pdf\\'"
+  :init (pdf-loader-install)
+  :config (add-to-list 'revert-without-query ".pdf"))
