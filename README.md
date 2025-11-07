@@ -27,7 +27,7 @@ This repository contains my configuration files for the following tools:
   - `alacritty`
   - `tmux`
 - **Editors & CLI Tools**
-  - `emacs` (Doom Emacs config)
+  - `doom` (Doom Emacs config)
   - `emacs` (Custom config)
   - `git`
 - **X11 Environment**

@@ -1,21 +1,47 @@
-IMAPStore Gmail-remote
-Host imap.gmail.com
-Port 993
-User fabio.scottodisantolo@gmail.com
-PassCmd "gpg -q -d /home/fscotto/.cache/gmail1.gpg"
-SSLType IMAPS
-SSLVersions TLSv1.2 TLSv1.3
-CertificateFile /etc/ssl/certs/ca-certificates.crt
+##################### iCloud Account ##################################
+IMAPStore iCloud-remote
+    Host imap.mail.me.com
+    Port 993
+    User fscottodisantolo@icloud.com
+    PassCmd "pass show icloud-mail"
+    AuthMechs *
+    SSLType IMAPS
+    SSLVersions TLSv1.2 TLSv1.3
+    PipelineDepth 1
 
-MaildirStore Gmail-local
-Path ~/Maildir/GmailAccount/
-Inbox ~/Maildir/GmailAccount/Inbox
-SubFolders Verbatim
+MaildirStore iCloud-local
+    Path ~/Maildir/iCloudAccount/
+    Inbox ~/Maildir/iCloudAccount/INBOX
+    SubFolders Verbatim
 
-Channel Gmail
-Far :Gmail-remote:
-Near :Gmail-local:
-Patterns * 
-Create Both
-Expunge Both
-SyncState *
+Channel iCloud
+    Far :iCloud-remote:
+    Near :iCloud-local:
+    Patterns *
+    Create Both
+    Expunge Both
+    SyncState *
+
+##################### Protonmail Account ##################################
+IMAPStore protonmail-remote
+    Host 127.0.0.1
+    Port 1143
+    User fscottodisantolo@protonmail.com
+    PassCmd "pass show protonmail-bridge"
+    AuthMechs *
+    SSLType STARTTLS
+    PipelineDepth 1
+    CertificateFile  ~/.config/protonmail/bridge-v3/cert.pem
+
+MaildirStore protonmail-local
+    Path ~/Maildir/ProtonMailAccount/
+    Inbox ~/Maildir/ProtonMailAccount/INBOX
+    SubFolders Verbatim
+
+Channel Protonmail
+    Far :protonmail-remote:
+    Near :protonmail-local:
+    Patterns *
+    Create Both
+    Expunge Both
+    SyncState *
