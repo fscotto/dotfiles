@@ -7,3 +7,10 @@
 *** [[https://feeds.feedburner.com/TheHackersNews][Hacker News]] :news: :security:
 ** FOSS News :news:
 *** [[https://blog.linuxmint.com/?feed=rss2][Linux Mint Blog]] :blog: :linux: :linuxmint:
+** Youtube :youtube:
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCVls1GmFKf6WlTraIb_IaJg][DistroTube]] :emacs: :foss: :linux:
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCABhVAlCkcEG9a2UVruq9vw][Douglas Mortimer]] :fashion:
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCqZe2cxQNCvgkQxUuqsIaig][Esadecimale]] :emacs: :programming:
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCnDDucQDLncrauOCmanCIgw][MorroLinux]] :linux: :foss:
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCDDG9vOcmgwlslJJpCWjqOg][Salvatore Sanfilippo]] :programming:
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCrqM0Ym_NbK1fqeQG2VIohg][Tsoding Daily]] :emacs: :programming:

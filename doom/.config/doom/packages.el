@@ -54,3 +54,6 @@
 ;; (unpin! t)
 
 (package! catppuccin-theme)
+(package! org-caldav)
+(package! elfeed-tube)
+(package! elfeed-tube-mpv)
