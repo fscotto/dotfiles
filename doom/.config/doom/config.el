@@ -144,6 +144,9 @@
   ;; Update hourly
   (run-at-time nil (* 60 60) #'elfeed-update))
 
+(after! elfeed-tube
+  (elfeed-tube-setup))
+
 ;; PDF config
 (after! pdf-tools
   :defer t
