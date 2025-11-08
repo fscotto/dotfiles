@@ -43,7 +43,7 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/Org/")
+(setq org-directory "~/Remotes/pCloud/Org")
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
@@ -121,13 +121,6 @@
                   (mu4e-refile-folder . "/iCloudAccount/INBOX")
                   (mu4e-trash-folder . "/iCloudAccount/Junk")))))
 
-  ;; (setq mu4e-maildir-shortcuts
-  ;;       '(("/Inbox" . ?i)
-  ;;         ("/ProtonMailAccount/Sent" . ?s)
-  ;;         ("/ProtonMailAccount/Trash" . ?t)
-  ;;         ("/ProtonMailAccount/Drafts" . ?d)
-  ;;         ("/ProtonMailAccount/All Mail" . ?a)))
-
   ;; Configure SMTP client for send emails
   (setq sendmail-program "/usr/bin/msmtp"
         send-mail-function 'sendmail-send-it
@@ -141,7 +134,7 @@
   (setq elfeed-db-directory "~/.elfeed")
   (setq elfeed-enclosure-default-dir "~/Downloads/")
   (setq elfeed-sort-order 'descending)
-  (setq elfeed-search-filter "1-week-ago +unread")
+  (setq elfeed-search-filter "6-months-ago +unread")
 
   ;; Key bindings
   (map! :map elfeed-search-mode-map
