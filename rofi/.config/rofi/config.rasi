@@ -1,4 +1,4 @@
-@theme "catppuccin"
+//@theme "catppuccin"
 
 configuration {
   modi: "drun,window,filebrowser,ssh";
@@ -18,3 +18,4 @@ configuration {
   display-filebrowser: "󰉋 filebrowser:";
 }
 
+@theme "/home/fscotto/.config/rofi/themes/catppuccin-lavrent-mocha.rasi"
