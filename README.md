@@ -36,6 +36,11 @@ This repository contains my configuration files for the following tools:
   - `polybar` (status bar)
   - `rofi` (launcher)
   - `dunst` (notification daemon)
+- **Wayland Environment**
+  - `sway` (Window Manager)
+  - `waybar` (status bar)
+  - `rofi` (launcher)
+  - `dunst` (notification daemon)
 - **Utilities**
   - `fastfetch`
   - `zoxide`
