@@ -1,3 +1,4 @@
+# -*- mode: i3wm-config -*-
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
@@ -10,22 +11,19 @@ set $up k
 set $right l
 
 # Your preferred terminal emulator
-set $term 'foot'
+set $term 'alacritty'
 
 # Your preferred application launcher
-set $menu 'fuzzel'
+set $menu 'rofi'
 
 # Your preferred browser
-set $browser 'firefox'
+set $browser 'io.gitlab.librewolf-community'
 
 # Your preferred notification daemon
 set $notification 'dunst'
 
 # Your preferred clipboard manager
-set $clipboard 'cliphist list | fuzzel --dmenu | cliphist decode | wl-copy'
-
-# Your preferred file manager
-set $filemanager 'foot yazi'
+set $clipboard 'diodon'
 
 # Your prefered editor
 set $editor 'emacs'
@@ -154,9 +152,6 @@ exec_always {
 
     # Start my clipboard manager
     bindsym $mod+Shift+v exec $clipboard
-
-    # Start my file manager
-    bindsym $mod+Shift+f exec $filemanager
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
