@@ -39,6 +39,7 @@ export GOPATH="$HOME/.local/share/Go"
 export GOBIN="$GOPATH/bin"
 
 source "$HOME/.profile.d/homebrew.sh"
+source "$HOME/.profile.d/mise.sh"
 source "$HOME/.profile.d/java.sh"
 
 appendpath() {

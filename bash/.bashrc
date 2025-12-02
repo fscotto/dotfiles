@@ -184,8 +184,3 @@ alias em='emacsclient -t'
 if command -v starship > /dev/null 2>&1; then
     eval "$(starship init bash)"
 fi
-
-# Load Mise en dev
-if command -v mise > /dev/null 2>&1; then
-  eval "$(mise activate bash)"
-fi
