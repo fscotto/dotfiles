@@ -38,10 +38,6 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 export GOPATH="$HOME/.local/share/Go"
 export GOBIN="$GOPATH/bin"
 
-source "$HOME/.profile.d/homebrew.sh"
-source "$HOME/.profile.d/mise.sh"
-source "$HOME/.profile.d/java.sh"
-
 appendpath() {
   local location="${1}"
   case ":$PATH:" in
@@ -56,3 +52,7 @@ appendpath "$HOME/.cargo/bin"
 appendpath "/home/linuxbrew/.linuxbrew/bin"
 appendpath "$HOME/.config/emacs/bin"
 unset appendpath
+
+source "$HOME/.profile.d/homebrew.sh"
+source "$HOME/.profile.d/mise.sh"
+source "$HOME/.profile.d/java.sh"
