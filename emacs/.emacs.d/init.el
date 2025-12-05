@@ -7,7 +7,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Setting default font
-(set-frame-font "0xProto Nerd Font 13" nil t)
+(set-frame-font "Firacode Nerd Font 16" nil t)
 
 ;; Remove toolbar
 (tool-bar-mode -1)
@@ -53,6 +53,8 @@
 ;; Enable line numbers in the configuration mode only
 (add-hook 'conf-mode-hook 'display-line-numbers-mode)
 
+(setq org-directory "~/Remotes/pCloud/Org")
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                  EDITOR OPTIONS                                  ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -84,14 +86,15 @@
   (setq package-archives
 	'(("melpa-stable" . "https://stable.melpa.org/packages/")
 	  ("MELPA" . "https://melpa.org/packages/")
-	  ("gnu" . "https://elpa.gnu.org/packages/")))
-  )
+	  ("gnu" . "https://elpa.gnu.org/packages/"))))
 
-(use-package catppuccin-theme
-  :ensure t
-  :config
-  (load-theme 'catppuccin :no-confirm)
-  (setq catppuccin-flavor 'mocha))
+(load-theme 'wombat)
+
+;; (use-package catppuccin-theme
+;;   :ensure t
+;;   :config
+;;   (load-theme 'catppuccin :no-confirm)
+;;   (setq catppuccin-flavor 'mocha))
 
 ;; Status line like Doom Emacs
 (use-package doom-modeline
@@ -117,30 +120,45 @@
 
   ;; Refresh mail using isync every 10 minutes
   (setq mu4e-update-interval (* 10 60))
-  (setq mu4e-get-mail-command "~/.config/emacs/scripts/email_sync.sh")
+  (setq mu4e-get-mail-command "~/.emacs.d/scripts/email_sync.sh")
   (setq mu4e-maildir "~/Maildir")
 
-  (setq mu4e-drafts-folder "/GmailAccount/[Gmail]/Bozze")
-  (setq mu4e-sent-folder   "/GmailAccount/[Gmail]/Posta inviata")
-  (setq mu4e-refile-folder "/GmailAccount/[Gmail]/Tutti i messaggi")
-  (setq mu4e-trash-folder  "/GmailAccount/[Gmail]/Cestino")
-  (setq user-email-address "fabio.scottodisantolo@gmail.com")
-  (setq user-full-name "Fabio Scotto di Santolo")
+    ;; Configure email accounts
+  (setq mu4e-contexts
+        (list
+         ;; Protonmail Account
+         (make-mu4e-context
+          :name "Protonmail"
+          :match-func
+          (lambda (msg)
+            (when msg
+              (string-prefix-p "/ProtonMailAccount" (mu4e-message-field msg :maildir))))
+          :vars '((user-mail-address . "fscottodisantolo@protonmail.com")
+                  (user-full-name . "Fabio Scotto di Santolo")
+                  (mu4e-drafts-folder . "/ProtonMailAccount/Drafts")
+                  (mu4e-sent-folder . "/ProtonMailAccount/Sent")
+                  (mu4e-refile-folder . "/ProtonMailAccount/All Mail")
+                  (mu4e-trash-folder . "/ProtonMailAccount/Trash")))
 
-  (setq mu4e-maildir-shortcuts
-      '(("/GmailAccount/Inbox"                    . ?i)
-        ("/GmailAccount/[Gmail]/Posta inviata"    . ?s)
-        ("/GmailAccount/[Gmail]/Cestino"          . ?t)
-        ("/GmailAccount/[Gmail]/Bozze"            . ?d)
-        ("/GmailAccount/[Gmail]/Tutti i messaggi" . ?a))))
+         ;; iCloud Account
+         (make-mu4e-context
+          :name "iCloud Mail"
+          :match-func
+          (lambda (msg)
+            (when msg
+              (string-prefix-p "/iCloudAccount" (mu4e-message-field msg :maildir))))
+          :vars '((user-mail-address . "fscottodisantolo@icloud.com")
+                  (user-full-name . "Fabio Scotto di Santolo")
+                  (mu4e-drafts-folder . "/iCloudAccount/Drafts")
+                  (mu4e-sent-folder . "/iCloudAccount/Sent Messages")
+                  (mu4e-refile-folder . "/iCloudAccount/INBOX")
+                  (mu4e-trash-folder . "/iCloudAccount/Junk")))))
 
-(setq user-mail-address "fabio.scottodisantolo@gmail.com")
-
-(setq sendmail-program "/usr/bin/msmtp"
+  (setq sendmail-program "/usr/bin/msmtp"
       send-mail-function 'sendmail-send-it
       message-sendmail-f-is-evil t
       message-sendmail-extra-arguments '("--read-envelope-from")
-      message-send-mail-function 'message-send-mail-with-sendmail)
+      message-send-mail-function 'message-send-mail-with-sendmail))
 
 ;; Configure elfeed for RSS feed
 (use-package elfeed
@@ -154,7 +172,7 @@
   (elfeed-search-trailing-width 25)
   (elfeed-show-truncate-long-urls t)
   (elfeed-sort-order 'descending)
-  (elfeed-search-filter "1-week-ago +unread")
+  (elfeed-search-filter "+unread")
   (elfeed-feeds
    '(("https://blog.linuxmint.com/?feed=rss2" linux linuxmint)
      ("https://feeds.feedburner.com/TheHackersNews" hackernews news security programming)))
@@ -168,10 +186,10 @@
 	      ("C-c c" . vterm-copy-mode)))
 
 ;; PDF viewer with annotations
-(use-package pdf-tools
-  :ensure t
-  :config
-  (pdf-tools-install))
+;; (use-package pdf-tools
+;;   :ensure t
+;;   :config
+;;   (pdf-tools-install))
 
 ;; EPub viewer
 (use-package nov
