@@ -6,8 +6,11 @@
 ;;                                  LOOK AND FEEL                                   ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Load default theme
+(load-theme 'wombat)
+
 ;; Setting default font
-(set-frame-font "Firacode Nerd Font 16" nil t)
+(set-frame-font "Iosevka Nerd Font 14" nil t)
 
 ;; Remove toolbar
 (tool-bar-mode -1)
@@ -53,6 +56,7 @@
 ;; Enable line numbers in the configuration mode only
 (add-hook 'conf-mode-hook 'display-line-numbers-mode)
 
+;; Setting default directory for Org files
 (setq org-directory "~/Remotes/pCloud/Org")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -88,8 +92,6 @@
 	  ("MELPA" . "https://melpa.org/packages/")
 	  ("gnu" . "https://elpa.gnu.org/packages/"))))
 
-(load-theme 'wombat)
-
 ;; (use-package catppuccin-theme
 ;;   :ensure t
 ;;   :config
@@ -102,63 +104,63 @@
   :init (doom-modeline-mode 1))
 
 ;; Help to remember or discover keybindings
-(use-package which-key
+ (use-package which-key
   :ensure t
   :commands (which-key-mode)
   :init (which-key-mode))
 
 ;; Configuration for mu4e, an interface for mu email index, running inside Emacs
-(use-package mu4e
-  :ensure nil
-  ;; :load-path "/usr/share/emacs/site-lisp/mu4e/"
-  :defer 20 ; Wait until 20 seconds after startup
-  :bind (:map global-map ("C-c e" . mu4e))
-  :config
+;; (use-package mu4e
+;;   :ensure nil
+;;   ;; :load-path "/usr/share/emacs/site-lisp/mu4e/"
+;;   :defer 20 ; Wait until 20 seconds after startup
+;;   :bind (:map global-map ("C-c e" . mu4e))
+;;   :config
 
-  ;; This is set to 't' to avoid mail syncing issues when using mbsync
-  (setq mu4e-change-filenames-when-moving t)
+;;   ;; This is set to 't' to avoid mail syncing issues when using mbsync
+;;   (setq mu4e-change-filenames-when-moving t)
 
-  ;; Refresh mail using isync every 10 minutes
-  (setq mu4e-update-interval (* 10 60))
-  (setq mu4e-get-mail-command "~/.emacs.d/scripts/email_sync.sh")
-  (setq mu4e-maildir "~/Maildir")
+;;   ;; Refresh mail using isync every 10 minutes
+;;   (setq mu4e-update-interval (* 10 60))
+;;   (setq mu4e-get-mail-command "~/.emacs.d/scripts/email_sync.sh")
+;;   (setq mu4e-maildir "~/Maildir")
 
-    ;; Configure email accounts
-  (setq mu4e-contexts
-        (list
-         ;; Protonmail Account
-         (make-mu4e-context
-          :name "Protonmail"
-          :match-func
-          (lambda (msg)
-            (when msg
-              (string-prefix-p "/ProtonMailAccount" (mu4e-message-field msg :maildir))))
-          :vars '((user-mail-address . "fscottodisantolo@protonmail.com")
-                  (user-full-name . "Fabio Scotto di Santolo")
-                  (mu4e-drafts-folder . "/ProtonMailAccount/Drafts")
-                  (mu4e-sent-folder . "/ProtonMailAccount/Sent")
-                  (mu4e-refile-folder . "/ProtonMailAccount/All Mail")
-                  (mu4e-trash-folder . "/ProtonMailAccount/Trash")))
+;;     ;; Configure email accounts
+;;   (setq mu4e-contexts
+;;         (list
+;;          ;; Protonmail Account
+;;          (make-mu4e-context
+;;           :name "Protonmail"
+;;           :match-func
+;;           (lambda (msg)
+;;             (when msg
+;;               (string-prefix-p "/ProtonMailAccount" (mu4e-message-field msg :maildir))))
+;;           :vars '((user-mail-address . "fscottodisantolo@protonmail.com")
+;;                   (user-full-name . "Fabio Scotto di Santolo")
+;;                   (mu4e-drafts-folder . "/ProtonMailAccount/Drafts")
+;;                   (mu4e-sent-folder . "/ProtonMailAccount/Sent")
+;;                   (mu4e-refile-folder . "/ProtonMailAccount/All Mail")
+;;                   (mu4e-trash-folder . "/ProtonMailAccount/Trash")))
 
-         ;; iCloud Account
-         (make-mu4e-context
-          :name "iCloud Mail"
-          :match-func
-          (lambda (msg)
-            (when msg
-              (string-prefix-p "/iCloudAccount" (mu4e-message-field msg :maildir))))
-          :vars '((user-mail-address . "fscottodisantolo@icloud.com")
-                  (user-full-name . "Fabio Scotto di Santolo")
-                  (mu4e-drafts-folder . "/iCloudAccount/Drafts")
-                  (mu4e-sent-folder . "/iCloudAccount/Sent Messages")
-                  (mu4e-refile-folder . "/iCloudAccount/INBOX")
-                  (mu4e-trash-folder . "/iCloudAccount/Junk")))))
+;;          ;; iCloud Account
+;;          (make-mu4e-context
+;;           :name "iCloud Mail"
+;;           :match-func
+;;           (lambda (msg)
+;;             (when msg
+;;               (string-prefix-p "/iCloudAccount" (mu4e-message-field msg :maildir))))
+;;           :vars '((user-mail-address . "fscottodisantolo@icloud.com")
+;;                   (user-full-name . "Fabio Scotto di Santolo")
+;;                   (mu4e-drafts-folder . "/iCloudAccount/Drafts")
+;;                   (mu4e-sent-folder . "/iCloudAccount/Sent Messages")
+;;                   (mu4e-refile-folder . "/iCloudAccount/INBOX")
+;;                   (mu4e-trash-folder . "/iCloudAccount/Junk")))))
 
-  (setq sendmail-program "/usr/bin/msmtp"
-      send-mail-function 'sendmail-send-it
-      message-sendmail-f-is-evil t
-      message-sendmail-extra-arguments '("--read-envelope-from")
-      message-send-mail-function 'message-send-mail-with-sendmail))
+;;   (setq sendmail-program "/usr/bin/msmtp"
+;;       send-mail-function 'sendmail-send-it
+;;       message-sendmail-f-is-evil t
+;;       message-sendmail-extra-arguments '("--read-envelope-from")
+;;       message-send-mail-function 'message-send-mail-with-sendmail))
 
 ;; Configure elfeed for RSS feed
 (use-package elfeed
@@ -178,14 +180,17 @@
      ("https://feeds.feedburner.com/TheHackersNews" hackernews news security programming)))
   :bind (("C-c f" . elfeed)))
 
+(use-package elfeed-org
+  :ensure t)
+
 ;; Terminal
 (use-package vterm
   :ensure t
   :bind (:map global-map
-	      ("C-c t" . vterm)
-	      ("C-c c" . vterm-copy-mode)))
+	      ("C-c o T" . vterm)
+	      ("C-c C-t" . vterm-copy-mode)))
 
-;; PDF viewer with annotations
+;; FIXME PDF viewer with annotations
 ;; (use-package pdf-tools
 ;;   :ensure t
 ;;   :config
@@ -202,10 +207,7 @@
 ;; Git plugin
 (use-package magit
   :ensure t
-  :bind (:map global-map ("M-G" . magit-status)))
-
-(use-package magit-delta
-  :ensure t)
+  :bind (:map global-map ("C-c v g" . magit-status)))
 
 ;; Highlight keywords to remember the activity when coding.
 (use-package hl-todo
@@ -220,14 +222,38 @@
         ("GOTCHA" . "#eba0ac")
         ("STUB"   . "#89b4fa")))
 
-(keymap-set hl-todo-mode-map "C-c p" #'hl-todo-previous)
-(keymap-set hl-todo-mode-map "C-c n" #'hl-todo-next)
-(keymap-set hl-todo-mode-map "C-c o" #'hl-todo-occur)
-(keymap-set hl-todo-mode-map "C-c i" #'hl-todo-insert)
+(keymap-set hl-todo-mode-map "C-t p" #'hl-todo-previous)
+(keymap-set hl-todo-mode-map "C-t n" #'hl-todo-next)
+(keymap-set hl-todo-mode-map "C-t o" #'hl-todo-occur)
+(keymap-set hl-todo-mode-map "C-t i" #'hl-todo-insert)
 
 ;; Highlight for i3 config file
 (use-package i3wm-config-mode
   :ensure t)
+
+(use-package ivy
+  :ensure t
+  :config
+  (ivy-mode 1))
+
+(use-package ibuffer
+  :ensure t
+  :bind (:map global-map ("C-x C-b" . ibuffer)))
+
+(use-package ibuffer-tramp
+  :ensure t)
+
+(use-package ibuffer-vc
+  :ensure t)
+
+(use-package ibuffer-projectile
+  :ensure t)
+
+(add-hook 'ibuffer-mode-hook
+	  (lambda ()
+	    (ibuffer-projectile-set-filter-groups)))
+
+;; TODO adding lsp-mode, dap-mode, autocomplete and project handling for C, Go, Bash and Python
 
 ;; Add autocomplete feature to Emacs
 (use-package company
@@ -239,7 +265,11 @@
     (company-minimum-prefix-length 1)
     (company-idle-delay 0.1))
 
-;; TODO adding lsp-mode, dap-mode, autocomplete and project handling for C, Go, Bash and Python
+(use-package flycheck
+  :ensure t
+  :config
+  (add-hook 'after-init-hook #'global-flycheck-mode))
+
 (use-package lsp-mode
   :ensure t
   :init
@@ -247,5 +277,14 @@
   (setq lsp-keymap-prefix "C-c l")
   :hook ((c-mode . lsp))
   :commands lsp)
+
+(use-package lsp-ui
+  :ensure t)
+
+(use-package lsp-ivy
+  :ensure t)
+
+(use-package dap-mode
+  :ensure t)
 
 (message "...user configuration loaded")
