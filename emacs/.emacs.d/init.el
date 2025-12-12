@@ -166,7 +166,6 @@
 (use-package elfeed
   :ensure t
   :custom
-  (elfeed-db-directory "~/.cache/elfeed")
   (elfeed-enclosure-default-dir "~/Downloads/")
   (elfeed-search-remain-on-entry t)
   (elfeed-search-title-max-width 100)
@@ -175,13 +174,32 @@
   (elfeed-show-truncate-long-urls t)
   (elfeed-sort-order 'descending)
   (elfeed-search-filter "+unread")
-  (elfeed-feeds
-   '(("https://blog.linuxmint.com/?feed=rss2" linux linuxmint)
-     ("https://feeds.feedburner.com/TheHackersNews" hackernews news security programming)))
-  :bind (("C-c f" . elfeed)))
+  :bind
+  ("C-c o f" . fscotto/elfeed-load-db-and-open)
+  (:map elfeed-search-mode-map
+        ("w" . elfeed-search-yank)
+        ("R" . elfeed-update)
+        ("q" . elfeed-kill-buffer))
+  (:map elfeed-show-mode-map
+        ("S"     . elfeed-show-new-live-search) ; moved to free up 's'
+        ("c"     . (lambda () (interactive) (org-capture nil "capture")))
+        ("e"     . email-elfeed-entry)
+        ("f"     . elfeed-show-fetch-full-text)
+        ("w"     . elfeed-show-yank))
+  :hook
+  (elfeed-show-mode . visual-line-mode))
 
 (use-package elfeed-org
-  :ensure t)
+  :ensure t
+  :after elfeed
+  :custom
+  ;; Optionally specify a number of files containing elfeed
+  ;; configuration. If not set then the location below is used.
+  ;; Note: The customize interface is also supported.
+  (rmh-elfeed-org-files (list "~/.emacs.d/elfeed.org")))
+
+(with-eval-after-load 'elfeed
+  (elfeed-org))
 
 ;; Terminal
 (use-package vterm
@@ -286,5 +304,18 @@
 
 (use-package dap-mode
   :ensure t)
+
+;;functions to support syncing .elfeed between machines
+;;makes sure elfeed reads index from disk before launching
+(defun fscotto/elfeed-load-db-and-open ()
+  "Wrapper to load the elfeed db from disk before opening URL https://pragmaticemacs.wordpress.com/2016/08/17/read-your-rss-feeds-in-emacs-with-elfeed/
+  Created: 2016-08-17
+  Updated: 2025-06-13"
+  (interactive)
+  (elfeed)
+  (elfeed-db-load)
+  ;; (elfeed-search-update--force)
+  (elfeed-update)
+  (elfeed-db-save))
 
 (message "...user configuration loaded")
