@@ -37,8 +37,8 @@
 (setq-default fill-column 120)
 
 ;; Stop Emacs from losing informations
-(setq undo-limit 2000000)
-(setq undo-strong-limit 4000000000)
+(setq undo-limit 8000000)
+(setq undo-strong-limit 12000000)
 
 ;; Smooth scroll
 (setq scroll-step 3)
@@ -59,6 +59,29 @@
 ;; Setting default directory for Org files
 (setq org-directory "~/Remotes/pCloud/Org")
 
+;; --- Startup speed tweaks ----------------------------------------------------
+;; Temporarily increase GC threshold during init
+(defvar fscotto/gc-cons-threshold-orig gc-cons-threshold)
+(setq gc-cons-threshold (* 50 1000 1000)) ;; 50MB for init
+
+;; Speedup file-name-handler during init
+(defvar fscotto/file-name-handler-alist-orig file-name-handler-alist)
+(setq file-name-handler-alist nil)
+
+;; Restore after init
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (setq gc-cons-threshold fscotto/gc-cons-threshold-orig)
+            (setq file-name-handler-alist fscotto/file-name-handler-alist-orig)
+            (garbage-collect)))
+
+;; LSP responsiveness
+(setq read-process-output-max (* 1024 1024)) ;; 1MB, utile per lsp-mode
+(setq lsp-idle-delay 0.5) ;; meno ritardo prima che LSP aggiorni info
+(setq inhibit-compacting-font-caches t)
+
+;; ---------------------------------------------------------------------------
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                  EDITOR OPTIONS                                  ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -70,6 +93,55 @@
 (setq vc-follow-symlinks 't)
 (prefer-coding-system 'utf-8-unix)
 (setq custom-file (null-device))
+
+;;;;;;;;;;;;;;;;;;;;
+;; USER FUNCTIONS ;;
+;;;;;;;;;;;;;;;;;;;;
+
+;;functions to support syncing .elfeed between machines
+;;makes sure elfeed reads index from disk before launching
+(defun fscotto/elfeed-load-db-and-open ()
+  "Wrapper to load the elfeed db from disk before opening URL https://pragmaticemacs.wordpress.com/2016/08/17/read-your-rss-feeds-in-emacs-with-elfeed/
+  Created: 2016-08-17
+  Updated: 2025-06-13"
+  (interactive)
+  (elfeed)
+  (elfeed-db-load)
+  ;; (elfeed-search-update--force)
+  (elfeed-update)
+  (elfeed-db-save))
+
+(defun fscotto/project-root ()
+  "Return projectile project root or fallback to default-directory."
+  (if (featurep 'projectile)
+      (or (projectile-project-root) default-directory)
+    default-directory))
+
+(defun fscotto/project-dashboard ()
+  "Open a project dashboard: root + Magit + LSP."
+  (interactive)
+  (let ((root (fscotto/project-root)))
+    (dired root)
+    (magit-status root)
+    (lsp)))
+
+(defun fscotto/project-vterm ()
+  "Open vterm in project root."
+  (interactive)
+  (let ((default-directory (fscotto/project-root)))
+    (vterm)))
+
+(defun fscotto/project-magit-status ()
+  "Open magit-status in project root."
+  (interactive)
+  (let ((default-directory (fscotto/project-root)))
+    (magit-status)))
+
+(defun fscotto/magit-dispatch ()
+  "Load Magit if necessary and open magit-dispatch."
+  (interactive)
+  (require 'magit)
+  (call-interactively #'magit-dispatch))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                     PACKAGES                                     ;;
@@ -92,75 +164,234 @@
 	  ("MELPA" . "https://melpa.org/packages/")
 	  ("gnu" . "https://elpa.gnu.org/packages/"))))
 
-;; (use-package catppuccin-theme
-;;   :ensure t
-;;   :config
-;;   (load-theme 'catppuccin :no-confirm)
-;;   (setq catppuccin-flavor 'mocha))
-
 ;; Status line like Doom Emacs
 (use-package doom-modeline
   :ensure t
+  :config
+  (setq doom-modeline-height 25
+	doom-modeline-bar-width 3
+	doom-modeline-project-detection 'projectile)
   :init (doom-modeline-mode 1))
 
 ;; Help to remember or discover keybindings
- (use-package which-key
+(use-package which-key
   :ensure t
-  :commands (which-key-mode)
-  :init (which-key-mode))
+  :defer 1
+  :config
+  (which-key-mode)
+  (setq which-key-idle-delay 0.45
+        which-key-idle-secondary-delay 0.05
+        which-key-max-display-columns 3
+        which-key-max-description-length 45))
+
+;; ============================================================================
+;; Doom-style which-key hierarchy for fscotto
+;; ============================================================================
+
+(with-eval-after-load 'which-key
+
+  ;; --------------------------------------------------------------------------
+  ;; Top-level prefixes
+  ;; --------------------------------------------------------------------------
+  (which-key-add-key-based-replacements
+    "C-c !" "Analyze"
+    "C-c o" "Open"
+    "C-c v" "Version control"
+    "C-c l" "LSP"
+    "C-c t" "TODO / Annotations"
+    "C-c b" "Buffers"
+    "C-c p" "Project"
+    "C-c d" "Debug"
+    "C-c g" "Git"
+    "C-c e" "Email / Elfeed")
+
+  ;; --------------------------------------------------------------------------
+  ;; Open (C-c o …)
+  ;; --------------------------------------------------------------------------
+  (which-key-add-key-based-replacements
+    "C-c o f" "RSS (Elfeed)"
+    "C-c o m" "mu4e (Email Client)"
+    "C-c o T" "Terminal (vterm)")
+
+  ;; --------------------------------------------------------------------------
+  ;; Version control
+  ;; --------------------------------------------------------------------------
+  (which-key-add-key-based-replacements
+    "C-c v" "Version control"
+    "C-c v g" "Magit status (legacy)")
+
+  (which-key-add-key-based-replacements
+    "C-c g"   "Git"
+
+    ;; Core
+    "C-c g g" "Status"
+    "C-c g s" "Status"
+    ;; "C-c g b" "Branch"
+    ;; "C-c g c" "Commit"
+    "C-c g p" "Push / Pull"
+    "C-c g f" "Fetch"
+    "C-c g l" "Log"
+    "C-c g S" "Stash"
+
+    ;; Files
+    "C-c g d" "Diff"
+    "C-c g D" "Diff (cached)"
+    "C-c g B" "Blame"
+
+    ;; Rebase / Reset
+    "C-c g r" "Rebase"
+    "C-c g R" "Reset"
+
+    ;; Remote
+    "C-c g y" "Show refs"
+    "C-c g o" "Browse remote")
+
+  ;; --------------------------------------------------------------------------
+  ;; Buffers
+  ;; --------------------------------------------------------------------------
+  (which-key-add-key-based-replacements
+    "C-x C-b" "ibuffer")
+
+  ;; --------------------------------------------------------------------------
+  ;; TODO / hl-todo
+  ;; --------------------------------------------------------------------------
+  (which-key-add-key-based-replacements
+    "C-t"   "hl-todo"
+    "C-t p" "Previous TODO"
+    "C-t n" "Next TODO"
+    "C-t o" "Occur (list)"
+    "C-t i" "Insert TODO")
+
+  ;; --------------------------------------------------------------------------
+  ;; LSP (C-c l …)
+  ;; --------------------------------------------------------------------------
+  (which-key-add-key-based-replacements
+    "C-c l"   "LSP"
+    "C-c l a" "Code actions"
+    "C-c l r" "Rename symbol"
+    "C-c l f" "Format buffer"
+    "C-c l d" "Go to definition"
+    "C-c l D" "Go to type definition"
+    "C-c l i" "Go to implementation"
+    "C-c l h" "Hover documentation"
+    "C-c l s" "Workspace symbols"
+    "C-c l R" "Restart server")
+
+  ;; --------------------------------------------------------------------------
+  ;; Elfeed modes
+  ;; --------------------------------------------------------------------------
+  (which-key-add-key-based-replacements
+    "w" "Yank"
+    "R" "Update feeds"
+    "q" "Quit")
+
+  ;; --------------------------------------------------------------------------
+  ;; Debug / DAP
+  ;; --------------------------------------------------------------------------
+  (which-key-add-key-based-replacements
+    "C-c d"   "Debug"
+    "C-c d d" "Start debug session"
+    "C-c d b" "Toggle breakpoint"
+    "C-c d c" "Continue"
+    "C-c d n" "Next"
+    "C-c d i" "Step in"
+    "C-c d o" "Step out")
+
+  ;; --------------------------------------------------------------------------
+  ;; Project (future)
+  ;; --------------------------------------------------------------------------
+  (which-key-add-key-based-replacements
+    "C-c p"   "Project"
+    
+    ;; Core
+    "C-c p p" "Switch project"
+    "C-c p f" "Find file"
+    "C-c p d" "Find directory"
+    "C-c p b" "Switch buffer"
+    "C-c p k" "Kill project buffers"
+    "C-c p r" "Recent files"
+
+    ;; Search
+    "C-c p s" "Search"
+    "C-c p s g" "Grep (ripgrep)"
+    "C-c p s r" "Replace in project"
+
+    ;; Actions
+    "C-c p c" "Compile"
+    "C-c p t" "Test"
+    "C-c p v" "Open term in project"
+    "C-c p e" "Edit project config"
+    "C-c p g" "Project Git status"
+    "C-c p D" "Project Dashboard"
+    "C-c p x" "Open Terminal"
+    "C-c p 4" "Other Window"
+    "C-c p 5" "Other Frame"
+    "C-c p x 4" "Other Window"
+
+    ;; Cache
+    "C-c p i" "Invalidate cache")
+
+  ;; --------------------------------------------------------------------------
+  ;; Cleanup annoying +prefix
+  ;; --------------------------------------------------------------------------
+  (which-key-add-key-based-replacements
+    "+prefix" "Prefix"
+    "+lsp"    "LSP"
+    "+debug"  "Debug"
+    "+project" "Project"))
 
 ;; Configuration for mu4e, an interface for mu email index, running inside Emacs
-;; (use-package mu4e
-;;   :ensure nil
-;;   ;; :load-path "/usr/share/emacs/site-lisp/mu4e/"
-;;   :defer 20 ; Wait until 20 seconds after startup
-;;   :bind (:map global-map ("C-c e" . mu4e))
-;;   :config
+(use-package mu4e
+  :ensure nil
+  ;; :load-path "/usr/share/emacs/site-lisp/mu4e/"
+  :defer 20 ; Wait until 20 seconds after startup
+  :bind (:map global-map ("C-c o m" . mu4e))
+  :config
 
-;;   ;; This is set to 't' to avoid mail syncing issues when using mbsync
-;;   (setq mu4e-change-filenames-when-moving t)
+  ;; This is set to 't' to avoid mail syncing issues when using mbsync
+  (setq mu4e-change-filenames-when-moving t)
 
-;;   ;; Refresh mail using isync every 10 minutes
-;;   (setq mu4e-update-interval (* 10 60))
-;;   (setq mu4e-get-mail-command "~/.emacs.d/scripts/email_sync.sh")
-;;   (setq mu4e-maildir "~/Maildir")
+  ;; Refresh mail using isync every 10 minutes
+  (setq mu4e-update-interval (* 10 60))
+  (setq mu4e-get-mail-command "~/.emacs.d/scripts/email_sync.sh")
+  (setq mu4e-maildir "~/Maildir")
 
-;;     ;; Configure email accounts
-;;   (setq mu4e-contexts
-;;         (list
-;;          ;; Protonmail Account
-;;          (make-mu4e-context
-;;           :name "Protonmail"
-;;           :match-func
-;;           (lambda (msg)
-;;             (when msg
-;;               (string-prefix-p "/ProtonMailAccount" (mu4e-message-field msg :maildir))))
-;;           :vars '((user-mail-address . "fscottodisantolo@protonmail.com")
-;;                   (user-full-name . "Fabio Scotto di Santolo")
-;;                   (mu4e-drafts-folder . "/ProtonMailAccount/Drafts")
-;;                   (mu4e-sent-folder . "/ProtonMailAccount/Sent")
-;;                   (mu4e-refile-folder . "/ProtonMailAccount/All Mail")
-;;                   (mu4e-trash-folder . "/ProtonMailAccount/Trash")))
+    ;; Configure email accounts
+  (setq mu4e-contexts
+        (list
+         ;; Protonmail Account
+         (make-mu4e-context
+          :name "Protonmail"
+          :match-func
+          (lambda (msg)
+            (when msg
+              (string-prefix-p "/ProtonMailAccount" (mu4e-message-field msg :maildir))))
+          :vars '((user-mail-address . "fscottodisantolo@protonmail.com")
+                  (user-full-name . "Fabio Scotto di Santolo")
+                  (mu4e-drafts-folder . "/ProtonMailAccount/Drafts")
+                  (mu4e-sent-folder . "/ProtonMailAccount/Sent")
+                  (mu4e-refile-folder . "/ProtonMailAccount/All Mail")
+                  (mu4e-trash-folder . "/ProtonMailAccount/Trash")))
 
-;;          ;; iCloud Account
-;;          (make-mu4e-context
-;;           :name "iCloud Mail"
-;;           :match-func
-;;           (lambda (msg)
-;;             (when msg
-;;               (string-prefix-p "/iCloudAccount" (mu4e-message-field msg :maildir))))
-;;           :vars '((user-mail-address . "fscottodisantolo@icloud.com")
-;;                   (user-full-name . "Fabio Scotto di Santolo")
-;;                   (mu4e-drafts-folder . "/iCloudAccount/Drafts")
-;;                   (mu4e-sent-folder . "/iCloudAccount/Sent Messages")
-;;                   (mu4e-refile-folder . "/iCloudAccount/INBOX")
-;;                   (mu4e-trash-folder . "/iCloudAccount/Junk")))))
+         ;; iCloud Account
+         (make-mu4e-context
+          :name "iCloud Mail"
+          :match-func
+          (lambda (msg)
+            (when msg
+              (string-prefix-p "/iCloudAccount" (mu4e-message-field msg :maildir))))
+          :vars '((user-mail-address . "fscottodisantolo@icloud.com")
+                  (user-full-name . "Fabio Scotto di Santolo")
+                  (mu4e-drafts-folder . "/iCloudAccount/Drafts")
+                  (mu4e-sent-folder . "/iCloudAccount/Sent Messages")
+                  (mu4e-refile-folder . "/iCloudAccount/INBOX")
+                  (mu4e-trash-folder . "/iCloudAccount/Junk")))))
 
-;;   (setq sendmail-program "/usr/bin/msmtp"
-;;       send-mail-function 'sendmail-send-it
-;;       message-sendmail-f-is-evil t
-;;       message-sendmail-extra-arguments '("--read-envelope-from")
-;;       message-send-mail-function 'message-send-mail-with-sendmail))
+  (setq sendmail-program "/usr/bin/msmtp"
+      send-mail-function 'sendmail-send-it
+      message-sendmail-f-is-evil t
+      message-sendmail-extra-arguments '("--read-envelope-from")
+      message-send-mail-function 'message-send-mail-with-sendmail))
 
 ;; Configure elfeed for RSS feed
 (use-package elfeed
@@ -225,7 +456,25 @@
 ;; Git plugin
 (use-package magit
   :ensure t
-  :bind (:map global-map ("C-c v g" . magit-status)))
+  :commands (magit-status magit-log)
+  :init
+  ;; Entry point principale
+  (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
+  :config
+  ;; Performance & UX
+  (setq magit-refresh-status-buffer nil)
+  (setq magit-repository-directories
+	'(("~/Projects" . 2)
+	  ("~/Work" . 2))))
+
+;; Legacy alias (keep muscle memory)
+(global-set-key (kbd "C-c v g") #'magit-status)
+
+(global-set-key (kbd "C-c g") #'fscotto/magit-dispatch)
+
+;; Git leader key (Doom-style)
+;; (with-eval-after-load 'magit
+;;   (define-key global-map (kbd "C-c g") 'magit-dispatch))
 
 ;; Highlight keywords to remember the activity when coding.
 (use-package hl-todo
@@ -271,51 +520,151 @@
 	  (lambda ()
 	    (ibuffer-projectile-set-filter-groups)))
 
-;; TODO adding lsp-mode, dap-mode, autocomplete and project handling for C, Go, Bash and Python
+;; ============================================================================
+;; Projectile - Project management (Doom-style)
+;; ============================================================================
+
+(use-package projectile
+  :ensure t
+  :defer 1
+  :init
+  ;; Root detection
+  (setq projectile-project-search-path '("~/Projects" "~/Work"))
+  (setq projectile-completion-system 'ivy)
+  :config
+  ;; Performance
+  (setq projectile-enable-caching t)
+  (setq projectile-indexing-method 'hybrid)
+  (setq projectile-sort-order 'recently-active)
+  ;; Projectile as single source of truth
+  (setq projectile-switch-project-action #'projectile-dired)
+  ;; Use ripgrep if available
+  (when (executable-find "rg")
+    (setq projectile-generic-command "rg --files --hidden --glob '!.git'"))
+  ;; Enable globally
+  (projectile-mode 1))
+
+;; Projectile keybindings (Doom-style)
+(with-eval-after-load 'projectile
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
+
+(with-eval-after-load 'projectile
+  (define-key projectile-command-map (kbd "v") #'fscotto/project-vterm))
+
+(with-eval-after-load 'projectile
+  (define-key projectile-command-map (kbd "g") #'fscotto/project-magit-status))
+
+(global-set-key (kbd "C-c p D") #'fscotto/project-dashboard)
 
 ;; Add autocomplete feature to Emacs
 (use-package company
     :ensure t
-    :commands (global-company-mode)
-    :init (global-company-mode)
     :custom
     (company-tooltip-align-annotations 't)
     (company-minimum-prefix-length 1)
-    (company-idle-delay 0.1))
+    (company-idle-delay 0.1)
+    :hook (prog-mode . company-mode))
 
 (use-package flycheck
   :ensure t
+  :hook (prog-mode . flycheck-mode))
+
+(use-package treesit
+  :ensure nil
   :config
-  (add-hook 'after-init-hook #'global-flycheck-mode))
+  (setq treesit-font-lock-level 4)
+  (setq major-mode-remap-alist
+	'((c-mode . c-ts-mode)
+          (c++-mode . c++-ts-mode)
+          (python-mode . python-ts-mode)
+          (bash-mode . bash-ts-mode)))
+  (setq treesit-language-source-alist
+	'((c "https://github.com/tree-sitter/tree-sitter-c")
+          (cpp "https://github.com/tree-sitter/tree-sitter-cpp")
+          (python "https://github.com/tree-sitter/tree-sitter-python")
+          (bash "https://github.com/tree-sitter/tree-sitter-bash")
+          (go "https://github.com/tree-sitter/tree-sitter-go"))))
 
 (use-package lsp-mode
   :ensure t
+  :commands lsp
   :init
   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
   (setq lsp-keymap-prefix "C-c l")
-  :hook ((c-mode . lsp))
-  :commands lsp)
+  :hook
+  ((c-mode
+    c-ts-mode
+    c++-mode
+    c++-ts-mode
+    python-mode
+    python-ts-mode
+    go-mode
+    go-ts-mode
+    bash-mode
+    bash-ts-mode) . lsp)
+  :config
+  ;; Performance
+  (setq lsp-enable-symbol-highlighting t
+        lsp-enable-snippet t
+        lsp-log-io nil
+        lsp-completion-provider :capf
+	;; Disable for huge projects
+	;; lsp-enable-file-watchers nil
+        lsp-headerline-breadcrumb-enable nil
+        lsp-idle-delay 0.5))
 
 (use-package lsp-ui
-  :ensure t)
+  :ensure t
+  :config
+  (setq lsp-ui-doc-enable t
+      lsp-ui-doc-delay 0.3
+      lsp-ui-sideline-enable t
+      lsp-ui-sideline-show-code-actions t))
 
 (use-package lsp-ivy
   :ensure t)
 
 (use-package dap-mode
-  :ensure t)
+  :ensure t
+  :after lsp-mode
+  :commands dap-debug
+  :init
+  ;; Debug prefix
+  (setq dap-auto-configure-features '(sessions locals controls tooltip))
+  :config
+  (dap-mode 1)
+  (dap-ui-mode 1)
+  (dap-tooltip-mode 1)
 
-;;functions to support syncing .elfeed between machines
-;;makes sure elfeed reads index from disk before launching
-(defun fscotto/elfeed-load-db-and-open ()
-  "Wrapper to load the elfeed db from disk before opening URL https://pragmaticemacs.wordpress.com/2016/08/17/read-your-rss-feeds-in-emacs-with-elfeed/
-  Created: 2016-08-17
-  Updated: 2025-06-13"
-  (interactive)
-  (elfeed)
-  (elfeed-db-load)
-  ;; (elfeed-search-update--force)
-  (elfeed-update)
-  (elfeed-db-save))
+  ;; Auto show breakpoints + REPL
+  (setq dap-ui-buffer-configurations
+        '((dap-ui-repl . ((side . right) (slot . 1) (window-width . 0.33)))
+          (dap-ui-locals . ((side . right) (slot . 2) (window-width . 0.33)))
+          (dap-ui-breakpoints . ((side . left) (slot . 1) (window-width . 0.20))))))
+
+;;;;;;;;;;;;;;;;;;;;;;
+;; Enable debuggers ;;
+;;;;;;;;;;;;;;;;;;;;;;
+
+;; For C/C++
+(require 'dap-gdb-lldb)
+(setq dap-gdb-lldb-debug-program '("gdb"))
+
+;; For Go
+(require 'dap-go)
+
+;; For Python
+(require 'dap-python)
+(setq dap-python-debugger 'debugpy)
+
+(with-eval-after-load 'dap-mode
+  (global-set-key (kbd "C-c d d") #'dap-debug)
+  (global-set-key (kbd "C-c d b") #'dap-breakpoint-toggle)
+  (global-set-key (kbd "C-c d c") #'dap-continue)
+  (global-set-key (kbd "C-c d n") #'dap-next)
+  (global-set-key (kbd "C-c d i") #'dap-step-in)
+  (global-set-key (kbd "C-c d o") #'dap-step-out)
+  (global-set-key (kbd "C-c d r") #'dap-restart-frame)
+  (global-set-key (kbd "C-c d q") #'dap-disconnect))
 
 (message "...user configuration loaded")
