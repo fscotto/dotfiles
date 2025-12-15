@@ -49,8 +49,6 @@ appendpath() {
 appendpath "$HOME/.local/bin"
 appendpath "$GOBIN"
 appendpath "$HOME/.cargo/bin"
-appendpath "/home/linuxbrew/.linuxbrew/bin"
-appendpath "$HOME/.config/emacs/bin"
 unset appendpath
 
 source "$HOME/.profile.d/homebrew.sh"
