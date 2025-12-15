@@ -89,6 +89,19 @@
 (setq tab-stop-list nil)
 (setq indent-tabs-mode nil)
 
+;; C / C++ fallback style (Linux-like)
+(setq c-default-style "linux"
+      c-basic-offset 4
+      tab-width 8)
+
+(add-hook 'c-mode-common-hook
+          (lambda ()
+            (setq indent-tabs-mode t)))
+
+;; Tree-sitter C/C++
+(setq c-ts-mode-indent-offset 4)
+(setq c++-ts-mode-indent-offset 4)
+
 ;; Setting variables
 (setq vc-follow-symlinks 't)
 (prefer-coding-system 'utf-8-unix)
@@ -148,7 +161,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Initialize package system via use-package
-(package-initialize)
+;; (package-initialize)
 (require 'use-package)
 
 (use-package package
@@ -217,12 +230,9 @@
   ;; Version control
   ;; --------------------------------------------------------------------------
   (which-key-add-key-based-replacements
-    "C-c v" "Version control"
     "C-c v g" "Magit status (legacy)")
 
   (which-key-add-key-based-replacements
-    "C-c g"   "Git"
-
     ;; Core
     "C-c g g" "Status"
     "C-c g s" "Status"
@@ -265,31 +275,36 @@
   ;; --------------------------------------------------------------------------
   ;; LSP (C-c l …)
   ;; --------------------------------------------------------------------------
-  (which-key-add-key-based-replacements
-    "C-c l"   "LSP"
-    "C-c l a" "Code actions"
-    "C-c l r" "Rename symbol"
-    "C-c l f" "Format buffer"
-    "C-c l d" "Go to definition"
-    "C-c l D" "Go to type definition"
-    "C-c l i" "Go to implementation"
-    "C-c l h" "Hover documentation"
-    "C-c l s" "Workspace symbols"
-    "C-c l R" "Restart server")
+    (which-key-add-key-based-replacements
+      ;; Navigation
+      "C-c l d" "Go to definition"
+      "C-c l D" "Go to type definition"
+      "C-c l i" "Go to implementation"
+
+      ;; Symbols / diagnostics
+      "C-c l s" "Workspace symbols"
+      "C-c l e" "Diagnostics"
+
+      ;; Actions
+      "C-c l a" "Code actions"
+      "C-c l r" "Rename symbol"
+      "C-c l f" "Format buffer"
+
+      ;; Control
+      "C-c l R" "Restart workspace")
 
   ;; --------------------------------------------------------------------------
   ;; Elfeed modes
   ;; --------------------------------------------------------------------------
-  (which-key-add-key-based-replacements
-    "w" "Yank"
-    "R" "Update feeds"
-    "q" "Quit")
+    (which-key-add-key-based-replacements
+      "w" "Yank"
+      "R" "Update feeds"
+      "q" "Quit")
 
   ;; --------------------------------------------------------------------------
   ;; Debug / DAP
   ;; --------------------------------------------------------------------------
   (which-key-add-key-based-replacements
-    "C-c d"   "Debug"
     "C-c d d" "Start debug session"
     "C-c d b" "Toggle breakpoint"
     "C-c d c" "Continue"
@@ -301,8 +316,6 @@
   ;; Project (future)
   ;; --------------------------------------------------------------------------
   (which-key-add-key-based-replacements
-    "C-c p"   "Project"
-    
     ;; Core
     "C-c p p" "Switch project"
     "C-c p f" "Find file"
@@ -503,6 +516,10 @@
   :config
   (ivy-mode 1))
 
+(use-package consult
+  :ensure t
+  :defer t)
+
 (use-package ibuffer
   :ensure t
   :bind (:map global-map ("C-x C-b" . ibuffer)))
@@ -521,13 +538,13 @@
 	    (ibuffer-projectile-set-filter-groups)))
 
 ;; ============================================================================
-;; Projectile - Project management (Doom-style)
+;; Projectile - Project management
 ;; ============================================================================
 
 (use-package projectile
   :ensure t
   :defer 1
-  :init
+  :init
   ;; Root detection
   (setq projectile-project-search-path '("~/Projects" "~/Work"))
   (setq projectile-completion-system 'ivy)
@@ -565,6 +582,7 @@
     (company-idle-delay 0.1)
     :hook (prog-mode . company-mode))
 
+;; Static analysis for code base
 (use-package flycheck
   :ensure t
   :hook (prog-mode . flycheck-mode))
@@ -573,6 +591,7 @@
   :ensure nil
   :config
   (setq treesit-font-lock-level 4)
+  (setq treesit-auto-install 'prompt)
   (setq major-mode-remap-alist
 	'((c-mode . c-ts-mode)
           (c++-mode . c++-ts-mode)
@@ -587,7 +606,7 @@
 
 (use-package lsp-mode
   :ensure t
-  :commands lsp
+  :commands (lsp lsp-deferred)
   :init
   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
   (setq lsp-keymap-prefix "C-c l")
@@ -601,17 +620,37 @@
     go-mode
     go-ts-mode
     bash-mode
-    bash-ts-mode) . lsp)
+    bash-ts-mode) . lsp-deferred)
   :config
   ;; Performance
   (setq lsp-enable-symbol-highlighting t
         lsp-enable-snippet t
         lsp-log-io nil
+	lsp-modeline-code-actions-enable nil
+	lsp-modeline-diagnostics-enable nil
+	lsp-signature-auto-activate nil
+	lsp-enable-on-type-formatting nil
         lsp-completion-provider :capf
-	;; Disable for huge projects
-	;; lsp-enable-file-watchers nil
+	lsp-diagnostics-provider :flycheck
         lsp-headerline-breadcrumb-enable nil
-        lsp-idle-delay 0.5))
+	lsp-enable-indentation nil
+	;; Disable for huge projects
+	lsp-enable-file-watchers nil
+        lsp-idle-delay 0.5)
+  ;; Clangd configuration
+  (setq lsp-clients-clangd-args
+	'("--background-index"
+	  "--clang-tidy"
+	  "--completion-style=detailed"
+	  "--header-insertion=never"
+	  "--header-insertion-decorators"
+	  "--pch-storage=memory"
+	  "--log=error"
+	  "--ranking-model=heuristics"
+	  "--malloc-trim"
+	  "--limit-results=500"
+	  "--limit-references=2000"))  
+  )
 
 (use-package lsp-ui
   :ensure t
@@ -621,8 +660,36 @@
       lsp-ui-sideline-enable t
       lsp-ui-sideline-show-code-actions t))
 
-(use-package lsp-ivy
-  :ensure t)
+(use-package consult-lsp
+  :ensure t
+  :after (consult lsp-mode)
+  :commands
+  (consult-lsp-symbols
+   consult-lsp-diagnostics))
+
+(with-eval-after-load 'lsp-mode
+  ;; Symbols
+  (global-set-key (kbd "C-c l s") #'consult-lsp-symbols)
+
+  ;; Diagnostics
+  (global-set-key (kbd "C-c l e") #'consult-lsp-diagnostics)
+
+  ;; Navigation (LSP core)
+  (global-set-key (kbd "C-c l d") #'lsp-find-definition)
+  (global-set-key (kbd "C-c l D") #'lsp-find-type-definition)
+  (global-set-key (kbd "C-c l i") #'lsp-find-implementation)
+
+  ;; Actions
+  (global-set-key (kbd "C-c l a") #'lsp-execute-code-action)
+  (global-set-key (kbd "C-c l r") #'lsp-rename)
+  (global-set-key (kbd "C-c l f") #'lsp-format-buffer)
+
+  ;; Control
+  (global-set-key (kbd "C-c l R") #'lsp-restart-workspace))
+
+;;;;;;;;;;;;;;;;;;;;;;
+;; Enable debuggers ;;
+;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package dap-mode
   :ensure t
@@ -641,10 +708,6 @@
         '((dap-ui-repl . ((side . right) (slot . 1) (window-width . 0.33)))
           (dap-ui-locals . ((side . right) (slot . 2) (window-width . 0.33)))
           (dap-ui-breakpoints . ((side . left) (slot . 1) (window-width . 0.20))))))
-
-;;;;;;;;;;;;;;;;;;;;;;
-;; Enable debuggers ;;
-;;;;;;;;;;;;;;;;;;;;;;
 
 ;; For C/C++
 (require 'dap-gdb-lldb)
