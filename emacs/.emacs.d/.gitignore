@@ -14,6 +14,9 @@ tramp
 eln-cache
 projects
 transient/
+.dap-breakpoints
+.lsp-session-v1
+/.extension/**
 
 # Org-mode
 .org-id-locations
@@ -47,6 +50,7 @@ flycheck_*.el
 
 # projectiles files
 .projectile
+/projectile-bookmarks.eld
 
 # directory configuration
 .dir-locals.el
