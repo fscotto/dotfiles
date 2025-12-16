@@ -156,6 +156,9 @@
   (require 'magit)
   (call-interactively #'magit-dispatch))
 
+(defun fscotto/disable-c-formatting ()
+  (setq-local lsp-enable-on-type-formatting nil))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                     PACKAGES                                     ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -582,10 +585,16 @@
     (company-idle-delay 0.1)
     :hook (prog-mode . company-mode))
 
+(with-eval-after-load 'company
+  (add-hook 'bash-ts-mode-hook 'company-mode))
+
 ;; Static analysis for code base
 (use-package flycheck
   :ensure t
   :hook (prog-mode . flycheck-mode))
+
+(with-eval-after-load 'flycheck
+  (add-hook 'bash-ts-mode-hook 'flycheck-mode))
 
 (use-package treesit
   :ensure nil
@@ -596,7 +605,7 @@
 	'((c-mode . c-ts-mode)
           (c++-mode . c++-ts-mode)
           (python-mode . python-ts-mode)
-          (bash-mode . bash-ts-mode)))
+          (sh-mode . bash-ts-mode)))
   (setq treesit-language-source-alist
 	'((c "https://github.com/tree-sitter/tree-sitter-c")
           (cpp "https://github.com/tree-sitter/tree-sitter-cpp")
@@ -619,7 +628,7 @@
     python-ts-mode
     go-mode
     go-ts-mode
-    bash-mode
+    sh-mode
     bash-ts-mode) . lsp-deferred)
   :config
   ;; Performance
@@ -649,8 +658,7 @@
 	  "--ranking-model=heuristics"
 	  "--malloc-trim"
 	  "--limit-results=500"
-	  "--limit-references=2000"))  
-  )
+	  "--limit-references=2000")))
 
 (use-package lsp-ui
   :ensure t
@@ -668,6 +676,9 @@
    consult-lsp-diagnostics))
 
 (with-eval-after-load 'lsp-mode
+  ;; Attach bash-language-server when open a shell scripts
+  (add-hook 'sh-mode-hook #'lsp)
+
   ;; Symbols
   (global-set-key (kbd "C-c l s") #'consult-lsp-symbols)
 
@@ -730,4 +741,20 @@
   (global-set-key (kbd "C-c d r") #'dap-restart-frame)
   (global-set-key (kbd "C-c d q") #'dap-disconnect))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;                          Formatters                             ;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; GOTCHA review this region
+(use-package reformatter
+  :ensure t
+  :config
+  (reformatter-define shfmt-format
+    :program "shfmt"
+    :args '("-i" "2" "-ci")))
+
+(add-hook 'bash-ts-mode-hook #'shfmt-format-on-save-mode)
+(add-hook 'c-ts-mode-hook #'fscotto/disable-c-formatting)
+(add-hook 'c-mode-hook    #'fscotto/disable-c-formatting)
+  
 (message "...user configuration loaded")
