@@ -179,6 +179,8 @@ alias userlist="cut -d: -f1 /etc/passwd | sort"
 alias ip='ip -color'
 alias stow='stow -d $DOTFILES '
 alias em='emacsclient -t'
+alias ssh='ssh.exe'
+alias ssh-add='ssh-add.exe'
 
 # Starship prompt
 if command -v starship > /dev/null 2>&1; then
