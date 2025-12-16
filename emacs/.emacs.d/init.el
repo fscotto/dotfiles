@@ -130,14 +130,6 @@
       (or (projectile-project-root) default-directory)
     default-directory))
 
-(defun fscotto/project-dashboard ()
-  "Open a project dashboard: root + Magit + LSP."
-  (interactive)
-  (let ((root (fscotto/project-root)))
-    (dired root)
-    (magit-status root)
-    (lsp)))
-
 (defun fscotto/project-vterm ()
   "Open vterm in project root."
   (interactive)
@@ -338,7 +330,6 @@
     "C-c p v" "Open term in project"
     "C-c p e" "Edit project config"
     "C-c p g" "Project Git status"
-    "C-c p D" "Project Dashboard"
     "C-c p x" "Open Terminal"
     "C-c p 4" "Other Window"
     "C-c p 5" "Other Frame"
@@ -488,10 +479,6 @@
 
 (global-set-key (kbd "C-c g") #'fscotto/magit-dispatch)
 
-;; Git leader key (Doom-style)
-;; (with-eval-after-load 'magit
-;;   (define-key global-map (kbd "C-c g") 'magit-dispatch))
-
 ;; Highlight keywords to remember the activity when coding.
 (use-package hl-todo
   :ensure t
@@ -573,8 +560,6 @@
 
 (with-eval-after-load 'projectile
   (define-key projectile-command-map (kbd "g") #'fscotto/project-magit-status))
-
-(global-set-key (kbd "C-c p D") #'fscotto/project-dashboard)
 
 ;; Add autocomplete feature to Emacs
 (use-package company
@@ -698,38 +683,36 @@
   ;; Control
   (global-set-key (kbd "C-c l R") #'lsp-restart-workspace))
 
-;;;;;;;;;;;;;;;;;;;;;;
-;; Enable debuggers ;;
-;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Debugger Adapter Protocol ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package dap-mode
   :ensure t
   :after lsp-mode
-  :commands dap-debug
+  :hook (lsp-mode . dap-mode)
   :init
-  ;; Debug prefix
+  ;; Enabling only some features
   (setq dap-auto-configure-features '(sessions locals controls tooltip))
   :config
   (dap-mode 1)
   (dap-ui-mode 1)
+  (dap-ui-controls-mode 1)
   (dap-tooltip-mode 1)
-
+  (tooltip-mode 1)
   ;; Auto show breakpoints + REPL
   (setq dap-ui-buffer-configurations
         '((dap-ui-repl . ((side . right) (slot . 1) (window-width . 0.33)))
           (dap-ui-locals . ((side . right) (slot . 2) (window-width . 0.33)))
-          (dap-ui-breakpoints . ((side . left) (slot . 1) (window-width . 0.20))))))
-
-;; For C/C++
-(require 'dap-gdb-lldb)
-(setq dap-gdb-lldb-debug-program '("gdb"))
-
-;; For Go
-(require 'dap-go)
-
-;; For Python
-(require 'dap-python)
-(setq dap-python-debugger 'debugpy)
+          (dap-ui-breakpoints . ((side . left) (slot . 1) (window-width . 0.20)))))
+  ;; Loading DAP adapters
+  ;; For C/C++
+  (require 'dap-cpptools)
+  ;; For Go
+  (require 'dap-dlv-go)
+  ;; For Python
+  (require 'dap-python)
+  (setq dap-python-debugger 'debugpy))
 
 (with-eval-after-load 'dap-mode
   (global-set-key (kbd "C-c d d") #'dap-debug)
@@ -741,9 +724,9 @@
   (global-set-key (kbd "C-c d r") #'dap-restart-frame)
   (global-set-key (kbd "C-c d q") #'dap-disconnect))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;                          Formatters                             ;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;
+;; Formatters ;;
+;;;;;;;;;;;;;;;;
 
 ;; GOTCHA review this region
 (use-package reformatter

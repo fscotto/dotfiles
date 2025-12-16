@@ -1,1 +1,0 @@
-("~/.dotfiles/" "~/Projects/toyforth/" "~/Projects/workstation/" "~/Projects/system-programming/" "~/Projects/pymorg/" "~/Projects/operating-systems/" "~/Projects/fileserver/" "~/Projects/exkernel/" "~/Projects/docker-compose/")
