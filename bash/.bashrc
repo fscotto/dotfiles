@@ -1,7 +1,7 @@
 # Enable the subsequent settings only in interactive sessions
 case $- in
   *i*) ;;
-    *) return;;
+  *) return ;;
 esac
 
 # Path to your oh-my-bash installation.
@@ -174,17 +174,17 @@ alias egrep='grep -E'
 alias fgrep='grep -F'
 
 # Other aliases
-alias paths='echo -e ${PATH//:/\\n}'         # path:         Echo all executable Paths
+alias paths='echo -e ${PATH//:/\\n}' # path:         Echo all executable Paths
 alias userlist="cut -d: -f1 /etc/passwd | sort"
 alias ip='ip -color'
 alias stow='stow -d $DOTFILES '
 
-# Starship prompt
-if command -v starship > /dev/null 2>&1; then
-    eval "$(starship init bash)"
+# User specific aliases and functions
+if [ -d ~/.bashrc.d ]; then
+  for rc in ~/.bashrc.d/*; do
+    if [ -f "$rc" ]; then
+      . "$rc"
+    fi
+  done
 fi
-
-# Load Mise en dev
-if command -v mise > /dev/null 2>&1; then
-  eval "$(mise activate bash)"
-fi
+unset rc
