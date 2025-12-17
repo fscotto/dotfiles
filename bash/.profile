@@ -46,11 +46,8 @@ appendpath() {
   esac
 }
 
+appendpath "/home/linuxbrew/.linuxbrew/bin"
 appendpath "$HOME/.local/bin"
 appendpath "$GOBIN"
 appendpath "$HOME/.cargo/bin"
 unset appendpath
-
-source "$HOME/.profile.d/homebrew.sh"
-source "$HOME/.profile.d/mise.sh"
-source "$HOME/.profile.d/java.sh"
