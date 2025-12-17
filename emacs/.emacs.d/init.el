@@ -151,6 +151,67 @@
 (defun fscotto/disable-c-formatting ()
   (setq-local lsp-enable-on-type-formatting nil))
 
+;; Golang development support functions
+(defun fscotto/go-format-on-save ()
+  "Format Go buffers on save using gofmt."
+  (add-hook 'before-save-hook #'lsp-format-buffer nil t))
+
+(defun fscotto/go-mod-tidy ()
+  "Esegue go mod tidy nella root del progetto."
+  (interactive)
+  (let ((default-directory (project-root (project-current t))))
+    (compile "go mod tidy")))
+
+(defun fscotto/go-mod-download ()
+  "Scarica i moduli Go."
+  (interactive)
+  (let ((default-directory (project-root (project-current t))))
+    (compile "go mod download")))
+
+(defun fscotto/go-mod-after-save ()
+  (when (and (eq major-mode 'go-mod-ts-mode)
+             (lsp-workspaces))
+    (lsp-restart-workspace)))
+
+(defun fscotto/go-test-package ()
+  "Run `go test` in the current package."
+  (interactive)
+  (let ((default-directory (project-root (project-current t))))
+    (compile "go test")))
+
+(defun fscotto/go-test-module ()
+  "Run `go test ./...` in the current Go module."
+  (interactive)
+  (let ((default-directory (project-root (project-current t))))
+    (compile "go test ./...")))
+
+(defun fscotto/go-test-current-test ()
+  "Run `go test -run` for the test at point."
+  (interactive)
+  (let* ((test-name (thing-at-point 'symbol t))
+         (default-directory (project-root (project-current t))))
+    (unless test-name
+      (user-error "No test name at point"))
+    (compile (format "go test -run '^%s$'" test-name))))
+
+(defun fscotto/go-test-at-point ()
+  "Return Go test name at point."
+  (let ((sym (thing-at-point 'symbol t)))
+    (unless (and sym (string-prefix-p "Test" sym))
+      (user-error "No Go test at point"))
+    sym))
+
+;; (with-eval-after-load 'dap-mode
+;;   (dap-register-debug-template
+;;    "Go :: Debug test at point (auto)"
+;;    (list :type "go"
+;;          :request "launch"
+;;          :name "Go :: Debug test at point"
+;;          :mode "test"
+;;          :program "${fileDirname}"
+;;          :cwd "${fileDirname}"
+;;          :args (list "-test.run" (lambda () (fscotto/go-test-at-point))))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                     PACKAGES                                     ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -585,10 +646,12 @@
   :ensure nil
   :config
   (setq treesit-font-lock-level 4)
-  (setq treesit-auto-install 'prompt)
+  (setq treesit-auto-install t)
   (setq major-mode-remap-alist
 	'((c-mode . c-ts-mode)
           (c++-mode . c++-ts-mode)
+	  (go-mode . go-ts-mode)
+	  (go-mod-mode . go-mod-ts-mode)
           (python-mode . python-ts-mode)
           (sh-mode . bash-ts-mode)))
   (setq treesit-language-source-alist
@@ -596,7 +659,8 @@
           (cpp "https://github.com/tree-sitter/tree-sitter-cpp")
           (python "https://github.com/tree-sitter/tree-sitter-python")
           (bash "https://github.com/tree-sitter/tree-sitter-bash")
-          (go "https://github.com/tree-sitter/tree-sitter-go"))))
+          (go "https://github.com/tree-sitter/tree-sitter-go")
+	  (gomod "https://github.com/camdencheek/tree-sitter-go-mod"))))
 
 (use-package lsp-mode
   :ensure t
@@ -611,8 +675,6 @@
     c++-ts-mode
     python-mode
     python-ts-mode
-    go-mode
-    go-ts-mode
     sh-mode
     bash-ts-mode) . lsp-deferred)
   :config
@@ -631,7 +693,7 @@
 	;; Disable for huge projects
 	lsp-enable-file-watchers nil
         lsp-idle-delay 0.5)
-  ;; Clangd configuration
+  ;; Clangd configurations
   (setq lsp-clients-clangd-args
 	'("--background-index"
 	  "--clang-tidy"
@@ -683,6 +745,66 @@
   ;; Control
   (global-set-key (kbd "C-c l R") #'lsp-restart-workspace))
 
+;;=================================================================
+;; Go Language Support
+;;=================================================================
+
+(use-package go-ts-mode
+  :ensure nil
+  :mode "\\.go\\'"
+  :hook
+  ((go-ts-mode . lsp-deferred)
+   (go-ts-mode . fscotto/go-format-on-save))
+  :config
+  ;; Go project commands
+  ;; Modules
+  (define-key go-ts-mode-map (kbd "C-c m t") #'fscotto/go-mod-tidy)
+  (define-key go-ts-mode-map (kbd "C-c m d") #'fscotto/go-mod-download)
+  ;; Test
+  (define-key go-ts-mode-map (kbd "C-c t p") #'fscotto/go-test-package)
+  (define-key go-ts-mode-map (kbd "C-c t a") #'fscotto/go-test-module)
+  (define-key go-ts-mode-map (kbd "C-c t t") #'fscotto/go-test-current-test)
+  ;; Debug tests
+  (define-key go-ts-mode-map (kbd "C-c d t") #'dap-debug)
+  (define-key go-ts-mode-map (kbd "C-c d T")
+              (lambda ()
+                (interactive)
+                (dap-debug
+                 (dap--debug-configuration
+                  "Go :: Debug test at point")))))
+
+(use-package go-mod-ts-mode
+  :ensure nil
+  :mode
+  (("/go\\.mod\\'" . go-mod-ts-mode)
+   ("/go\\.sum\\'" . go-mod-ts-mode))
+  :hook
+  ((go-mod-ts-mode . lsp-deferred)
+   ;; restart gopls only when go.mod/go.sum are saved (buffer-local)
+   (go-mod-ts-mode . (lambda ()
+                       (add-hook 'after-save-hook
+                                 (lambda ()
+                                   (when (lsp-workspaces)
+                                     (lsp-restart-workspace)))
+                                 nil t)))))
+
+(with-eval-after-load 'project
+  (add-to-list 'project-vc-extra-root-markers "go.mod"))
+
+(with-eval-after-load 'lsp-mode
+  ;; gopls settings (single source of truth)
+  (lsp-register-custom-settings
+   '(("gopls.staticcheck" t)
+     ("gopls.gofumpt" t)
+     ;; ("gopls.experimentalWorkspaceModule" t)
+     ("gopls.expandWorkspaceToModule" t)
+     ("gopls.directoryFilters" ["-vendor"])
+     ("gopls.analyses.unusedparams" t)
+     ("gopls.analyses.shadow" t)
+     ("gopls.analyses.nilness" t)
+     ("gopls.analyses.useany" t)
+     ("gopls.env" ((GO111MODULE . "on"))))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Debugger Adapter Protocol ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -708,8 +830,6 @@
   ;; Loading DAP adapters
   ;; For C/C++
   (require 'dap-cpptools)
-  ;; For Go
-  (require 'dap-dlv-go)
   ;; For Python
   (require 'dap-python)
   (setq dap-python-debugger 'debugpy))
@@ -723,6 +843,41 @@
   (global-set-key (kbd "C-c d o") #'dap-step-out)
   (global-set-key (kbd "C-c d r") #'dap-restart-frame)
   (global-set-key (kbd "C-c d q") #'dap-disconnect))
+
+(use-package dap-dlv-go
+  :after (dap-mode go-ts-mode))
+
+(with-eval-after-load 'dap-dlv-go
+  ;; Debug all tests in module
+  (dap-register-debug-template
+   "Go :: Debug all tests"
+   (list :type "go"
+         :request "launch"
+         :name "Go :: Debug all tests"
+         :mode "test"
+         :program "${workspaceFolder}"
+         :cwd "${workspaceFolder}"))
+
+  ;; Debug tests in current package
+  (dap-register-debug-template
+   "Go :: Debug package tests"
+   (list :type "go"
+         :request "launch"
+         :name "Go :: Debug package tests"
+         :mode "test"
+         :program "${fileDirname}"
+         :cwd "${fileDirname}"))
+
+  ;; Debug test at point
+  (dap-register-debug-template
+   "Go :: Debug test at point"
+   (list :type "go"
+         :request "launch"
+         :name "Go :: Debug test at point"
+         :mode "test"
+         :program "${fileDirname}"
+         :cwd "${fileDirname}"
+         :args (list "-test.run" "${input:testName}"))))
 
 ;;;;;;;;;;;;;;;;
 ;; Formatters ;;
@@ -739,5 +894,5 @@
 (add-hook 'bash-ts-mode-hook #'shfmt-format-on-save-mode)
 (add-hook 'c-ts-mode-hook #'fscotto/disable-c-formatting)
 (add-hook 'c-mode-hook    #'fscotto/disable-c-formatting)
-  
+
 (message "...user configuration loaded")
