@@ -201,17 +201,6 @@
       (user-error "No Go test at point"))
     sym))
 
-;; (with-eval-after-load 'dap-mode
-;;   (dap-register-debug-template
-;;    "Go :: Debug test at point (auto)"
-;;    (list :type "go"
-;;          :request "launch"
-;;          :name "Go :: Debug test at point"
-;;          :mode "test"
-;;          :program "${fileDirname}"
-;;          :cwd "${fileDirname}"
-;;          :args (list "-test.run" (lambda () (fscotto/go-test-at-point))))))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                     PACKAGES                                     ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -362,11 +351,11 @@
   ;; --------------------------------------------------------------------------
   (which-key-add-key-based-replacements
     "C-c d d" "Start debug session"
-    "C-c d b" "Toggle breakpoint"
-    "C-c d c" "Continue"
-    "C-c d n" "Next"
-    "C-c d i" "Step in"
-    "C-c d o" "Step out")
+    "C-c d b" "Toggle breakpoint")
+    ;; "C-c d c" "Continue"
+    ;; "C-c d n" "Next"
+    ;; "C-c d i" "Step in"
+    ;; "C-c d o" "Step out")
 
   ;; --------------------------------------------------------------------------
   ;; Project (future)
@@ -815,19 +804,29 @@
   :hook (lsp-mode . dap-mode)
   :init
   ;; Enabling only some features
-  (setq dap-auto-configure-features '(sessions locals controls tooltip))
+  (setq dap-auto-configure-features '(sessions locals expressions repl))
   :config
   (dap-mode 1)
   (dap-ui-mode 1)
   (dap-ui-controls-mode 1)
-  (dap-tooltip-mode 1)
-  (tooltip-mode 1)
   ;; Auto show breakpoints + REPL
   (setq dap-ui-buffer-configurations
-        '((dap-ui-repl . ((side . right) (slot . 1) (window-width . 0.33)))
-          (dap-ui-locals . ((side . right) (slot . 2) (window-width . 0.33)))
-          (dap-ui-breakpoints . ((side . left) (slot . 1) (window-width . 0.20)))))
-  ;; Loading DAP adapters
+	'(
+	  ;; RIGHT SIDE — Debug data (like IntelliJ)
+	  (dap-ui-locals     . ((side . right) (slot . 1) (window-width . 0.30)))
+	  (dap-ui-sessions   . ((side . right) (slot . 2) (window-width . 0.30)))
+	  (dap-ui-expressions . ((side . right) (slot . 3) (window-width . 0.30)))
+          ;; BOTTOM — Console / REPL
+	  (dap-ui-repl       . ((side . bottom) (slot . 1) (window-height . 0.25)))
+          (dap-ui-console    . ((side . bottom) (slot . 2) (window-height . 0.25)))))
+  ;; (setq dap-ui-buffer-configurations
+  ;;       '((dap-ui-repl . ((side . right) (slot . 1) (window-width . 0.33)))
+  ;;         (dap-ui-locals . ((side . right) (slot . 2) (window-width . 0.33)))
+  ;;         (dap-ui-breakpoints . ((side . left) (slot . 1) (window-width . 0.20)))))
+  ;; (setq dap-ui-controls-screen-position 'top)
+  ;; (setq dap-ui-repl-auto-focus nil)
+  ;; (setq dap-ui-stackframes-auto-expand t)
+  ;; ;; Loading DAP adapters
   ;; For C/C++
   (require 'dap-cpptools)
   ;; For Python
@@ -837,10 +836,10 @@
 (with-eval-after-load 'dap-mode
   (global-set-key (kbd "C-c d d") #'dap-debug)
   (global-set-key (kbd "C-c d b") #'dap-breakpoint-toggle)
-  (global-set-key (kbd "C-c d c") #'dap-continue)
-  (global-set-key (kbd "C-c d n") #'dap-next)
-  (global-set-key (kbd "C-c d i") #'dap-step-in)
-  (global-set-key (kbd "C-c d o") #'dap-step-out)
+  (global-set-key (kbd "<f9>") #'dap-continue)
+  (global-set-key (kbd "<f6>") #'dap-next)
+  (global-set-key (kbd "<f5>") #'dap-step-in)
+  (global-set-key (kbd "<f7>") #'dap-step-out)
   (global-set-key (kbd "C-c d r") #'dap-restart-frame)
   (global-set-key (kbd "C-c d q") #'dap-disconnect))
 
@@ -878,6 +877,10 @@
          :program "${fileDirname}"
          :cwd "${fileDirname}"
          :args (list "-test.run" "${input:testName}"))))
+
+(add-hook 'dap-terminated-hook
+          (lambda (_)
+            (delete-other-windows)))
 
 ;;;;;;;;;;;;;;;;
 ;; Formatters ;;

@@ -17,6 +17,7 @@ transient/
 .dap-breakpoints
 .lsp-session-v1
 /.extension/**
+url/**
 
 # Org-mode
 .org-id-locations
