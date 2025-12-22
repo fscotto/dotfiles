@@ -151,6 +151,121 @@
 (defun fscotto/disable-c-formatting ()
   (setq-local lsp-enable-on-type-formatting nil))
 
+<<<<<<< HEAD
+||||||| parent of c793146 (Intellij debug layout)
+;; Golang development support functions
+(defun fscotto/go-format-on-save ()
+  "Format Go buffers on save using gofmt."
+  (add-hook 'before-save-hook #'lsp-format-buffer nil t))
+
+(defun fscotto/go-mod-tidy ()
+  "Esegue go mod tidy nella root del progetto."
+  (interactive)
+  (let ((default-directory (project-root (project-current t))))
+    (compile "go mod tidy")))
+
+(defun fscotto/go-mod-download ()
+  "Scarica i moduli Go."
+  (interactive)
+  (let ((default-directory (project-root (project-current t))))
+    (compile "go mod download")))
+
+(defun fscotto/go-mod-after-save ()
+  (when (and (eq major-mode 'go-mod-ts-mode)
+             (lsp-workspaces))
+    (lsp-restart-workspace)))
+
+(defun fscotto/go-test-package ()
+  "Run `go test` in the current package."
+  (interactive)
+  (let ((default-directory (project-root (project-current t))))
+    (compile "go test")))
+
+(defun fscotto/go-test-module ()
+  "Run `go test ./...` in the current Go module."
+  (interactive)
+  (let ((default-directory (project-root (project-current t))))
+    (compile "go test ./...")))
+
+(defun fscotto/go-test-current-test ()
+  "Run `go test -run` for the test at point."
+  (interactive)
+  (let* ((test-name (thing-at-point 'symbol t))
+         (default-directory (project-root (project-current t))))
+    (unless test-name
+      (user-error "No test name at point"))
+    (compile (format "go test -run '^%s$'" test-name))))
+
+(defun fscotto/go-test-at-point ()
+  "Return Go test name at point."
+  (let ((sym (thing-at-point 'symbol t)))
+    (unless (and sym (string-prefix-p "Test" sym))
+      (user-error "No Go test at point"))
+    sym))
+
+;; (with-eval-after-load 'dap-mode
+;;   (dap-register-debug-template
+;;    "Go :: Debug test at point (auto)"
+;;    (list :type "go"
+;;          :request "launch"
+;;          :name "Go :: Debug test at point"
+;;          :mode "test"
+;;          :program "${fileDirname}"
+;;          :cwd "${fileDirname}"
+;;          :args (list "-test.run" (lambda () (fscotto/go-test-at-point))))))
+
+=======
+;; Golang development support functions
+(defun fscotto/go-format-on-save ()
+  "Format Go buffers on save using gofmt."
+  (add-hook 'before-save-hook #'lsp-format-buffer nil t))
+
+(defun fscotto/go-mod-tidy ()
+  "Esegue go mod tidy nella root del progetto."
+  (interactive)
+  (let ((default-directory (project-root (project-current t))))
+    (compile "go mod tidy")))
+
+(defun fscotto/go-mod-download ()
+  "Scarica i moduli Go."
+  (interactive)
+  (let ((default-directory (project-root (project-current t))))
+    (compile "go mod download")))
+
+(defun fscotto/go-mod-after-save ()
+  (when (and (eq major-mode 'go-mod-ts-mode)
+             (lsp-workspaces))
+    (lsp-restart-workspace)))
+
+(defun fscotto/go-test-package ()
+  "Run `go test` in the current package."
+  (interactive)
+  (let ((default-directory (project-root (project-current t))))
+    (compile "go test")))
+
+(defun fscotto/go-test-module ()
+  "Run `go test ./...` in the current Go module."
+  (interactive)
+  (let ((default-directory (project-root (project-current t))))
+    (compile "go test ./...")))
+
+(defun fscotto/go-test-current-test ()
+  "Run `go test -run` for the test at point."
+  (interactive)
+  (let* ((test-name (thing-at-point 'symbol t))
+         (default-directory (project-root (project-current t))))
+    (unless test-name
+      (user-error "No test name at point"))
+    (compile (format "go test -run '^%s$'" test-name))))
+
+(defun fscotto/go-test-at-point ()
+  "Return Go test name at point."
+  (let ((sym (thing-at-point 'symbol t)))
+    (unless (and sym (string-prefix-p "Test" sym))
+      (user-error "No Go test at point"))
+    sym))
+
+>>>>>>> c793146 (Intellij debug layout)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                     PACKAGES                                     ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -301,11 +416,11 @@
   ;; --------------------------------------------------------------------------
   (which-key-add-key-based-replacements
     "C-c d d" "Start debug session"
-    "C-c d b" "Toggle breakpoint"
-    "C-c d c" "Continue"
-    "C-c d n" "Next"
-    "C-c d i" "Step in"
-    "C-c d o" "Step out")
+    "C-c d b" "Toggle breakpoint")
+    ;; "C-c d c" "Continue"
+    ;; "C-c d n" "Next"
+    ;; "C-c d i" "Step in"
+    ;; "C-c d o" "Step out")
 
   ;; --------------------------------------------------------------------------
   ;; Project (future)
@@ -693,19 +808,29 @@
   :hook (lsp-mode . dap-mode)
   :init
   ;; Enabling only some features
-  (setq dap-auto-configure-features '(sessions locals controls tooltip))
+  (setq dap-auto-configure-features '(sessions locals expressions repl))
   :config
   (dap-mode 1)
   (dap-ui-mode 1)
   (dap-ui-controls-mode 1)
-  (dap-tooltip-mode 1)
-  (tooltip-mode 1)
   ;; Auto show breakpoints + REPL
   (setq dap-ui-buffer-configurations
-        '((dap-ui-repl . ((side . right) (slot . 1) (window-width . 0.33)))
-          (dap-ui-locals . ((side . right) (slot . 2) (window-width . 0.33)))
-          (dap-ui-breakpoints . ((side . left) (slot . 1) (window-width . 0.20)))))
-  ;; Loading DAP adapters
+	'(
+	  ;; RIGHT SIDE — Debug data (like IntelliJ)
+	  (dap-ui-locals     . ((side . right) (slot . 1) (window-width . 0.30)))
+	  (dap-ui-sessions   . ((side . right) (slot . 2) (window-width . 0.30)))
+	  (dap-ui-expressions . ((side . right) (slot . 3) (window-width . 0.30)))
+          ;; BOTTOM — Console / REPL
+	  (dap-ui-repl       . ((side . bottom) (slot . 1) (window-height . 0.25)))
+          (dap-ui-console    . ((side . bottom) (slot . 2) (window-height . 0.25)))))
+  ;; (setq dap-ui-buffer-configurations
+  ;;       '((dap-ui-repl . ((side . right) (slot . 1) (window-width . 0.33)))
+  ;;         (dap-ui-locals . ((side . right) (slot . 2) (window-width . 0.33)))
+  ;;         (dap-ui-breakpoints . ((side . left) (slot . 1) (window-width . 0.20)))))
+  ;; (setq dap-ui-controls-screen-position 'top)
+  ;; (setq dap-ui-repl-auto-focus nil)
+  ;; (setq dap-ui-stackframes-auto-expand t)
+  ;; ;; Loading DAP adapters
   ;; For C/C++
   (require 'dap-cpptools)
   ;; For Go
@@ -717,13 +842,91 @@
 (with-eval-after-load 'dap-mode
   (global-set-key (kbd "C-c d d") #'dap-debug)
   (global-set-key (kbd "C-c d b") #'dap-breakpoint-toggle)
-  (global-set-key (kbd "C-c d c") #'dap-continue)
-  (global-set-key (kbd "C-c d n") #'dap-next)
-  (global-set-key (kbd "C-c d i") #'dap-step-in)
-  (global-set-key (kbd "C-c d o") #'dap-step-out)
+  (global-set-key (kbd "<f9>") #'dap-continue)
+  (global-set-key (kbd "<f6>") #'dap-next)
+  (global-set-key (kbd "<f5>") #'dap-step-in)
+  (global-set-key (kbd "<f7>") #'dap-step-out)
   (global-set-key (kbd "C-c d r") #'dap-restart-frame)
   (global-set-key (kbd "C-c d q") #'dap-disconnect))
 
+<<<<<<< HEAD
+||||||| parent of c793146 (Intellij debug layout)
+(use-package dap-dlv-go
+  :after (dap-mode go-ts-mode))
+
+(with-eval-after-load 'dap-dlv-go
+  ;; Debug all tests in module
+  (dap-register-debug-template
+   "Go :: Debug all tests"
+   (list :type "go"
+         :request "launch"
+         :name "Go :: Debug all tests"
+         :mode "test"
+         :program "${workspaceFolder}"
+         :cwd "${workspaceFolder}"))
+
+  ;; Debug tests in current package
+  (dap-register-debug-template
+   "Go :: Debug package tests"
+   (list :type "go"
+         :request "launch"
+         :name "Go :: Debug package tests"
+         :mode "test"
+         :program "${fileDirname}"
+         :cwd "${fileDirname}"))
+
+  ;; Debug test at point
+  (dap-register-debug-template
+   "Go :: Debug test at point"
+   (list :type "go"
+         :request "launch"
+         :name "Go :: Debug test at point"
+         :mode "test"
+         :program "${fileDirname}"
+         :cwd "${fileDirname}"
+         :args (list "-test.run" "${input:testName}"))))
+
+=======
+(use-package dap-dlv-go
+  :after (dap-mode go-ts-mode))
+
+(with-eval-after-load 'dap-dlv-go
+  ;; Debug all tests in module
+  (dap-register-debug-template
+   "Go :: Debug all tests"
+   (list :type "go"
+         :request "launch"
+         :name "Go :: Debug all tests"
+         :mode "test"
+         :program "${workspaceFolder}"
+         :cwd "${workspaceFolder}"))
+
+  ;; Debug tests in current package
+  (dap-register-debug-template
+   "Go :: Debug package tests"
+   (list :type "go"
+         :request "launch"
+         :name "Go :: Debug package tests"
+         :mode "test"
+         :program "${fileDirname}"
+         :cwd "${fileDirname}"))
+
+  ;; Debug test at point
+  (dap-register-debug-template
+   "Go :: Debug test at point"
+   (list :type "go"
+         :request "launch"
+         :name "Go :: Debug test at point"
+         :mode "test"
+         :program "${fileDirname}"
+         :cwd "${fileDirname}"
+         :args (list "-test.run" "${input:testName}"))))
+
+(add-hook 'dap-terminated-hook
+          (lambda (_)
+            (delete-other-windows)))
+
+>>>>>>> c793146 (Intellij debug layout)
 ;;;;;;;;;;;;;;;;
 ;; Formatters ;;
 ;;;;;;;;;;;;;;;;
