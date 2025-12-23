@@ -1,34 +1,59 @@
 (message "Welcome to Emacs")
 (message "Loading user configuration...")
 
-;; Core
-(load "~/.emacs.d/lisp/core/packages.el")
-(load "~/.emacs.d/lisp/core/ui.el")
-(load "~/.emacs.d/lisp/core/performance.el")
-(load "~/.emacs.d/lisp/core/editor.el")
-(load "~/.emacs.d/lisp/core/keybindings.el")
+;;=====================================================================================
+;; Define loader functions
+;;=====================================================================================
+(defconst fscotto/modules-dir
+  (expand-file-name "lisp" user-emacs-directory))
 
-;; Tools
-(load "~/.emacs.d/lisp/tools/completion.el")
-(load "~/.emacs.d/lisp/tools/project.el")
-(load "~/.emacs.d/lisp/tools/lsp.el")
-(load "~/.emacs.d/lisp/tools/dap.el")
+(defun fscotto/load-module (module)
+  "Load a module from symbol"
+  (let* ((module-name (symbol-name module))
+         (path (expand-file-name
+                (concat (replace-regexp-in-string "/" "/" module-name)
+                        ".el")
+                fscotto/modules-dir)))
+    (unless (file-exists-p path)
+      (error "Module not found: %s" path))
+    (load path nil 'nomessage)))
 
-;; Languages
-(load "~/.emacs.d/lisp/lang/c.el")
-(load "~/.emacs.d/lisp/lang/golang.el")
-(load "~/.emacs.d/lisp/lang/shell.el")
+(defun fscotto/load-modules (&rest modules)
+  (mapc #'fscotto/load-module modules))
 
-;; Misc
-(load "~/.emacs.d/lisp/misc/custom-functions.el")
-(load "~/.emacs.d/lisp/misc/doom-modeline.el")
-(load "~/.emacs.d/lisp/misc/which-key.el")
-(load "~/.emacs.d/lisp/misc/email.el")
-(load "~/.emacs.d/lisp/misc/rss.el")
-(load "~/.emacs.d/lisp/misc/terminal.el")
-(load "~/.emacs.d/lisp/misc/vcs.el")
-;; (load "~/.emacs.d/lisp/misc/pdf.el")
-(load "~/.emacs.d/lisp/misc/epub.el")
-(load "~/.emacs.d/lisp/misc/i3-config.el")
+;;=====================================================================================
+;; Load modules
+;;=====================================================================================
+(fscotto/load-modules
+ ;; Core
+ 'core/packages
+ 'core/ui
+ 'core/performance
+ 'core/editor
+ 'core/keybindings
+
+ ;; Tools
+ 'tools/completion
+ 'tools/project
+ 'tools/lsp
+ 'tools/dap
+
+ ;; Languages
+ 'lang/c
+ 'lang/golang
+ 'lang/shell
+
+ ;; Misc
+ 'misc/custom-functions
+ 'misc/doom-modeline
+ 'misc/which-key
+ 'misc/email
+ 'misc/rss
+ 'misc/terminal
+ 'misc/vcs
+ ;; FIXME PDF viewer with annotations
+ ;; 'misc/pdf
+ 'misc/epub
+ 'misc/i3-config)
 
 (message "...user configuration loaded")
