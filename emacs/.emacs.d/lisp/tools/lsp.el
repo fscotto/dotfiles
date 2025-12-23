@@ -21,9 +21,8 @@
 (use-package lsp-mode
   :ensure t
   :commands (lsp lsp-deferred)
-  :init
-  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
-  (setq lsp-keymap-prefix "C-c l")
+  ;; :init
+  ;; (setq lsp-keymap-prefix "C-c l")
   :hook
   ((c-mode
     c-ts-mode
@@ -78,25 +77,6 @@
   (consult-lsp-symbols
    consult-lsp-diagnostics))
 
-(with-eval-after-load 'lsp-mode
-  ;; Attach bash-language-server when open a shell scripts
-  (add-hook 'sh-mode-hook #'lsp)
+(provide 'lsp)
 
-  ;; Symbols
-  (global-set-key (kbd "C-c l s") #'consult-lsp-symbols)
-
-  ;; Diagnostics
-  (global-set-key (kbd "C-c l e") #'consult-lsp-diagnostics)
-
-  ;; Navigation (LSP core)
-  (global-set-key (kbd "C-c l d") #'lsp-find-definition)
-  (global-set-key (kbd "C-c l D") #'lsp-find-type-definition)
-  (global-set-key (kbd "C-c l i") #'lsp-find-implementation)
-
-  ;; Actions
-  (global-set-key (kbd "C-c l a") #'lsp-execute-code-action)
-  (global-set-key (kbd "C-c l r") #'lsp-rename)
-  (global-set-key (kbd "C-c l f") #'lsp-format-buffer)
-
-  ;; Control
-  (global-set-key (kbd "C-c l R") #'lsp-restart-workspace))
+;;; lsp.el ends here

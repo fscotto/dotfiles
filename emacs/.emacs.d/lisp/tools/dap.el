@@ -24,13 +24,3 @@
   ;; For Python
   (require 'dap-python)
   (setq dap-python-debugger 'debugpy))
-
-(with-eval-after-load 'dap-mode
-  (global-set-key (kbd "C-c d d") #'dap-debug)
-  (global-set-key (kbd "C-c d b") #'dap-breakpoint-toggle)
-  (global-set-key (kbd "<f9>") #'dap-continue)
-  (global-set-key (kbd "<f6>") #'dap-next)
-  (global-set-key (kbd "<f5>") #'dap-step-in)
-  (global-set-key (kbd "<f7>") #'dap-step-out)
-  (global-set-key (kbd "C-c d r") #'dap-restart-frame)
-  (global-set-key (kbd "C-c d q") #'dap-disconnect))
