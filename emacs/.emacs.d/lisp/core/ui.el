@@ -63,5 +63,7 @@
   :defer t)
 
 (use-package ibuffer
-  :ensure t
-  :bind (:map global-map ("C-x C-b" . ibuffer)))
+  :ensure t)
+
+(provide 'ui)
+;;; ui.el ends here

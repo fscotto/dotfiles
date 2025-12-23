@@ -8,7 +8,7 @@
   (expand-file-name "lisp" user-emacs-directory))
 
 (defun fscotto/load-module (module)
-  "Load a module from symbol"
+  "Load a MODULE from symbol."
   (let* ((module-name (symbol-name module))
          (path (expand-file-name
                 (concat (replace-regexp-in-string "/" "/" module-name)
@@ -19,6 +19,7 @@
     (load path nil 'nomessage)))
 
 (defun fscotto/load-modules (&rest modules)
+  "Load MODULES."
   (mapc #'fscotto/load-module modules))
 
 ;;=====================================================================================

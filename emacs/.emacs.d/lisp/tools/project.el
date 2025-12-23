@@ -1,3 +1,5 @@
+;;; project.el - lexical-binding *-*
+
 (use-package projectile
   :ensure t
   :defer 1
@@ -18,12 +20,6 @@
   ;; Enable globally
   (projectile-mode 1))
 
-;; Projectile keybindings (Doom-style)
-(with-eval-after-load 'projectile
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
+(provide 'project)
 
-(with-eval-after-load 'projectile
-  (define-key projectile-command-map (kbd "v") #'fscotto/project-vterm))
-
-(with-eval-after-load 'projectile
-  (define-key projectile-command-map (kbd "g") #'fscotto/project-magit-status))
+;;; project.el ends here

@@ -4,9 +4,7 @@
   :ensure nil
   ;; :load-path "/usr/share/emacs/site-lisp/mu4e/"
   :defer 20 ; Wait until 20 seconds after startup
-  :bind (:map global-map ("C-c o m" . mu4e))
   :config
-
   ;; This is set to 't' to avoid mail syncing issues when using mbsync
   (setq mu4e-change-filenames-when-moving t)
 

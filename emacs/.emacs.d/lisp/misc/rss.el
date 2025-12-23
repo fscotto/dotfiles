@@ -11,18 +11,6 @@
   (elfeed-show-truncate-long-urls t)
   (elfeed-sort-order 'descending)
   (elfeed-search-filter "+unread")
-  :bind
-  ("C-c o f" . fscotto/elfeed-load-db-and-open)
-  (:map elfeed-search-mode-map
-        ("w" . elfeed-search-yank)
-        ("R" . elfeed-update)
-        ("q" . elfeed-kill-buffer))
-  (:map elfeed-show-mode-map
-        ("S"     . elfeed-show-new-live-search) ; moved to free up 's'
-        ("c"     . (lambda () (interactive) (org-capture nil "capture")))
-        ("e"     . email-elfeed-entry)
-        ("f"     . elfeed-show-fetch-full-text)
-        ("w"     . elfeed-show-yank))
   :hook
   (elfeed-show-mode . visual-line-mode))
 

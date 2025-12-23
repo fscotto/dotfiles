@@ -11,11 +11,6 @@
         ("GOTCHA" . "#eba0ac")
         ("STUB"   . "#89b4fa")))
 
-(keymap-set hl-todo-mode-map "C-t p" #'hl-todo-previous)
-(keymap-set hl-todo-mode-map "C-t n" #'hl-todo-next)
-(keymap-set hl-todo-mode-map "C-t o" #'hl-todo-occur)
-(keymap-set hl-todo-mode-map "C-t i" #'hl-todo-insert)
-
 (use-package ibuffer-tramp
   :ensure t)
 

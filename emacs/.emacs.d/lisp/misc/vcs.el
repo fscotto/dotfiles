@@ -10,3 +10,7 @@
   (setq magit-repository-directories
 	'(("~/Projects" . 2)
 	  ("~/Work" . 2))))
+
+(provide 'vcs)
+
+;;; vcs.el ends here
