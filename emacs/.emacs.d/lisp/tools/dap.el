@@ -19,8 +19,6 @@
 	  (dap-ui-repl       . ((side . bottom) (slot . 1) (window-height . 0.25)))
           (dap-ui-console    . ((side . bottom) (slot . 2) (window-height . 0.25)))))
   ;; Loading DAP adapters
-  ;; For C/C++
-  (require 'dap-cpptools)
   ;; For Python
   (require 'dap-python)
   (setq dap-python-debugger 'debugpy))
