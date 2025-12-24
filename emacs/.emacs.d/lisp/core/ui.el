@@ -53,17 +53,18 @@
 ;; Setting default directory for Org files
 (setq org-directory "~/Remotes/pCloud/Org")
 
-(use-package ivy
+;; Highlight keywords to remember the activity when coding.
+(use-package hl-todo
   :ensure t
-  :config
-  (ivy-mode 1))
+  :commands (global-hl-todo-mode)
+  :init (global-hl-todo-mode))
 
-(use-package consult
-  :ensure t
-  :defer t)
-
-(use-package ibuffer
-  :ensure t)
+(setq hl-todo-keyword-faces
+      '(("TODO"   . "#94e2d5")
+        ("FIXME"  . "#f38ba8")
+        ("DEBUG"  . "#cba6f7")
+        ("GOTCHA" . "#eba0ac")
+        ("STUB"   . "#89b4fa")))
 
 (provide 'ui)
 ;;; ui.el ends here

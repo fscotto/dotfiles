@@ -1,3 +1,6 @@
+(with-eval-after-load 'flycheck
+  (add-hook 'bash-ts-mode-hook 'flycheck-mode))
+
 (use-package reformatter
   :ensure t
   :config

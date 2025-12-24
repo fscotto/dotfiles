@@ -1,30 +1,14 @@
-;; Highlight keywords to remember the activity when coding.
-(use-package hl-todo
+;;; completion.el -*- lexical-binding: t; -*-
+
+(use-package ivy
   :ensure t
-  :commands (global-hl-todo-mode)
-  :init (global-hl-todo-mode))
+  :config
+  (ivy-mode 1))
 
-(setq hl-todo-keyword-faces
-      '(("TODO"   . "#94e2d5")
-        ("FIXME"  . "#f38ba8")
-        ("DEBUG"  . "#cba6f7")
-        ("GOTCHA" . "#eba0ac")
-        ("STUB"   . "#89b4fa")))
+(use-package consult
+  :ensure t
+  :defer t)
 
-(use-package ibuffer-tramp
-  :ensure t)
-
-(use-package ibuffer-vc
-  :ensure t)
-
-(use-package ibuffer-projectile
-  :ensure t)
-
-(add-hook 'ibuffer-mode-hook
-	  (lambda ()
-	    (ibuffer-projectile-set-filter-groups)))
-
-;; Add autocomplete feature to Emacs
 (use-package company
     :ensure t
     :custom
@@ -39,7 +23,10 @@
 ;; Static analysis for code base
 (use-package flycheck
   :ensure t
-  :hook (prog-mode . flycheck-mode))
+  :hook (prog-mode . flycheck-mode)
+  :config
+  (setq flycheck-check-syntax-automatically '(save mode-enabled)))
 
-(with-eval-after-load 'flycheck
-  (add-hook 'bash-ts-mode-hook 'flycheck-mode))
+(provide 'completion)
+
+;;; completion.el ends here
