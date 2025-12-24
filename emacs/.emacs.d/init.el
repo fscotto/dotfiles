@@ -32,12 +32,14 @@
  'core/performance
  'core/editor
  'core/keybindings
+ 'core/buffer
 
  ;; Tools
  'tools/completion
  'tools/project
  'tools/lsp
  'tools/dap
+ 'tools/treesitter
 
  ;; Languages
  'lang/c

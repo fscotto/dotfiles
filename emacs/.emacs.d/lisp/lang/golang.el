@@ -58,6 +58,14 @@
      ("gopls.analyses.useany" t)
      ("gopls.env" ((GO111MODULE . "on"))))))
 
+(with-eval-after-load 'flycheck
+  ;; Usa golangci-lint in Go
+  (add-hook 'go-ts-mode-hook
+	    (lambda ()
+	      (setq-local flycheck-checker 'golangci-lint)
+	      (setq-local flycheck-check-syntax-automatically '(save mode-enabled))
+	      (flycheck-mode 1))))
+ 
 (use-package dap-dlv-go
   :after (dap-mode go-ts-mode))
 
