@@ -3,7 +3,6 @@
 (use-package ibuffer
   :ensure t)
 
-
 (use-package ibuffer-tramp
   :ensure t)
 

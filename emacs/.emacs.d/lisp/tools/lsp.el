@@ -1,3 +1,5 @@
+;;; lsp.el -*- lexical-binding: t; -*-
+
 (use-package lsp-mode
   :ensure t
   :commands (lsp lsp-deferred)
@@ -13,8 +15,8 @@
   :config
   ;; Performance
   (setq lsp-enable-symbol-highlighting t
-        lsp-enable-snippet t
-        lsp-log-io nil
+	lsp-enable-snippet t
+	lsp-log-io nil
 	lsp-modeline-code-actions-enable nil
 	lsp-modeline-diagnostics-enable nil
 	lsp-signature-auto-activate nil
@@ -25,20 +27,7 @@
 	lsp-enable-indentation nil
 	;; Disable for huge projects
 	lsp-enable-file-watchers nil
-        lsp-idle-delay 0.5)
-  ;; Clangd configurations
-  (setq lsp-clients-clangd-args
-	'("--background-index"
-	  "--clang-tidy"
-	  "--completion-style=detailed"
-	  "--header-insertion=never"
-	  "--header-insertion-decorators"
-	  "--pch-storage=memory"
-	  "--log=error"
-	  "--ranking-model=heuristics"
-	  "--malloc-trim"
-	  "--limit-results=500"
-	  "--limit-references=2000")))
+        lsp-idle-delay 0.5))
 
 (use-package lsp-ui
   :ensure t
