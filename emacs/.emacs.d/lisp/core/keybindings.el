@@ -3,6 +3,7 @@
 ;;;; Global / Core
 
 (global-set-key (kbd "C-x C-b") #'ibuffer)
+(global-set-key (kbd "C-<return>") 'company-complete)
 
 (defvar fscotto/leader-map (make-sparse-keymap)
   "Keymap per comandi sotto C-c.")

@@ -7,24 +7,7 @@
   :mode "\\.go\\'"
   :hook
   ((go-ts-mode . lsp-deferred)
-   (go-ts-mode . fscotto/go-format-on-save))
-  :config
-  ;; Go project commands
-  ;; Modules
-  (define-key go-ts-mode-map (kbd "C-c m t") #'fscotto/go-mod-tidy)
-  (define-key go-ts-mode-map (kbd "C-c m d") #'fscotto/go-mod-download)
-  ;; Test
-  (define-key go-ts-mode-map (kbd "C-c t p") #'fscotto/go-test-package)
-  (define-key go-ts-mode-map (kbd "C-c t a") #'fscotto/go-test-module)
-  (define-key go-ts-mode-map (kbd "C-c t t") #'fscotto/go-test-current-test)
-  ;; Debug tests
-  (define-key go-ts-mode-map (kbd "C-c d t") #'dap-debug)
-  (define-key go-ts-mode-map (kbd "C-c d T")
-              (lambda ()
-                (interactive)
-                (dap-debug
-                 (dap--debug-configuration
-                  "Go :: Debug test at point")))))
+   (go-ts-mode . fscotto/go-format-on-save)))
 
 (use-package go-mod-ts-mode
   :ensure nil

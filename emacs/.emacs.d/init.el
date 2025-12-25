@@ -43,8 +43,10 @@
 
  ;; Languages
  'lang/c
+ 'lang/docker
  'lang/golang
  'lang/shell
+ 'lang/yaml
 
  ;; Misc
  'misc/custom-functions
