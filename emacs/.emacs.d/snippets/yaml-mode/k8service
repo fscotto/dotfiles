@@ -1,0 +1,14 @@
+#key : k8s/service
+# --
+apiVersion: v1
+kind: Service
+metadata:
+  name: ${1:foo}-service
+spec:
+  type: ${2:NodePort}
+  ports:
+    - port: ${3:80}
+      targetPort: ${4:80}
+
+  selector:
+    ${5:webkind}: ${6:colour}

@@ -1,0 +1,6 @@
+#name : debug
+# --
+if (mLogger.isDebugEnabled()) {
+  mLogger.debug(String.format("${1:result}=%s", ${2:result}));
+}
+$0

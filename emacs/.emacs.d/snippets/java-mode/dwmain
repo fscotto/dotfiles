@@ -1,0 +1,31 @@
+#name : dwmain
+# --
+package ${1:net.skybert.dw};
+
+import io.dropwizard.Application;
+import io.dropwizard.assets.AssetsBundle;
+import io.dropwizard.configuration.SubstitutingSourceProvider;
+import io.dropwizard.jetty.ConnectorFactory;
+import io.dropwizard.jetty.HttpConnectorFactory;
+import io.dropwizard.lifecycle.Managed;
+import io.dropwizard.server.DefaultServerFactory;
+import io.dropwizard.setup.Bootstrap;
+import io.dropwizard.setup.Environment;
+
+/**
+ * Main
+  */
+public class Main extends Application<${2:SkybertConf}> {
+
+  public static void main(final String[] args) throws Exception {
+    new Main().run(args);
+  }
+
+  @Override
+  public void run(
+      final $2 pConfiguration,
+      final Environment pEnvironment)
+      throws Exception {
+    $0
+  }
+}

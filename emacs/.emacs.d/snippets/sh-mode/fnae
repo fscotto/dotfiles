@@ -1,0 +1,7 @@
+assertEquals() {
+  test "\$1" = "\$2" || {
+    printf "Failed: Expected: [%s] Actual: [%s]\\n" "\${1}" "\${2}"
+    exit 1
+  }
+}
+$0

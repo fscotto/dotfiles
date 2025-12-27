@@ -1,0 +1,44 @@
+#key: args
+# --
+
+read_user_input() {
+  local opts=
+  opts=$(getopt \
+           -o hr:nv \
+           --long help \
+           --long version: \
+           --long dry-run \
+           --long verbose \
+           -n 'parse-options' \
+           -- "$@")
+  if [ $? != 0 ] ; then
+    echo "Failed parsing options." >&2
+    exit 1
+  fi
+  eval set -- "$opts"
+
+  while true; do
+    case "\$1" in
+      -h | --help)
+        print_help;
+        exit 0
+        break;;
+      -r | --version)
+        export version=\$2
+        shift 2;;
+      -n | --dry-run)
+        export dry_run=1
+        shift;;
+      -v | --verbose)
+        export verbose=1
+        shift;;
+      -- )
+        shift;
+        break ;;
+      * )
+        break ;;
+    esac
+  done
+
+  export rest_of_args=$*
+}

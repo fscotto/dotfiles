@@ -1,0 +1,5 @@
+#key : k8s/kustomization
+# --
+resources:
+  - ${1:deployment}.yaml
+  - ${2:service}.yaml

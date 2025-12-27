@@ -1,0 +1,4 @@
+#name : strong element
+# --
+
+<strong>${1:text}</strong>$0

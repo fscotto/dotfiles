@@ -166,6 +166,9 @@ source "$OSH"/oh-my-bash.sh
 # users are encouraged to define aliases within the OSH_CUSTOM folder.
 # For a full list of active aliases, run `
 
+# export EDITOR="emacs -nw"
+# export VISUAL="emacs"
+
 alias ls='ls --color=auto --group-directories-first'
 
 # Replace grep command tool

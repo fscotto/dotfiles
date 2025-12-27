@@ -1,0 +1,6 @@
+#name : Create @property function
+# --
+@property
+def $1(self):
+  return self._$1
+$0

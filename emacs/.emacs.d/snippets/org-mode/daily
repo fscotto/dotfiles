@@ -1,0 +1,21 @@
+#name: daily
+# --
+* ❯ Admin, training & maintenance
+** DEVTR-1 Meetings, email, Slack++
+** DEVTR-5 System Maintenance
+** DEVTR-6 Software Delivery
+** DEVTR-8 Training
+
+* ❯ Coding
+
+* ❯ Review
+
+* ❯ Specification
+
+* ❯ Support
+** DEVTR-3 PSERV Assistance
+** DEVTR-5 Helping out colleagues in R&D
+
+* ❯ Report
+  #+BEGIN: clocktable :maxlevel 2
+  #+END:
