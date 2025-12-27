@@ -1,0 +1,21 @@
+#name : test
+# --
+#! /usr/bin/env bash
+
+## author: torstein, torstein@skybert.net
+
+## @override shunit2
+setUp() {
+  source "$(dirname "\$0")/../lib/$(basename "\$0" -test.sh).sh"
+}
+
+## @override shunit2
+tearDown() {
+  :
+}
+
+main() {
+  . "$(dirname "\$0")"/shunit2/shunit2
+}
+
+main "$@"

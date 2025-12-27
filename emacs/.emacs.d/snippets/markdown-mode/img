@@ -1,0 +1,9 @@
+#name : img snippet
+# --
+
+<img
+  class="centered"
+  src="${1:foo.png}"
+  alt="${2:alt img text}"
+/>
+$0

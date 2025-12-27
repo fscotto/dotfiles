@@ -1,0 +1,21 @@
+#name : junitwrapperfns
+# --
+  private void assertTrue(final String pMessage, final boolean pConditition) {
+    Assertions.assertTrue(pConditition, pMessage);
+  }
+
+  private void assertFalse(final String pMessage, final boolean pConditition) {
+    Assertions.assertFalse(pConditition, pMessage);
+  }
+
+  private void assertNotNull(final String pMessage, final Object pActual) {
+    Assertions.assertNotNull(pActual, pMessage);
+  }
+
+  private void assertNull(final String pMessage, final Object pActual) {
+    Assertions.assertNull(pActual, pMessage);
+  }
+
+  private void assertEquals(final String pMessage, final Object pExpected, final Object pActual) {
+    Assertions.assertEquals(pExpected, pActual, pMessage);
+  }

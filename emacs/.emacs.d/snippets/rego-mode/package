@@ -1,0 +1,1 @@
+package ${1:`(replace-regexp-in-string "/" "." (file-name-directory (buffer-file-name)))`}$0

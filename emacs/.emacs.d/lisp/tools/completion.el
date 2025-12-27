@@ -27,6 +27,14 @@
   :config
   (setq flycheck-check-syntax-automatically '(save mode-enabled)))
 
+;; Snippets
+(use-package yasnippet
+  :ensure t
+  :config
+  (setq yas/root-directory
+        (list "~/.emacs.d/snippets") yas-indent-line 'fixed)
+  (yas-global-mode))
+
 (provide 'completion)
 
 ;;; completion.el ends here

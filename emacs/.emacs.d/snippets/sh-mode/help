@@ -1,0 +1,19 @@
+#name : help
+# --
+_show_help() {
+  cat <<EOF
+NAME
+   $(basename "\$0")
+
+SYNOPSIS
+   $(basename "\$0")
+
+OPTIONS
+  --help Don't panic
+
+AUTHORS
+     skybert wrote the initial version.
+
+$0
+EOF
+}

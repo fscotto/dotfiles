@@ -1,0 +1,27 @@
+#name : shunit
+# --
+#! /usr/bin/env bash
+
+# by torstein@skybert.net
+
+cwd="\$(cd "$(dirname "\${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
+
+## @override shunit2
+setUp() {
+  source "\${cwd}/../lib/$(basename "\$0" -test.sh)-lib.sh"
+}
+
+## @override shunit2
+tearDown() {
+  :
+}
+
+main() {
+  test -d "\${cwd}"/shunit2 || {
+    git -C "\${cwd}" clone --quiet --depth 1 https://github.com/kward/shunit2.git
+  }
+
+  source "\${cwd}"/shunit2/shunit2
+}
+
+main "\$@"

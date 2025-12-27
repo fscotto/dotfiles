@@ -1,0 +1,44 @@
+#key : k8s/deployment
+# --
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ${1:foo}-deploy
+spec:
+  replicas: ${2:1}
+  selector:
+    matchLabels:
+      app: $1
+  template:
+    metadata:
+      labels:
+        app: $1
+        ${3:webkind}: ${4:colour}
+    spec:
+      containers:
+        - name: $1
+          image: docker.io/nginx:latest
+          volumeMounts:
+            - name: nginx-template-volume
+              mountPath: /etc/nginx/templates
+            - name: nginx-confd-volume
+              mountPath: /etc/nginx/conf.d
+
+          ports:
+            - containerPort: 80
+          env:
+            - name: NGINX_ENVSUBST_OUTPUT_DIR
+              value: /usr/share/nginx/html
+
+            - name: COLOUR
+              valueFrom:
+                configMapKeyRef:
+                  name: nginx-colour-config
+                  key: $1.colour
+      volumes:
+        - name: nginx-template-volume
+          configMap:
+            name: nginx-template-config
+        - name: nginx-confd-volume
+          configMap:
+            name: nginx-conf.d-config

@@ -1,0 +1,23 @@
+func Test$0 {
+    tests := []struct {
+            name string
+            req string
+            expected string
+    }{
+            {
+                    name: "happy path",
+                    req: "answer to life, the universe and everything"
+                    expected: "42"
+            }
+    }
+
+
+    for _, tt := range tests {
+            t.Run(tt.name, func(t *testing.T) {
+                    t.Parallel()
+                    actual := foo(t, tt.req)
+                    assertEquals(t, tt.want, expected)
+            })
+
+    }
+}

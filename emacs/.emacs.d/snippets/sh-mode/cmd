@@ -1,0 +1,18 @@
+#name : cmd
+# --
+#! /usr/bin/env bash
+
+## author: torstein, torstein@skybert.net
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+main() {
+  :
+}
+
+main "$@"
+
+
+
