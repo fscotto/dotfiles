@@ -45,6 +45,8 @@
  'lang/c
  'lang/docker
  'lang/golang
+ 'lang/json
+ 'lang/markdown
  'lang/shell
  'lang/yaml
 
