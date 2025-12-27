@@ -50,9 +50,6 @@
 ;; Enable line numbers in the configuration mode only
 (add-hook 'conf-mode-hook 'display-line-numbers-mode)
 
-;; Setting default directory for Org files
-(setq org-directory "~/Remotes/pCloud/Org")
-
 ;; Highlight keywords to remember the activity when coding.
 (use-package hl-todo
   :ensure t

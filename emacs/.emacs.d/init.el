@@ -47,6 +47,7 @@
  'lang/golang
  'lang/json
  'lang/markdown
+ 'lang/org
  'lang/shell
  'lang/yaml
 
