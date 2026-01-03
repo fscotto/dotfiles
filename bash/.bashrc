@@ -91,18 +91,27 @@ OMB_USE_SUDO=true
 # Add wisely, as too many completions slow down shell startup.
 completions=(
   asdf
+  brew
   docker
   docker-compose
   gh
   git
   go
+  helm
+  kubectl
   makefile
+  maven
+  minikube
   npm
+  nvm
+  oc
   pip3
+  pip
+  sdkman
+  ssh
   system
   tmux
-  composer
-  ssh
+  vagrant
 )
 
 # Which aliases would you like to load? (aliases can be found in ~/.oh-my-bash/aliases/*)
@@ -118,12 +127,8 @@ aliases=(
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  bashmarks
   bash-preexec
-  cargo
   colored-man-pages
-  git
-  zoxide
 )
 
 # Which plugins would you like to conditionally load? (plugins can be found in ~/.oh-my-bash/plugins/*)
@@ -170,6 +175,7 @@ source "$OSH"/oh-my-bash.sh
 # export VISUAL="emacs"
 
 alias ls='ls --color=auto --group-directories-first'
+alias lsx='ls -AXF'
 
 # Replace grep command tool
 alias grep='grep --color=auto'
