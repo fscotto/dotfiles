@@ -19,6 +19,7 @@ transient/
 /.extension/**
 url/**
 **/*.bak
+**/recentf
 
 # Org-mode
 .org-id-locations

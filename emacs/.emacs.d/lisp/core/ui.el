@@ -1,7 +1,13 @@
-;;;; core-ui.el -*-
+;;; core-ui.el -*- lexical-binding: t; -*-
 
 ;; Load default theme
-(load-theme 'wombat)
+(use-package sublime-themes
+  :ensure t)
+
+(use-package soothe-theme
+  :ensure t)
+
+(load-theme 'spolsky t)
 
 ;; Setting default font
 (set-frame-font "Iosevka Nerd Font 14" nil t)
