@@ -5,7 +5,7 @@
   :defer 1
   :init
   ;; Root detection
-  (setq projectile-project-search-path '("~/Projects" "~/Work"))
+  (setq projectile-project-search-path '("~/Projects" "~/Work" "~/Progetti"))
   (setq projectile-completion-system 'ivy)
   :config
   ;; Performance
