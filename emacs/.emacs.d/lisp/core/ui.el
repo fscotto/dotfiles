@@ -7,10 +7,16 @@
 (use-package soothe-theme
   :ensure t)
 
-(load-theme 'spolsky t)
+(use-package nordic-night-theme
+  :ensure t)
+
+(use-package timu-caribbean-theme
+  :ensure t)
+
+(load-theme 'nordic-night t)
 
 ;; Setting default font
-(set-frame-font "Iosevka Nerd Font 14" nil t)
+(set-frame-font "UbuntuSansMono Nerd Font 14" nil t)
 
 ;; Remove toolbar
 (tool-bar-mode -1)
