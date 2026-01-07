@@ -253,7 +253,6 @@ format = "[$symbol]($style)"
 
 [os.symbols]
 Arch = " "
-Bluefin = " "
 Debian = " "
 EndeavourOS = " "
 Fedora = " "
