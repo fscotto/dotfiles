@@ -6,7 +6,7 @@
 # for a list of all available themes
 
 # Theme
---theme="Catppuccin Mocha"
+--theme="Coldark-Dark"
 
 # Style
 --style="header,changes,numbers"
