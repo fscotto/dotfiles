@@ -19,7 +19,7 @@
  'tools/project
  'tools/lsp
  'tools/dap
- 'tools/treesitter
+ ;; 'tools/treesitter
 
  ;; Languages
  'lang/c
