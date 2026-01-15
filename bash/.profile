@@ -15,7 +15,8 @@ export QT_STYLE_OVERRIDE=kvantum
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
 
 export DOTFILES="$HOME/.dotfiles"
-export EDITOR=nano
+export EDITOR="emacs -nw"
+export VISUAL="emacs"
 
 # SSH socket
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"
@@ -46,8 +47,6 @@ appendpath() {
   esac
 }
 
-# appendpath "/home/linuxbrew/.linuxbrew/bin"
 appendpath "$HOME/.local/bin"
 appendpath "$GOBIN"
-# appendpath "$HOME/.cargo/bin"
 unset appendpath
