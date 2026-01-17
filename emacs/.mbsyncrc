@@ -3,7 +3,7 @@ IMAPStore iCloud-remote
     Host imap.mail.me.com
     Port 993
     User fscottodisantolo@icloud.com
-    PassCmd "pass show icloud-mail"
+    PassCmd "secret-tool lookup icloud-mail icloud"
     AuthMechs *
     SSLType IMAPS
     SSLVersions TLSv1.2 TLSv1.3
@@ -27,7 +27,7 @@ IMAPStore protonmail-remote
     Host 127.0.0.1
     Port 1143
     User fscottodisantolo@protonmail.com
-    PassCmd "pass show protonmail-bridge"
+    PassCmd "secret-tool lookup protonmail-bridge protonmail"
     AuthMechs *
     SSLType STARTTLS
     PipelineDepth 1

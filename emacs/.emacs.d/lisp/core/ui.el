@@ -16,7 +16,7 @@
 (load-theme 'nordic-night t)
 
 ;; Setting default font
-(set-frame-font "UbuntuSansMono Nerd Font 16" nil t)
+(set-frame-font "UbuntuSansMono Nerd Font 14" nil t)
 
 ;; Remove toolbar
 (tool-bar-mode -1)

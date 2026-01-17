@@ -2,7 +2,7 @@
 
 (use-package mu4e
   :ensure nil
-  ;; :load-path "/usr/share/emacs/site-lisp/mu4e/"
+  :load-path "/usr/share/emacs/site-lisp/mu4e/"
   :defer 20 ; Wait until 20 seconds after startup
   :config
   ;; This is set to 't' to avoid mail syncing issues when using mbsync
