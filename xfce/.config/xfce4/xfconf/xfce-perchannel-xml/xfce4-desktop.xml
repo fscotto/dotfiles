@@ -1,0 +1,28 @@
+<?xml version="1.1" encoding="UTF-8"?>
+
+<channel name="xfce4-desktop" version="1.0">
+  <property name="last-settings-migration-version" type="uint" value="1"/>
+  <property name="backdrop" type="empty">
+    <property name="screen0" type="empty">
+      <property name="monitorDP-1" type="empty">
+        <property name="workspace0" type="empty">
+          <property name="last-image" type="string" value="/home/fscotto/Pictures/walls-catppuccin-mocha/minimalist-black-hole.png"/>
+        </property>
+      </property>
+      <property name="monitoreDP-1" type="empty">
+        <property name="workspace0" type="empty">
+          <property name="last-image" type="string" value="/home/fscotto/Pictures/walls-catppuccin-mocha/minimalist-black-hole.png"/>
+        </property>
+      </property>
+    </property>
+  </property>
+  <property name="desktop-icons" type="empty">
+    <property name="icon-size" type="uint" value="48"/>
+    <property name="gravity" type="int" value="0"/>
+    <property name="confirm-sorting" type="bool" value="false"/>
+  </property>
+  <property name="last" type="empty">
+    <property name="window-width" type="int" value="1054"/>
+    <property name="window-height" type="int" value="837"/>
+  </property>
+</channel>
