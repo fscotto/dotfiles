@@ -4,6 +4,13 @@
 configs:
 - level: 1
   monitors:
+  - id: "359f9a4a3ec3cfb503d83e68e51006ca616a8ce1"
+    display_name: "Xiaomi Corporation Mi Monitor 0000000000000 (HDMI-A-1)"
+    geometry:
+      x: 0
+      y: 0
+      width: 3440
+      height: 1440
   - id: "36e25f5c8380519864a9cac609054849387921ee"
     display_name: "Xiaomi Corporation Mi Monitor (DP-1)"
     geometry:
@@ -11,7 +18,28 @@ configs:
       y: 0
       width: 3440
       height: 1440
-  icons: {}
+  icons:
+    "/":
+      row: 1
+      col: 0
+    "trash:///":
+      row: 2
+      col: 0
+    "f7d00217-6e0a-454a-af56-98ecc8e5c4c6":
+      row: 3
+      col: 0
+      last_seen: 1770502961003612
+    "6244-32F6":
+      row: 3
+      col: 0
+      last_seen: 1770623940379615
+    "/home/fscotto":
+      row: 0
+      col: 0
+    "5782F4E556C700DD":
+      row: 4
+      col: 0
+      last_seen: 1770656831571372
 - level: 0
   monitors:
   - id: "3b9e995fde2099f1e479a6489d30cafdea23c8f0"

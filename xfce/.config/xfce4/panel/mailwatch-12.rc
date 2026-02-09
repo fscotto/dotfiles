@@ -9,5 +9,19 @@ show_log_status=true
 auto_open_online_doc=false
 
 [mailwatch]
-nmailboxes=0
+nmailboxes=2
+mailbox0=maildir
+mailbox_name0=Proton Mail
+mailbox1=maildir
+mailbox_name1=iCloud Mail
+
+[mailbox0]
+path=/home/fscotto/Maildir/ProtonMailAccount
+mtime=0
+interval=600
+
+[mailbox1]
+path=/home/fscotto/Maildir/iCloudAccount
+mtime=0
+interval=600
 

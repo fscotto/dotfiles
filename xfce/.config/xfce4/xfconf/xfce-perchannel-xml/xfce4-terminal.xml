@@ -23,6 +23,11 @@
   <property name="tab-activity-color" type="string" value="#aa0000"/>
   <property name="background-mode" type="string" value="TERMINAL_BACKGROUND_SOLID"/>
   <property name="background-darkness" type="double" value="0.94999999999999996"/>
-  <property name="font-allow-bold" type="bool" value="false"/>
+  <property name="font-allow-bold" type="bool" value="true"/>
   <property name="font-name" type="string" value="FiraCode Nerd Font 14"/>
+  <property name="kinetic-scrolling" type="bool" value="true"/>
+  <property name="scrolling-bar" type="string" value="TERMINAL_SCROLLBAR_NONE"/>
+  <property name="scrolling-unlimited" type="bool" value="false"/>
+  <property name="scrolling-lines" type="uint" value="10000"/>
+  <property name="overlay-scrolling" type="bool" value="false"/>
 </channel>

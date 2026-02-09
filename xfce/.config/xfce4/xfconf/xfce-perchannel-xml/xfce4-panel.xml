@@ -15,7 +15,7 @@
         <value type="int" value="11"/>
         <value type="int" value="14"/>
         <value type="int" value="20"/>
-        <value type="int" value="19"/>
+        <value type="int" value="16"/>
         <value type="int" value="22"/>
         <value type="int" value="18"/>
         <value type="int" value="21"/>
@@ -29,7 +29,6 @@
         <value type="int" value="10"/>
         <value type="int" value="12"/>
         <value type="int" value="13"/>
-        <value type="int" value="17"/>
         <value type="int" value="4"/>
         <value type="int" value="1"/>
         <value type="int" value="7"/>
@@ -63,12 +62,22 @@
     <property name="plugin-6" type="string" value="systray">
       <property name="square-icons" type="bool" value="true"/>
       <property name="known-legacy-items" type="array">
+        <value type="string" value="connessione wi-fi «skywifi_4lxsq» attiva: skywifi_4lxsq (57%)"/>
+        <value type="string" value="connessione wi-fi «skywifi_4lxsq» attiva: skywifi_4lxsq (59%)"/>
+        <value type="string" value="connessione wi-fi «skywifi_4lxsq» attiva: skywifi_4lxsq (54%)"/>
+        <value type="string" value="connessione wi-fi «skywifi_4lxsq» attiva: skywifi_4lxsq (61%)"/>
+        <value type="string" value="connessione wi-fi «skywifi_4lxsq» attiva: skywifi_4lxsq (55%)"/>
+        <value type="string" value="connessione wi-fi «skywifi_4lxsq» attiva: skywifi_4lxsq (65%)"/>
+        <value type="string" value="connessione wi-fi «skywifi_4lxsq» attiva: skywifi_4lxsq (74%)"/>
+        <value type="string" value="connessione wi-fi «skywifi_4lxsq» attiva: skywifi_4lxsq (62%)"/>
+        <value type="string" value="connessione wi-fi «skywifi_4lxsq» attiva: skywifi_4lxsq (63%)"/>
         <value type="string" value="blueman-tray"/>
         <value type="string" value="blueman"/>
         <value type="string" value="task manager"/>
         <value type="string" value="clipman"/>
       </property>
       <property name="known-items" type="array">
+        <value type="string" value="Proton Mail Bridge"/>
         <value type="string" value="ProtonMailBridge"/>
         <value type="string" value="blueman"/>
         <value type="string" value="flameshot"/>
@@ -97,15 +106,16 @@
       <property name="show-command-profile" type="bool" value="true"/>
       <property name="button-icon" type="string" value="void-logo"/>
       <property name="recent" type="array">
-        <value type="string" value="xfce-settings-manager.desktop"/>
-        <value type="string" value="virt-manager.desktop"/>
-        <value type="string" value="libreoffice-writer.desktop"/>
-        <value type="string" value="xfce4-appfinder.desktop"/>
-        <value type="string" value="spotify.desktop"/>
-        <value type="string" value="org.telegram.desktop.desktop"/>
-        <value type="string" value="emacs.desktop"/>
-        <value type="string" value="thunar-settings.desktop"/>
         <value type="string" value="lightdm-gtk-greeter-settings.desktop"/>
+        <value type="string" value="virt-manager.desktop"/>
+        <value type="string" value="xfce-settings-manager.desktop"/>
+        <value type="string" value="org.telegram.desktop.desktop"/>
+        <value type="string" value="chromium.desktop"/>
+        <value type="string" value="io.gitlab.librewolf-community.desktop"/>
+        <value type="string" value="org.xfce.ristretto.desktop"/>
+        <value type="string" value="org.gnome.Shotwell.desktop"/>
+        <value type="string" value="xfce4-mime-settings.desktop"/>
+        <value type="string" value="ch.protonmail.protonmail-bridge.desktop"/>
       </property>
       <property name="menu-width" type="int" value="700"/>
       <property name="menu-height" type="int" value="500"/>
@@ -132,15 +142,9 @@
       <property name="display-type" type="uint" value="1"/>
     </property>
     <property name="plugin-15" type="string" value="xfce4-mpc-plugin"/>
-    <property name="plugin-17" type="string" value="wavelan"/>
     <property name="plugin-18" type="string" value="launcher">
       <property name="items" type="array">
         <value type="string" value="17703246421.desktop"/>
-      </property>
-    </property>
-    <property name="plugin-19" type="string" value="launcher">
-      <property name="items" type="array">
-        <value type="string" value="17703246482.desktop"/>
       </property>
     </property>
     <property name="plugin-20" type="string" value="launcher">
@@ -155,7 +159,7 @@
     </property>
     <property name="plugin-22" type="string" value="launcher">
       <property name="items" type="array">
-        <value type="string" value="17703246815.desktop"/>
+        <value type="string" value="17705740092.desktop"/>
       </property>
     </property>
     <property name="plugin-23" type="string" value="separator">
@@ -165,7 +169,12 @@
     <property name="plugin-24" type="string" value="separator"/>
     <property name="plugin-4" type="string" value="pulseaudio">
       <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
-      <property name="known-players" type="string" value="Firefox;spotify"/>
+      <property name="known-players" type="string" value="Firefox;librewolf;org.telegram.desktop;spotify"/>
+    </property>
+    <property name="plugin-16" type="string" value="launcher">
+      <property name="items" type="array">
+        <value type="string" value="17705040301.desktop"/>
+      </property>
     </property>
   </property>
 </channel>
