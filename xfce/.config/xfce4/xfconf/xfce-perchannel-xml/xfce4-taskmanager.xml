@@ -10,7 +10,7 @@
   <property name="columns" type="empty">
     <property name="column-ppid" type="bool" value="true"/>
   </property>
-  <property name="window-maximized" type="bool" value="false"/>
+  <property name="window-maximized" type="bool" value="true"/>
   <property name="window-width" type="int" value="1148"/>
   <property name="window-height" type="int" value="944"/>
 </channel>

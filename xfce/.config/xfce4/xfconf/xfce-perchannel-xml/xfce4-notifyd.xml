@@ -16,4 +16,6 @@
     </property>
   </property>
   <property name="date-time-custom-format" type="string" value="%a %H:%M:%S"/>
+  <property name="notify-location" type="string" value="bottom-right"/>
+  <property name="theme" type="string" value="Default"/>
 </channel>
