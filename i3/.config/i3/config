@@ -43,20 +43,25 @@ set $ws10 "10"
 ###############################################################
 ###############################################################
 
-set $lavender  '#813d9c'
-set $base      '#000000'
-set $text      '#000000'
-set $rosewater '#dc8add'
-set $overlay0  '#5e5c64'
-set $peach     '#e66100'
+# Define colors variables:
+set $darkbluetrans  #08052be6
+set $darkblue       #08052b
+set $lightblue      #5294e2
+set $urgentred      #e53935
+set $white          #ffffff
+set $black          #000000
+set $purple         #e345ff
+set $darkgrey       #383c4a
+set $grey           #b0b5bd
+set $mediumgrey     #8b8b8b
+set $yellowbrown    #e1b700
 
-# target                 title     bg    text   indicator  border
-client.focused           $lavender $base $text  $rosewater $lavender
-client.focused_inactive  $overlay0 $base $text  $rosewater $overlay0
-client.unfocused         $overlay0 $base $text  $rosewater $overlay0
-client.urgent            $peach    $base $peach $overlay0  $peach
-client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
-client.background        $base
+# define colors for windows:
+#class                      border      bground     text        indicator   child_border
+client.focused              $lightblue  $darkblue   $white      $mediumgrey $mediumgrey
+client.unfocused            $darkblue   $darkblue   $grey       $darkgrey   $darkgrey
+client.focused_inactive     $darkblue   $darkblue   $grey       $black      $black
+client.urgent               $urgentred  $urgentred  $white      $yellowbrown    $yellowbrown
 
 # Setting cursor
 # seat seat0 xcursor_theme catppuccin-mocha-lavender-cursors 25
