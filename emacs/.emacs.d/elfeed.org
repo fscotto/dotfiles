@@ -10,6 +10,7 @@
 *** [[https://blog.linuxmint.com/?feed=rss2][Linux Mint Blog]] :blog: :linux: :linuxmint:
 *** [[https://archlinux.org/feeds/news][Archlinux News]] :linux: :arch:
 *** [[https://security.archlinux.org/advisory/feed.atom][Arch Security]] :linux: :arch: :security:
+*** [[https://lwn.net/headlines/rss][LWN News]] :linux: :kernel: :programming: :security:
 ** Youtube :youtube:
 *** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCVls1GmFKf6WlTraIb_IaJg][DistroTube]] :emacs: :foss: :linux:
 *** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCABhVAlCkcEG9a2UVruq9vw][Douglas Mortimer]] :fashion:
