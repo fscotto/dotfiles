@@ -70,10 +70,6 @@ client.urgent               $urgentred  $urgentred  $white      $yellowbrown    
 # is used in the bar {} block below.
 font pango:Liberation Sans Regular 10
 
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
-
 # Windows configuration
 default_border pixel 3
 default_floating_border pixel 3
@@ -105,12 +101,12 @@ for_window [class="Authy"] floating enable
 for_window [class="Termfloat"] floating enable, resize set 960 540
 for_window [class="Mpv"] floating enable, resize set 960 540
 for_window [class="Spotify"] floating enable, resize set 1280 1024, move scratchpad
+for_window [class="xfce4-clipman-history"] floating enable, resize set 960 540
 
 # Workspaces
-assign [class="Emacs"] 1
-assign [class="firefox"] 2
-assign [class="chromium"] 2
-assign [class="Telegram"] 3
+assign [class="Emacs"] 2
+assign [class="Chromium"] 1
+assign [class="Telegram"] 2
 assign [class="discord"] 3
 
 focus_follows_mouse no
@@ -161,6 +157,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 #bindsym $mod+Mod1+l exec ~/.config/i3/scripts/lockscreen.sh
+bindsym $mod+Alt+l exec xflock4
 
 # use Mouse+Mod4 to drag floating windows to their wanted position
 floating_modifier $mod
@@ -183,7 +180,7 @@ bindsym $mod+Right focus right
 
 # move focused window
 bindsym $mod+Shift+$left move left
-bindsym $mod4+Shift+$down move down
+bindsym $mod+Shift+$down move down
 bindsym $mod+Shift+$up move up
 bindsym $mod+Shift+$right move right
 
