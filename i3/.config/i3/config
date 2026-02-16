@@ -132,8 +132,7 @@ mode "launcher" {
      bindsym s exec "rofi -show ssh"
      bindsym w exec "rofi -show window"
      bindsym f exec "rofi -show filebrowser"
-     bindsym q exec ~/.config/i3/scripts/poweroff.sh
-
+     
      bindsym $mod+d mode "default"
      bindsym Return mode "default"
      bindsym Escape mode "default"
@@ -148,6 +147,8 @@ bindsym Print exec xfce4-screenshooter
 bindsym Shift+Print exec xfce4-screenshooter -r
 bindsym Alt+Print exec xfce4-screenshooter -w
 bindsym $mod+Shift+v exec --no-startup-id xfce4-clipman-history
+bindsym $mod+Mod1+l exec xflock4
+bindsym Mod1+Ctrl+q exec xfce4-session-logout
 
 # Use pactl to adjust volume in PulseAudio.
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
@@ -156,8 +157,8 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
-#bindsym $mod+Mod1+l exec ~/.config/i3/scripts/lockscreen.sh
-bindsym $mod+Alt+l exec xflock4
+
+
 
 # use Mouse+Mod4 to drag floating windows to their wanted position
 floating_modifier $mod
