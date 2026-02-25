@@ -6,7 +6,7 @@ show_in_folder=false
 screenshot_dir=file:///home/fscotto/Immagini
 action=2
 delay=0
-region=1
+region=2
 show_mouse=0
 show_border=0
 

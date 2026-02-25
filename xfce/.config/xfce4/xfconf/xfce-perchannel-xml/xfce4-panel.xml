@@ -56,6 +56,9 @@
     <property name="plugin-6" type="string" value="systray">
       <property name="square-icons" type="bool" value="true"/>
       <property name="known-legacy-items" type="array">
+        <value type="string" value="connessione wi-fi «skywifi_4lxsq» attiva: skywifi_4lxsq (67%)"/>
+        <value type="string" value="connessione wi-fi «skywifi_4lxsq» attiva: skywifi_4lxsq (53%)"/>
+        <value type="string" value="connessione wi-fi «skywifi_4lxsq» attiva: skywifi_4lxsq (56%)"/>
         <value type="string" value="richiesta di un indirizzo wi-fi per «skywifi_4lxsq»…"/>
         <value type="string" value="connessione wi-fi «skywifi_4lxsq» attiva: skywifi_4lxsq (58%)"/>
         <value type="string" value="connessione wi-fi «skywifi_4lxsq» attiva: skywifi_4lxsq (60%)"/>
@@ -77,6 +80,7 @@
         <value type="string" value="clipman"/>
       </property>
       <property name="known-items" type="array">
+        <value type="string" value="virt-manager"/>
         <value type="string" value="deluge"/>
         <value type="string" value="Proton Mail Bridge"/>
         <value type="string" value="ProtonMailBridge"/>
@@ -90,10 +94,14 @@
       <property name="menu-is-primary" type="bool" value="true"/>
       <property name="symbolic-icons" type="bool" value="true"/>
       <property name="hidden-items" type="array">
+        <value type="string" value="virt-manager"/>
         <value type="string" value="deluge"/>
       </property>
       <property name="hidden-legacy-items" type="array">
+        <value type="string" value="connessione wi-fi «skywifi_4lxsq» attiva: skywifi_4lxsq (56%)"/>
         <value type="string" value="richiesta di un indirizzo wi-fi per «skywifi_4lxsq»…"/>
+        <value type="string" value="connessione wi-fi «skywifi_4lxsq» attiva: skywifi_4lxsq (53%)"/>
+        <value type="string" value="connessione wi-fi «skywifi_4lxsq» attiva: skywifi_4lxsq (67%)"/>
       </property>
     </property>
     <property name="plugin-7" type="string" value="separator">
@@ -125,15 +133,15 @@
       <property name="show-command-profile" type="bool" value="true"/>
       <property name="button-icon" type="string" value="void-logo"/>
       <property name="recent" type="array">
+        <value type="string" value="virt-manager.desktop"/>
+        <value type="string" value="org.gnome.Shotwell.desktop"/>
+        <value type="string" value="org.xfce.ristretto.desktop"/>
+        <value type="string" value="xfce-settings-manager.desktop"/>
         <value type="string" value="org.telegram.desktop.desktop"/>
         <value type="string" value="xfce4-taskmanager.desktop"/>
         <value type="string" value="org.xfce.mousepad.desktop"/>
         <value type="string" value="chromium.desktop"/>
-        <value type="string" value="org.gnome.Shotwell.desktop"/>
-        <value type="string" value="xfce-settings-manager.desktop"/>
         <value type="string" value="lightdm-gtk-greeter-settings.desktop"/>
-        <value type="string" value="virt-manager.desktop"/>
-        <value type="string" value="org.xfce.ristretto.desktop"/>
       </property>
       <property name="menu-width" type="int" value="700"/>
       <property name="menu-height" type="int" value="500"/>
