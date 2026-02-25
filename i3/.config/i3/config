@@ -17,7 +17,7 @@ set $down j
 set $up k
 set $right l
 
-set $term 'xfce4-terminal'
+set $term 'kitty'
 set $editor 'emacs'
 set $filemanager 'thunar'
 set $notification 'dunst'
@@ -101,7 +101,7 @@ for_window [class="Authy"] floating enable
 for_window [class="Termfloat"] floating enable, resize set 960 540
 for_window [class="Mpv"] floating enable, resize set 960 540
 for_window [class="Spotify"] floating enable, resize set 1280 1024, move scratchpad
-for_window [class="xfce4-clipman-history"] floating enable, resize set 960 540
+for_window [class="xfce4-clipman-history"] floating enable
 
 # Workspaces
 assign [class="Emacs"] 2
