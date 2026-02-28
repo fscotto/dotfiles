@@ -17,10 +17,9 @@ set $down j
 set $up k
 set $right l
 
-set $term 'kitty'
+set $term 'xfce4-terminal'
 set $editor 'emacs'
 set $filemanager 'thunar'
-set $notification 'dunst'
 set $browser 'chromium'
 set $clipboard 'xfce4-clipman'
 
@@ -58,10 +57,10 @@ set $yellowbrown    #e1b700
 
 # define colors for windows:
 #class                      border      bground     text        indicator   child_border
-client.focused              $lightblue  $darkblue   $white      $mediumgrey $mediumgrey
-client.unfocused            $darkblue   $darkblue   $grey       $darkgrey   $darkgrey
-client.focused_inactive     $darkblue   $darkblue   $grey       $black      $black
-client.urgent               $urgentred  $urgentred  $white      $yellowbrown    $yellowbrown
+#client.focused              $lightblue  $darkblue   $white      $mediumgrey $mediumgrey
+#client.unfocused            $darkblue   $darkblue   $grey       $darkgrey   $darkgrey
+#client.focused_inactive     $darkblue   $darkblue   $grey       $black      $black
+#client.urgent               $urgentred  $urgentred  $white      $yellowbrown    $yellowbrown
 
 # Setting cursor
 # seat seat0 xcursor_theme catppuccin-mocha-lavender-cursors 25
@@ -73,8 +72,8 @@ font pango:Liberation Sans Regular 10
 # Windows configuration
 default_border pixel 3
 default_floating_border pixel 3
-gaps inner 5
-gaps outer 5
+#gaps inner 5
+#gaps outer 5
 
 # Apply wallpaper
 exec_always --no-startup-id feh --bg-scale ~/.config/i3/wallpaper.jpg
@@ -145,10 +144,10 @@ bindsym $mod+Shift+t exec "flatpak run org.telegram.desktop"
 bindsym $mod+Shift+e exec $editor
 bindsym Print exec xfce4-screenshooter
 bindsym Shift+Print exec xfce4-screenshooter -r
-bindsym Alt+Print exec xfce4-screenshooter -w
+bindsym Mod1+Print exec xfce4-screenshooter -w
 bindsym $mod+Shift+v exec --no-startup-id xfce4-clipman-history
-bindsym $mod+Mod1+l exec xflock4
-bindsym Mod1+Ctrl+q exec xfce4-session-logout
+bindsym $mod+Mod1+l exec ~/.config/i3/scripts/lockscreen.sh
+bindsym Mod1+Ctrl+q exec ~/.config/i3/scripts/powermenu
 
 # Use pactl to adjust volume in PulseAudio.
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
@@ -157,8 +156,6 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
-
-
 
 # use Mouse+Mod4 to drag floating windows to their wanted position
 floating_modifier $mod
@@ -282,3 +279,89 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+
+
+############################################
+# bar settings (input comes from i3blocks) #
+############################################
+
+# Start i3bar to display a workspace bar
+# (plus the system information i3status finds out, if available)
+bar {
+        font pango: Liberation Sans Regular 10
+        status_command i3blocks -c ~/.config/i3/i3blocks.conf
+        position bottom
+        # i3bar_command i3bar --transparency
+        # it could be that you have no primary display set: set one (xrandr --output <output> --primary)
+        # reference: https://i3wm.org/docs/userguide.html#_tray_output
+        tray_output primary
+        tray_padding 0
+
+        # When strip_workspace_numbers is set to yes,
+        # any workspace that has a name of the form
+        # “[n][:][NAME]” will display only the name.
+        strip_workspace_numbers yes
+        ##strip_workspace_name no
+
+        #colors {
+       	#       separator          $purple
+        #       background         $darkgrey
+        #       statusline         $white
+#              border              bg          txt         indicator
+        #       focused_workspace   $mediumgrey         $grey       $darkgrey   $purple
+        #       active_workspace    $lightblue          $mediumgrey $darkgrey   $purple
+        #       inactive_workspace  $darkgrey           $darkgrey   $grey       $purple
+        #       urgent_workspace    $urgentred          $urgentred  $white      $purple
+        #}
+}
+
+###############################################################
+###############################################################
+##################         AUTOSTART         ##################
+###############################################################
+###############################################################
+
+### Run status bar
+#exec_always --no-startup-id ~/.config/polybar/launch.sh
+
+# Start XDG autostart .desktop files using dex. See also
+# https://wiki.archlinux.org/index.php/XDG_Autostart
+exec --no-startup-id dex --autostart --environment i3
+
+# The combination of xss-lock, nm-applet and pactl is a popular choice, so
+# they are included here as an example. Modify as you see fit.
+
+# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
+# screen before suspend. Use loginctl lock-session to lock your screen.
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+
+### Enable autolock
+exec_always xautolock -time 5 -locker ~/.config/i3/scripts/lockscreen.sh -detectsleep
+
+# NetworkManager is the most popular way to manage wireless networks on Linux,
+# and nm-applet is a desktop environment-independent system tray GUI for it.
+exec --no-startup-id nm-applet
+
+# make sure it loads gtk configs
+exec_always $HOME/.config/i3/scripts/import-gsettings.sh
+
+# start ssh-agent
+#exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
+
+#################################################################
+#################################################################
+################         XFCE SERVICES          #################
+#################################################################
+#################################################################
+
+# Polkit Authentication agent
+exec --no-startup-id /usr/libexec/xfce-polkit
+
+# Notification daemon
+exec --no-startup-id /usr/lib64/xfce4/notifyd/xfce4-notifyd
+
+# Power Manager
+exec --no-startup-id xfce4-power-manager
+
+# Clipboard
+exec_always --no-startup-id xfce4-clipman
