@@ -15,10 +15,10 @@ export QT_STYLE_OVERRIDE=kvantum
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
 
 export DOTFILES="$HOME/.dotfiles"
-export EDITOR=nano
+export EDITOR=vim
 
 # SSH socket
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"
+#export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"
 
 # export FZF_DEFAULT_COMMAND="fdfind --hidden --type file --strip-cwd-prefix --exclude .git"
 # export FZF_CTRL_T_COMMAND="fdfind --hidden --type file --strip-cwd-prefix --exclude .git"
@@ -46,8 +46,6 @@ appendpath() {
   esac
 }
 
-# appendpath "/home/linuxbrew/.linuxbrew/bin"
 appendpath "$HOME/.local/bin"
 appendpath "$GOBIN"
-# appendpath "$HOME/.cargo/bin"
 unset appendpath

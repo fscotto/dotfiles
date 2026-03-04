@@ -13,7 +13,7 @@ Each directory in this repository corresponds to a specific application or tool,
 > ```bash
 > stow bash
 > stow i3
-> stow doom
+> stow emacs
 > ```
 
 ### 🧩 Included Tools & Configurations
@@ -24,16 +24,17 @@ This repository contains my configuration files for the following tools:
   - `bash` (Oh My Bash)
   - `starship`
 - **Terminal Emulators & Multiplexer**
+  - `xfce4-terminal`
   - `alacritty`
+  - `kitty`
+  - `foot`
   - `tmux`
 - **Editors & CLI Tools**
-  - `doom` (Doom Emacs config)
-  - `emacs` (Custom config)
+  - `emacs`
   - `git`
 - **X11 Environment**
+  - `xfce4` (Desktop Environment)
   - `i3` (Window Manager)
-  - `picom` (X11 compositor)
-  - `polybar` (status bar)
   - `rofi` (launcher)
   - `dunst` (notification daemon)
 - **Wayland Environment**
@@ -43,7 +44,6 @@ This repository contains my configuration files for the following tools:
   - `dunst` (notification daemon)
 - **Utilities**
   - `fastfetch`
-  - `zoxide`
   - `yt-dlp`
   - `flameshot`
 

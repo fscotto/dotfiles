@@ -11,5 +11,9 @@
       <property name="size" type="uint" value="6"/>
       <property name="show" type="bool" value="false"/>
     </property>
+    <property name="bgcolor-override" type="bool" value="false"/>
+  </property>
+  <property name="desktop" type="empty">
+    <property name="type" type="string" value="xfce"/>
   </property>
 </channel>
