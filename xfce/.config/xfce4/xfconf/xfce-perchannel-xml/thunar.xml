@@ -16,7 +16,7 @@
   <property name="misc-middle-click-in-tab" type="bool" value="true"/>
   <property name="misc-full-path-in-tab-title" type="bool" value="false"/>
   <property name="last-details-view-zoom-level" type="string" value="THUNAR_ZOOM_LEVEL_75_PERCENT"/>
-  <property name="last-details-view-column-widths" type="string" value="50,50,132,50,50,94,50,50,2472,50,50,106,50,450"/>
+  <property name="last-details-view-column-widths" type="string" value="50,50,132,112,80,377,50,50,2744,50,50,106,50,178"/>
   <property name="last-show-hidden" type="bool" value="true"/>
   <property name="last-side-pane" type="string" value="THUNAR_SIDEPANE_TYPE_SHORTCUTS"/>
 </channel>

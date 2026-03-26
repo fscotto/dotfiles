@@ -56,6 +56,9 @@
     <property name="plugin-6" type="string" value="systray">
       <property name="square-icons" type="bool" value="true"/>
       <property name="known-legacy-items" type="array">
+        <value type="string" value="connessione wi-fi «skywifi_4lxsq» attiva: skywifi_4lxsq (70%)"/>
+        <value type="string" value="connessione wi-fi «skywifi_4lxsq» attiva: skywifi_4lxsq (89%)"/>
+        <value type="string" value="connessione wi-fi «skywifi_4lxsq» attiva: skywifi_4lxsq (87%)"/>
         <value type="string" value="connessione wi-fi «skywifi_4lxsq» attiva: skywifi_4lxsq (73%)"/>
         <value type="string" value="connessione wi-fi «skywifi_4lxsq» attiva: skywifi_4lxsq (67%)"/>
         <value type="string" value="connessione wi-fi «skywifi_4lxsq» attiva: skywifi_4lxsq (53%)"/>
@@ -99,11 +102,14 @@
         <value type="string" value="deluge"/>
       </property>
       <property name="hidden-legacy-items" type="array">
-        <value type="string" value="connessione wi-fi «skywifi_4lxsq» attiva: skywifi_4lxsq (56%)"/>
-        <value type="string" value="richiesta di un indirizzo wi-fi per «skywifi_4lxsq»…"/>
         <value type="string" value="connessione wi-fi «skywifi_4lxsq» attiva: skywifi_4lxsq (53%)"/>
-        <value type="string" value="connessione wi-fi «skywifi_4lxsq» attiva: skywifi_4lxsq (73%)"/>
+        <value type="string" value="connessione wi-fi «skywifi_4lxsq» attiva: skywifi_4lxsq (70%)"/>
         <value type="string" value="connessione wi-fi «skywifi_4lxsq» attiva: skywifi_4lxsq (67%)"/>
+        <value type="string" value="connessione wi-fi «skywifi_4lxsq» attiva: skywifi_4lxsq (56%)"/>
+        <value type="string" value="connessione wi-fi «skywifi_4lxsq» attiva: skywifi_4lxsq (73%)"/>
+        <value type="string" value="connessione wi-fi «skywifi_4lxsq» attiva: skywifi_4lxsq (89%)"/>
+        <value type="string" value="connessione wi-fi «skywifi_4lxsq» attiva: skywifi_4lxsq (87%)"/>
+        <value type="string" value="richiesta di un indirizzo wi-fi per «skywifi_4lxsq»…"/>
       </property>
     </property>
     <property name="plugin-7" type="string" value="separator">
